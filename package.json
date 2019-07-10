@@ -4,7 +4,10 @@
   "description": "Basic src-project with config for React and Webpack 4",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "serve": "./node_modules/.bin/webpack-dev-server --hot --open",
+    "build-prod": "./node_modules/.bin/webpack --mode production",
+    "build-dev": "./node_modules/.bin/webpack --mode development"
   },
   "repository": {
     "type": "git",
@@ -21,5 +24,14 @@
   "bugs": {
     "url": "https://github.com/Yegorich555/FromScratch_React/issues"
   },
-  "homepage": "https://github.com/Yegorich555/FromScratch_React#readme"
+  "homepage": "https://github.com/Yegorich555/FromScratch_React#readme",
+  "devDependencies": {
+    "@babel/core": "^7.5.4",
+    "@babel/preset-env": "^7.5.4",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.6",
+    "webpack": "^4.35.3",
+    "webpack-cli": "^3.3.5",
+    "webpack-dev-server": "^3.7.2"
+  }
 }
