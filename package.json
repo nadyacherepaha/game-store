@@ -1,0 +1,25 @@
+{
+  "name": "fromscratch_react",
+  "version": "0.0.1",
+  "description": "Basic src-project with config for React and Webpack 4",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Yegorich555/FromScratch_React.git"
+  },
+  "keywords": [
+    "React",
+    "Webpack",
+    "ReactJS",
+    "Webpack4"
+  ],
+  "author": "Yegor.Golubchyk",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Yegorich555/FromScratch_React/issues"
+  },
+  "homepage": "https://github.com/Yegorich555/FromScratch_React#readme"
+}
