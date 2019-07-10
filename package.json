@@ -2,12 +2,13 @@
   "name": "fromscratch_react",
   "version": "0.0.1",
   "description": "Basic src-project with config for React and Webpack 4",
-  "main": "main.js",
+  "main": "main.jsx",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "serve": "./node_modules/.bin/webpack-dev-server --hot --open",
-    "build-prod": "./node_modules/.bin/webpack --mode production",
-    "build-dev": "./node_modules/.bin/webpack --mode development"
+    "serve": "./node_modules/.bin/webpack-dev-server --hot --open --config webpack.dev.js",
+    "build-prod": "./node_modules/.bin/webpack --mode production --config webpack.prod.js",
+    "build-dev": "./node_modules/.bin/webpack --mode development --config webpack.dev.js",
+    "build": "npm run build-prod"
   },
   "repository": {
     "type": "git",
@@ -30,8 +31,19 @@
     "@babel/preset-env": "^7.5.4",
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.6",
+    "case-sensitive-paths-webpack-plugin": "^2.2.0",
+    "compression-webpack-plugin": "^3.0.0",
+    "copy-webpack-plugin": "^5.0.3",
+    "friendly-errors-webpack-plugin": "^1.7.0",
+    "html-webpack-plugin": "^3.2.0",
+    "preload-webpack-plugin": "^3.0.0-beta.3",
     "webpack": "^4.35.3",
     "webpack-cli": "^3.3.5",
-    "webpack-dev-server": "^3.7.2"
+    "webpack-dev-server": "^3.7.2",
+    "webpack-merge": "^4.2.1"
+  },
+  "dependencies": {
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
   }
 }
