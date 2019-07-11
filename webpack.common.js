@@ -18,8 +18,29 @@ module.exports = {
     output: {
         path: destPath,
         filename: "[name].js",
+        chunkFilename: '[name].js',
         publicPath: "/",
         globalObject: "(typeof self !== 'undefined' ? self : this)"
+    },
+    optimization: {
+        splitChunks: {
+            minChunks: 1,
+            cacheGroups: {
+                vendors: {
+                    name: 'chunk-vendors',
+                    test: /[\\\/]node_modules[\\\/]/,
+                    priority: -10,
+                    chunks: 'initial'
+                },
+                common: {
+                    name: 'chunk-common',
+                    minChunks: 2,
+                    priority: -20,
+                    chunks: 'initial',
+                    reuseExistingChunk: true
+                }
+            }
+        }
     },
     module: {
         rules: [{
@@ -64,25 +85,19 @@ module.exports = {
         /* config.plugin('define') */
         new webpack.DefinePlugin({
             "process.env": {
-                NODE_ENV: '"development"', //TODO mode
+                NODE_ENV: '"development"', //TODO: mode
                 BASE_URL: '"/"'
             }
         }),
         new CaseSensitivePathsPlugin(),
         new FriendlyErrorsWebpackPlugin(),
         new MiniCssExtractPlugin({
-            filename: '[name].css', //devMode ? '[name].css' : '[name].[contenthash].css',
-            chunkFilename: '[id].css' // devMode ? '[id].css' : '[id].[contenthash].css',
+            filename: '[name].css', //TODO: devMode ? '[name].css' : '[name].[contenthash].css',
+            chunkFilename: '[id].css' //TODO: devMode ? '[id].css' : '[id].[contenthash].css',
         }),
         new HtmlWebpackPlugin({
             template: path.resolve(publicPath, "index.html"),
-            minify: {
-                removeComments: true,
-                collapseWhitespace: true,
-                removeAttributeQuotes: true,
-                collapseBooleanAttributes: true,
-                removeScriptTypeAttributes: true
-            },
+            //TODO: minify for prod
         }),
         new PreloadPlugin({
             rel: "preload",
