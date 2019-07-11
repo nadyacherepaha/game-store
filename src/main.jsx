@@ -1,3 +1,5 @@
+import './main.css';
+import style from "./main.module.css";
 import React, { Component } from "react";
 import ReactDom from "react-dom";
 
@@ -9,7 +11,7 @@ class AppContainer extends Component {
     };
   }
   render() {
-    return <h2>{this.state.title}</h2>;
+    return <h2 className={style.mainTitle}>{this.state.title}</h2>;
   }
 }
 

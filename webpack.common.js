@@ -1,9 +1,9 @@
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
-
 const PreloadPlugin = require('preload-webpack-plugin');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const path = require('path');
 const srcPath = path.resolve(__dirname, "./src/");
@@ -23,12 +23,42 @@ module.exports = {
     },
     module: {
         rules: [{
-            test: /\.(js|jsx)$/,
-            exclude: /node_modules/,
-            use: {
-                loader: "babel-loader"
+                test: /\.(js|jsx)$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: "babel-loader"
+                }
+            },
+            {
+                test: /\.css$/,
+                oneOf: [
+                    /* config .oneOf('normal-modules') - rule for [name].module.css files - rule for css-modules*/
+                    {
+                        test: /\.module\.\w+$/,
+                        use: [
+                            MiniCssExtractPlugin.loader,
+                            {
+                                loader: 'css-loader',
+                                options: {
+                                    modules: {
+                                        localIdentName: '[path][name]__[local]--[hash:base64:5]'
+                                    },
+                                }
+                            },
+                            'postcss-loader'
+                        ]
+                    },
+                    /* config .oneOf('normal') */
+                    {
+                        use: [
+                            MiniCssExtractPlugin.loader,
+                            'css-loader',
+                            'postcss-loader'
+                        ]
+                    }
+                ]
             }
-        }]
+        ]
     },
     plugins: [
         /* config.plugin('define') */
@@ -40,9 +70,9 @@ module.exports = {
         }),
         new CaseSensitivePathsPlugin(),
         new FriendlyErrorsWebpackPlugin(),
-            additionalTransformers: [
-                error => {
-                    if (error.webpackError) {
+        new MiniCssExtractPlugin({
+            filename: '[name].css', //devMode ? '[name].css' : '[name].[contenthash].css',
+            chunkFilename: '[id].css' // devMode ? '[id].css' : '[id].[contenthash].css',
         }),
         new HtmlWebpackPlugin({
             template: path.resolve(publicPath, "index.html"),
@@ -54,15 +84,14 @@ module.exports = {
                 removeScriptTypeAttributes: true
             },
         }),
-        // new PreloadPlugin({
-        //     rel: "preload",
-        //     include: "initial",
-        //     fileBlacklist: [/\.map$/, /hot-update\.js$/]
-        // }),
-        // new PreloadPlugin({
-        //     rel: "prefetch",
-        //     include: "asyncChunks"
-        // }),
-      
+        new PreloadPlugin({
+            rel: "preload",
+            include: "initial",
+            fileBlacklist: [/\.map$/, /hot-update\.js$/]
+        }),
+        new PreloadPlugin({
+            rel: "prefetch",
+            include: "asyncChunks"
+        })
     ]
 };

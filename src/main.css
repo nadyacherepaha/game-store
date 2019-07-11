@@ -1,0 +1,9 @@
+h2 {
+    font-size: 40px;
+    display: block;
+    margin: auto;
+}
+
+::placeholder { /*test for autoprefixer in postcss*/
+    color: antiquewhite;
+}
