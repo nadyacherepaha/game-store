@@ -2,8 +2,7 @@ const webpack = require('webpack');
 const merge = require('webpack-merge');
 const common = require('./webpack.common.js');
 
-console.warn(common.entry);
-module.exports = merge(common, {
+module.exports = (env, argv) => merge(common(env, argv), {
     mode: 'development',
     devtool: 'cheap-module-eval-source-map',
     devServer: {
@@ -13,6 +12,5 @@ module.exports = merge(common, {
         }
     },
     plugins: [
-        
     ]
 });
