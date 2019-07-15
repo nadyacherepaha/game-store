@@ -1,3 +1,6 @@
+@import "normalize.css";
+@import "sanitize.css";
+
 h2 {
     font-size: 50px;
     display: block;
