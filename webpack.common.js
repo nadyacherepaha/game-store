@@ -115,7 +115,7 @@ module.exports = function (_env, argv) {
             new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/), //it adds force-ignoring unused parts of modules like moment/locale/*.js
             new webpack.DefinePlugin({ //it adds custom Global definition to the project like BASE_URL for index.html
                 "process.env": {
-                    NODE_ENV: mode,
+                    NODE_ENV: JSON.stringify(mode),
                     BASE_URL: '"/"'
                 }
             }),
