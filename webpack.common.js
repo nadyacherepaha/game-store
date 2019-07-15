@@ -13,7 +13,7 @@ const destPath = path.resolve(__dirname, "./build/"); //('../Api/wwwroot')
 const assetsPath = path.resolve(__dirname, "./public/");
 
 module.exports = function (_env, argv) {
-    const isDevServer = argv.hot || argv['$0'].indexOf('webpack-dev-server') !== -1; //TODO: remove hot since it's not important
+    const isDevServer = argv['$0'].indexOf('webpack-dev-server') !== -1;
     const mode = argv.mode;
     const isDevMode = mode !== 'production';
 
