@@ -70,7 +70,10 @@ module.exports = function (_env, argv) {
                                     loader: 'css-loader', //it interprets @import and url() like import/require() and it resolves them (you can use [import *.css] into *.js).
                                     options: {
                                         modules: {
-                                            localIdentName: '[path][name]__[local]--[hash:base64:5]'
+                                            getLocalIdent: (loaderContext, _localIdentName, localName, options) => { //TODO: minify classNames for prod-build
+                                                const request = path.relative(options.context || "", loaderContext.resourcePath).replace(/\\/g,'-');
+                                                return `${request}__${localName}`;
+                                            }
                                         },
                                     }
                                 },
