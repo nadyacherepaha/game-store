@@ -57,7 +57,8 @@ module.exports = function (_env, argv) {
                     }
                 },
                 {
-                    test: /\.css$/, //rules for style-files
+                    //TODO: add sourceMap: true for every loader for prod.build
+                    test: /\.css$|\.scss$/, //rules for style-files
                     oneOf: [
                         /* config .oneOf('normal-modules') - rule for [name].module.css files - rule for css-modules*/
                         {
@@ -75,9 +76,15 @@ module.exports = function (_env, argv) {
                                                 return `${request}__${localName}`;
                                             }
                                         },
+                                {
+                                    loader: "sass-loader", //it compiles Sass to CSS, using Node Sass by default
+                                    options: {
+                                        data: '@import "variables";',
+                                        includePaths: [path.resolve(__dirname, "src/styles")],
                                     }
                                 },
                                 'postcss-loader' //it provides adding vendor prefixes to CSS rules using values from Can I Use (see postcss.config.js in the project)
+
                             ]
                         },
                         /* config .oneOf('normal') */
@@ -90,6 +97,13 @@ module.exports = function (_env, argv) {
                                     },
                                 },
                                 'css-loader', //it interprets @import and url() like import/require() and it resolves them (you can use [import *.css] into *.js).
+                                {
+                                    loader: "sass-loader", //it compiles Sass to CSS, using Node Sass by default
+                                    options: {
+                                        data: '@import "variables";',
+                                        includePaths: [path.resolve(__dirname, "src/style")],
+                                    }
+                                },
                                 'postcss-loader' //it provides adding vendor prefixes to CSS rules using values from Can I Use (see postcss.config.js in the project)
                             ]
                         }
