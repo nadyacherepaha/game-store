@@ -5,7 +5,8 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = (env, argv) => {
     let devConfig = dev(env, argv);
-    devConfig.plugins.splice(devConfig.plugins.findIndex(a => a instanceof CleanPlugin.CleanWebpackPlugin), 1);
+    //remove plugins since these aren't required for devServer
+    devConfig.plugins.splice(devConfig.plugins.findIndex(a => a instanceof CleanPlugin.CleanWebpackPlugin), 1); 
     devConfig.plugins.splice(devConfig.plugins.findIndex(a => a instanceof CopyWebpackPlugin), 1);
 
     let result = merge(devConfig, {
