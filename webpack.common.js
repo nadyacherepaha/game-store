@@ -19,7 +19,7 @@ module.exports = function (_env, argv) {
 
     let result = {
         stats: {
-            children: false
+            children: false //disable console.info for node_modules/*
         },
         entry: path.resolve(__dirname, srcPath, 'main.jsx'), //entyPoint for webpack
         output: {

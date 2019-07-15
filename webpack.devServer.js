@@ -11,9 +11,9 @@ module.exports = (env, argv) => {
 
     let result = merge(devConfig, {
         devServer: {
-            historyApiFallback: true,
+            historyApiFallback: true, //it enables HTML5 mode: https://developer.mozilla.org/en-US/docs/Web/API/History
             stats: {
-                children: false
+                children: false //disable console.info for node_modules/*
             }
         }
     });
