@@ -14,7 +14,7 @@ const assetsPath = path.resolve(__dirname, "./public/");
 
 module.exports = function (_env, argv) {
     const isDevServer = argv['$0'].indexOf('webpack-dev-server') !== -1;
-    const mode = argv.mode;
+    const mode = argv.mode || isDevServer ? 'development': 'production';
     const isDevMode = mode !== 'production';
 
     let result = {
@@ -72,10 +72,14 @@ module.exports = function (_env, argv) {
                                     options: {
                                         modules: {
                                             getLocalIdent: (loaderContext, _localIdentName, localName, options) => { //TODO: minify classNames for prod-build
-                                                const request = path.relative(options.context || "", loaderContext.resourcePath).replace(/\\/g,'-');
+                                                const request = path.relative(options.context || "", loaderContext.resourcePath)
+                                                     .replace(/\\/g, '_')
+                                                     .replace(/\./g, '-');
                                                 return `${request}__${localName}`;
                                             }
                                         },
+                                    }
+                                },
                                 {
                                     loader: "sass-loader", //it compiles Sass to CSS, using Node Sass by default
                                     options: {
