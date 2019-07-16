@@ -39,9 +39,9 @@ module.exports = (env, argv) => {
             ]
         },
         plugins: [ //additional config for plugins is placed in webpack.common.js
-            new CompressionPlugin({
-                threshold: 8192 //(bytes). Only assets bigger than this size are processed
-            }), //it creates gzipped (compressed) files in '[path].gz[query]'
+            new CompressionPlugin({ //it creates gzipped (compressed) files in '[path].gz[query]'
+                threshold: common.filesThreshold //(bytes). Only assets bigger than this size are processed
+            })
         ]
     });
 

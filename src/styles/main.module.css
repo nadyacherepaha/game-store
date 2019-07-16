@@ -3,3 +3,11 @@
     background: beige;
     text-align: center;
 }
+
+.background {
+    background: url(/src/images/testBig.jpeg) no-repeat;
+    background-size: contain;
+    background-position: center;
+    height: 300px;
+    margin: auto;
+}

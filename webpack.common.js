@@ -11,6 +11,7 @@ const path = require('path');
 const srcPath = path.resolve(__dirname, "./src/");
 const destPath = path.resolve(__dirname, "./build/"); //('../Api/wwwroot')
 const assetsPath = path.resolve(__dirname, "./public/");
+const filesThreshold = 8196; //(bytes) threshold for compression, url-loader plugins
 
 module.exports = function(_env, argv) {
     const isDevServer = argv['$0'].indexOf('webpack-dev-server') !== -1;
@@ -51,15 +52,30 @@ module.exports = function(_env, argv) {
             }
         },
         module: {
-            rules: [{
-                    test: /\.(js|jsx)$/, //rules for js, jsx files
+            rules: [{ //rules for js, jsx files
+                    test: /\.(js|jsx)$/,
                     exclude: /node_modules/,
                     use: {
                         loader: "babel-loader" //transpile *.js, **.jsx to result according to .browserlistsrc file
                     }
                 },
+                //rules for images
                 {
-                    test: /\.css$|\.scss$/, //rules for style-files
+                    test: /\.(png|jpe?g|gif|webp)(\?.*)?$/,
+                    exclude: /(node_modules)/,
+                    use: [{
+                        loader: 'url-loader',
+                        options: {
+                            outputPath: 'images',
+                            limit: filesThreshold,
+                            name: '[name].[ext]'
+                                //by default it uses fallback: 'file-loader'
+                                //TODO: add fallback: 'responsive-loader' //it converts image to multiple images using srcset (IE isn't supported): https://caniuse.com/#search=srcset
+                        }
+                    }]
+                },
+                { //rules for style-files
+                    test: /\.css$|\.scss$/,
                     oneOf: [
                         /* config .oneOf('normal-modules') - rule for [name].module.css files - rule for css-modules*/
                         {
@@ -128,7 +144,7 @@ module.exports = function(_env, argv) {
             new CaseSensitivePathsPlugin(), //it fixes bugs between OS in caseSensitivePaths (since Windows isn't CaseSensitive but Linux is)
             new FriendlyErrorsWebpackPlugin(), //it provides user-friendly errors from webpack (since the last has ugly useless bug-report)
             new HtmlWebpackPlugin({ //it creates *.html with injecting js and css into template
-                template: path.resolve(assetsPath, "index.html"),
+                template: path.resolve(srcPath, "index.html"),
                 minify: isDevMode ? false : {
                     removeComments: true,
                     collapseWhitespace: true,
@@ -162,3 +178,5 @@ module.exports = function(_env, argv) {
 
     return result;
 };
+
+module.exports.filesThreshold = filesThreshold;
