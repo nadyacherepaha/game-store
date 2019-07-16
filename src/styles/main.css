@@ -5,8 +5,12 @@ h2 {
     font-size: 50px;
     display: block;
     margin: auto;
+    background: url(~images/testBig.jpeg) no-repeat;
+    /* or background: url(../images/testBig.jpeg) no-repeat; */
+    /*!!!For background images there are work only relative pathes { url(../images/testBig.jpeg) } and aliases from webpack { url(~images/testBig.jpeg) }*/
 }
 
-::placeholder { /*test for autoprefixer in postcss*/
+::placeholder {
+    /*test for autoprefixer in postcss*/
     color: antiquewhite;
 }

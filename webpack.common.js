@@ -18,6 +18,8 @@ module.exports = function(_env, argv) {
     const mode = argv.mode || (isDevServer ? 'development' : 'production');
     const isDevMode = mode !== 'production';
 
+    console.warn('srcPath', srcPath);
+
     process.env.NODE_ENV = mode; //it resolves issues in postcss.config.js (since Define plugin is loaded only after reading config-files)
 
     let result = {
@@ -30,6 +32,12 @@ module.exports = function(_env, argv) {
             filename: "[name].js",
             chunkFilename: "[name].js",
             publicPath: "/",
+        },
+        resolve: {
+            alias: {
+                '@': srcPath, //alias is '@/[name]' for js
+                images: path.resolve(srcPath, 'images') //alias is 'images/[name]' - for js or 'url(~/images/[name]) - for css
+            }
         },
         optimization: {
             splitChunks: {
@@ -66,9 +74,8 @@ module.exports = function(_env, argv) {
                     use: [{
                         loader: 'url-loader',
                         options: {
-                            outputPath: 'images',
-                            limit: filesThreshold,
-                            name: '[name].[ext]'
+                            name: 'images/[name].[ext]',
+                            limit: filesThreshold
                                 //by default it uses fallback: 'file-loader'
                                 //TODO: add fallback: 'responsive-loader' //it converts image to multiple images using srcset (IE isn't supported): https://caniuse.com/#search=srcset
                         }

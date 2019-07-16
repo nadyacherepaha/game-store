@@ -1,0 +1,9 @@
+{
+    "compilerOptions": { //intellisense config for VSCode
+        "baseUrl": "./",
+        "paths": { //for sync with aliases in webpack
+            "@/": ["src/*"],
+            "images/": ["src/images/*"]
+        },
+    }
+}
