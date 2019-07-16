@@ -12,10 +12,12 @@ const srcPath = path.resolve(__dirname, "./src/");
 const destPath = path.resolve(__dirname, "./build/"); //('../Api/wwwroot')
 const assetsPath = path.resolve(__dirname, "./public/");
 
-module.exports = function (_env, argv) {
+module.exports = function(_env, argv) {
     const isDevServer = argv['$0'].indexOf('webpack-dev-server') !== -1;
-    const mode = argv.mode || isDevServer ? 'development': 'production';
+    const mode = argv.mode || (isDevServer ? 'development' : 'production');
     const isDevMode = mode !== 'production';
+
+    process.env.NODE_ENV = mode; //it resolves issues in postcss.config.js (since Define plugin is loaded only after reading config-files)
 
     let result = {
         stats: {
@@ -57,7 +59,6 @@ module.exports = function (_env, argv) {
                     }
                 },
                 {
-                    //TODO: add sourceMap: true for every loader for prod.build
                     test: /\.css$|\.scss$/, //rules for style-files
                     oneOf: [
                         /* config .oneOf('normal-modules') - rule for [name].module.css files - rule for css-modules*/
@@ -67,14 +68,15 @@ module.exports = function (_env, argv) {
                                 isDevServer ?
                                 'style-loader' : //it extracts style dircetly into html (MiniCssExtractPlugin works incorrect with hmr and modules architecture)
                                 MiniCssExtractPlugin.loader, //it extracts styles into file *.css
+                                //TODO: improve plugin for splitting by files for dev purpose
                                 {
                                     loader: 'css-loader', //it interprets @import and url() like import/require() and it resolves them (you can use [import *.css] into *.js).
                                     options: {
                                         modules: {
                                             getLocalIdent: (loaderContext, _localIdentName, localName, options) => { //TODO: minify classNames for prod-build
                                                 const request = path.relative(options.context || "", loaderContext.resourcePath)
-                                                     .replace(/\\/g, '_')
-                                                     .replace(/\./g, '-');
+                                                    .replace(/\\/g, '_')
+                                                    .replace(/\./g, '-');
                                                 return `${request}__${localName}`;
                                             }
                                         },
