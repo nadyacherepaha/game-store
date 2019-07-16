@@ -18,8 +18,6 @@ module.exports = function(_env, argv) {
     const mode = argv.mode || (isDevServer ? 'development' : 'production');
     const isDevMode = mode !== 'production';
 
-    console.warn('srcPath', srcPath);
-
     process.env.NODE_ENV = mode; //it resolves issues in postcss.config.js (since Define plugin is loaded only after reading config-files)
 
     let result = {
@@ -60,23 +58,38 @@ module.exports = function(_env, argv) {
             }
         },
         module: {
-            rules: [{ //rules for js, jsx files
+            rules: [{ //rule for js, jsx files
                     test: /\.(js|jsx)$/,
                     exclude: /node_modules/,
                     use: {
-                        loader: "babel-loader" //transpile *.js, **.jsx to result according to .browserlistsrc file
+                        loader: "babel-loader" //transpile *.js, **.jsx to result according to .browserlistsrc and babel.config.js files
                     }
                 },
-                //rules for images
+                //rule for images
                 {
-                    test: /\.(png|jpe?g|gif|webp)(\?.*)?$/,
+                    test: /\.(png|jpe?g|gif|webp)(\?.*)?$/, //TODO: optimizing images
                     exclude: /(node_modules)/,
                     use: [{
-                        loader: 'url-loader',
+                        loader: 'url-loader', //it converts images that have size less 'limit' option into inline base64-css-format
                         options: {
                             name: 'images/[name].[ext]',
-                            limit: filesThreshold
+                            limit: filesThreshold //if file-size more then limit, file-loader copies one into outputPath
                                 //by default it uses fallback: 'file-loader'
+                                //TODO: add fallback: 'responsive-loader' //it converts image to multiple images using srcset (IE isn't supported): https://caniuse.com/#search=srcset
+                        }
+                    }]
+                },
+                //rule for svg-images
+                {
+                    //TODO: exclude for fonts
+                    test: /\.(svg)(\?.*)?$/, //for reducing file-size: OptimizeCSSAssetsPlugin > cssnano > SVGO, that congigured in webpack.prod.js
+                    exclude: /(node_modules)/,
+                    use: [{
+                        loader: 'svg-url-loader?limit=20000&name=images/[name].[ext]', //despite url-loader that converts images into base64 format it converts images to native svg-css format
+                        options: {
+                            limit: filesThreshold,
+                            name: 'images/[name].[ext]' //if file-size more then limit, file-loader copies one into outputPath
+                                //by default it uses => fallback: 'file-loader'
                                 //TODO: add fallback: 'responsive-loader' //it converts image to multiple images using srcset (IE isn't supported): https://caniuse.com/#search=srcset
                         }
                     }]
