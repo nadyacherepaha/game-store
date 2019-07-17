@@ -17,21 +17,19 @@ module.exports = (env, argv) => {
         optimization: {
             minimizer: [
                 new TerserPlugin({ //speedest alternative of UglifyJS (it improves minifying js files)
+                    test: /\.m?js(\?.*)?$/i,
+                    chunkFilter: () => true,
+                    warningsFilter: () => true,
+                    extractComments: true,
+                    sourceMap: true,
+                    cache: true,
+                    parallel: true,
                     terserOptions: {
-                        test: /\.m?js(\?.*)?$/i,
-                        chunkFilter: () => true,
-                        warningsFilter: () => true,
-                        extractComments: true,
-                        sourceMap: true,
-                        cache: true,
-                        parallel: true,
-                        terserOptions: {
-                            output: {
-                                comments: /^\**!|@preserve|@license|@cc_on/i
-                            },
-                            mangle: {
-                                safari10: true //for preventing safari10 bugs
-                            }
+                        output: {
+                            comments: /^\**!|@preserve|@license|@cc_on/i
+                        },
+                        mangle: {
+                            safari10: true //for preventing safari10 bugs
                         }
                     }
                 }),
