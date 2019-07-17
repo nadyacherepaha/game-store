@@ -112,10 +112,14 @@ module.exports = function(_env, argv) {
                                     loader: 'css-loader', //it interprets @import and url() like import/require() and it resolves them (you can use [import *.css] into *.js).
                                     options: {
                                         modules: {
-                                            getLocalIdent: (loaderContext, _localIdentName, localName, options) => { //TODO: minify classNames for prod-build
+                                            //TODO: minify classNames for prod-build
+                                            getLocalIdent: (loaderContext, _localIdentName, localName, options) => { //it simplifies classNames fo debug purpose
                                                 const request = path.relative(options.context || "", loaderContext.resourcePath)
-                                                    .replace(/\\/g, '_')
-                                                    .replace(/\./g, '-');
+                                                    .replace('src\\', '')
+                                                    .replace('.module.css', '')
+                                                    .replace('.module.scss', '')
+                                                    .replace(/\\/g, '-')
+                                                    .replace(/\./g, '_');
                                                 return `${request}__${localName}`;
                                             }
                                         },
