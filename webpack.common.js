@@ -37,7 +37,7 @@ module.exports = function(_env, argv) {
         resolve: {
             alias: {
                 '@': srcPath, //alias is '@/[name]' for js
-                images: path.resolve(srcPath, 'images') //alias is 'images/[name]' - for js or 'url(~/images/[name]) - for css
+                images: path.resolve(srcPath, 'assets/images') //alias is 'images/[name]' - for js or 'url(~/images/[name]) - for css
             }
         },
         optimization: {

@@ -4,8 +4,8 @@ import style2 from "./testFolder/test.module.css";
 import './styles/main.scss';
 import React, { Component } from "react";
 import ReactDom from "react-dom";
-import imgSmall from './images/testSmall.png';
-import imgCamera from './images/camera.svg';
+import imgSmall from 'images/testSmall.png'; //start-path is 'images' because we have an alias 'images in webpack.common.js
+import imgCamera from 'images/camera.svg';
 
 class AppContainer extends Component {
   constructor() {

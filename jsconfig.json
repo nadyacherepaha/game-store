@@ -3,7 +3,8 @@
         "baseUrl": "./",
         "paths": { //for sync with aliases in webpack
             "@/": ["src/*"],
-            "images/": ["src/images/*"]
+            "images/": ["src/assets/images/*"] //it doesn't work with css and images
         },
+
     }
 }
