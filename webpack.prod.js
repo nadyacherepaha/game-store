@@ -9,7 +9,7 @@ module.exports = (env, argv) => {
 
     let result = merge(commonConfig, {
         mode: 'production',
-        devtool: 'source-map',
+        devtool: common.enableSourceMap ? 'source-map' : 'none',
         output: {
             filename: '[name].[contenthash:8].js',
             chunkFilename: '[name].[contenthash:8].js'
@@ -20,14 +20,11 @@ module.exports = (env, argv) => {
                     test: /\.m?js(\?.*)?$/i,
                     chunkFilter: () => true,
                     warningsFilter: () => true,
-                    extractComments: true,
-                    sourceMap: true,
+                    extractComments: false, //remove comments from js
+                    sourceMap: common.enableSourceMap,
                     cache: true,
                     parallel: true,
                     terserOptions: {
-                        output: {
-                            comments: /^\**!|@preserve|@license|@cc_on/i
-                        },
                         mangle: {
                             safari10: true //for preventing safari10 bugs
                         }

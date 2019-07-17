@@ -7,6 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "serve": "./node_modules/.bin/webpack-dev-server --hot --open --config webpack.devServer.js",
     "build-prod": "./node_modules/.bin/webpack --mode production --config webpack.prod.js",
+    "build-prod-withMap": "./node_modules/.bin/webpack --mode production --config webpack.prod.js --sourceMap",
     "build-dev": "./node_modules/.bin/webpack --mode development --config webpack.dev.js",
     "build": "npm run build-prod"
   },

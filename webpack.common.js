@@ -12,14 +12,17 @@ const srcPath = path.resolve(__dirname, "./src/");
 const destPath = path.resolve(__dirname, "./build/"); //('../Api/wwwroot')
 const assetsPath = path.resolve(__dirname, "./public/");
 const filesThreshold = 8196; //(bytes) threshold for compression, url-loader plugins
+var enableSourceMap = false;
 
 module.exports = function(_env, argv) {
     const isDevServer = argv['$0'].indexOf('webpack-dev-server') !== -1;
     const mode = argv.mode || (isDevServer ? 'development' : 'production');
     const isDevMode = mode !== 'production';
 
-    process.env.NODE_ENV = mode; //it resolves issues in postcss.config.js (since Define plugin is loaded only after reading config-files)
+    enableSourceMap = argv.sourceMap != null; //it adds source map for css and js
+    module.exports.enableSourceMap = enableSourceMap;
 
+    process.env.NODE_ENV = mode; //it resolves issues in postcss.config.js (since Define plugin is loaded only after reading config-files)
     let result = {
         stats: {
             children: false //disable console.info for node_modules/*
@@ -185,6 +188,7 @@ module.exports = function(_env, argv) {
             new MiniCssExtractPlugin({
                 filename: isDevMode ? '[name].css' : '[name].[contenthash].css',
                 chunkFilename: isDevMode ? '[id].css' : '[id].[contenthash].css',
+                sourceMap: enableSourceMap
             }),
             new CleanPlugin.CleanWebpackPlugin(),
             new CopyWebpackPlugin([{ //it copies files like images, fonts etc. from 'public' path 'destPath' (since not every file will be injected into css and js)
