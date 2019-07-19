@@ -126,7 +126,7 @@ module.exports = function(_env, argv) {
                             test: /\.module\.\w+$/,
                             use: [
                                 isDevServer ?
-                                'style-loader' : //it extracts style dircetly into html (MiniCssExtractPlugin works incorrect with hmr and modules architecture)
+                                'style-loader' : //it extracts style directly into html (MiniCssExtractPlugin works incorrect with hmr and modules architecture)
                                 MiniCssExtractPlugin.loader, //it extracts styles into file *.css
                                 //TODO: improve plugin for splitting by files for dev purpose
                                 {
@@ -159,13 +159,10 @@ module.exports = function(_env, argv) {
                         },
                         /* config .oneOf('normal') */
                         {
-                            use: [{
-                                    loader: MiniCssExtractPlugin.loader, //it extracts styles into file *.css
-                                    options: {
-                                        hmr: isDevServer, //Hot Module Replacement - hot update of the page by changing css
-                                        //reloadAll: true //uncomment if hmr works incorectly
-                                    },
-                                },
+                            use: [
+                                isDevServer ?
+                                'style-loader' : //it extracts style directly into html (MiniCssExtractPlugin works incorrect with hmr and modules architecture)
+                                MiniCssExtractPlugin.loader, //it extracts styles into file *.css
                                 'css-loader', //it interprets @import and url() like import/require() and it resolves them (you can use [import *.css] into *.js).
                                 {
                                     loader: "sass-loader", //it compiles Sass to CSS, using Node Sass by default
