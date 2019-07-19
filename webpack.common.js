@@ -1,3 +1,4 @@
+console.clear();
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
@@ -111,7 +112,7 @@ module.exports = function(_env, argv) {
                 {
                     test: /(fonts\\.+\.svg)(\?.*)?$/i, //for reducing file-size: OptimizeCSSAssetsPlugin > cssnano > SVGO, that congigured in webpack.prod.js
                     use: [{
-                        loader: 'svg-url-loader',
+                        loader: 'svg-url-loader', //despite url-loader that converts images into base64 format it converts images to native svg-css format
                         options: {
                             limit: filesThreshold,
                             name: 'fonts/[name].[ext]' //if file-size more then limit,  [file-loader] copies ones into outputPath
@@ -149,7 +150,7 @@ module.exports = function(_env, argv) {
                                 {
                                     loader: "sass-loader", //it compiles Sass to CSS, using Node Sass by default
                                     options: {
-                                        data: '@import "variables";',
+                                        data: '@import "variables";', //inject this import by default in each scss-file
                                         includePaths: [path.resolve(__dirname, "src/styles")],
                                     }
                                 },
@@ -167,7 +168,7 @@ module.exports = function(_env, argv) {
                                 {
                                     loader: "sass-loader", //it compiles Sass to CSS, using Node Sass by default
                                     options: {
-                                        data: '@import "variables";',
+                                        data: '@import "variables";', //inject this import by default in each scss-file
                                         includePaths: [path.resolve(__dirname, "src/style")],
                                     }
                                 },
@@ -207,19 +208,19 @@ module.exports = function(_env, argv) {
                 rel: "prefetch",
                 include: "asyncChunks"
             }),
-            new MiniCssExtractPlugin({
+            new MiniCssExtractPlugin({ //it extracts css-code into different file
                 filename: isDevMode ? '[name].css' : '[name].[contenthash].css',
                 chunkFilename: isDevMode ? '[id].css' : '[id].[contenthash].css',
                 sourceMap: enableSourceMap
             }),
-            new CleanPlugin.CleanWebpackPlugin(),
+            new CleanPlugin.CleanWebpackPlugin(), //it cleans output folder before extracting files
             new CopyWebpackPlugin([{ //it copies files like images, fonts etc. from 'public' path 'destPath' (since not every file will be injected into css and js)
                 from: assetsPath,
                 to: destPath,
                 toType: "dir",
                 ignore: [".DS_Store"]
             }]),
-            new webpack.ProgressPlugin()
+            new webpack.ProgressPlugin() //it shows progress of building
         ]
     };
 
