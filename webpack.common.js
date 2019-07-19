@@ -91,9 +91,7 @@ module.exports = function(_env, argv) {
                         loader: 'svg-url-loader', //despite url-loader that converts images into base64 format it converts images to native svg-css format
                         options: {
                             limit: filesThreshold,
-                            name: 'images/[name].[ext]' //if file-size more then limit, file-loader copies ones into outputPath
-                                //by default it uses => fallback: 'file-loader'
-                                //TODO: add fallback: 'responsive-loader' //it converts image to multiple images using srcset (IE isn't supported): https://caniuse.com/#search=srcset
+                            name: 'images/[name].[ext]' //if file-size more then limit, [file-loader] copies ones into outputPath
                         }
                     }]
                 },
@@ -104,7 +102,7 @@ module.exports = function(_env, argv) {
                         loader: 'url-loader',
                         options: {
                             limit: filesThreshold,
-                            name: 'fonts/[name].[ext]' //if file-size more then limit, file-loader copies ones into outputPath
+                            name: 'fonts/[name].[ext]' //if file-size more then limit,  [file-loader] copies ones into outputPath
                         }
                     }]
                 },
@@ -115,7 +113,7 @@ module.exports = function(_env, argv) {
                         loader: 'svg-url-loader',
                         options: {
                             limit: filesThreshold,
-                            name: 'fonts/[name].[ext]'
+                            name: 'fonts/[name].[ext]' //if file-size more then limit,  [file-loader] copies ones into outputPath
                         }
                     }]
                 },
