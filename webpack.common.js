@@ -37,7 +37,8 @@ module.exports = function(_env, argv) {
         resolve: {
             alias: {
                 '@': srcPath, //alias is '@/[name]' for js
-                images: path.resolve(srcPath, 'assets/images') //alias is 'images/[name]' - for js or 'url(~/images/[name]) - for css
+                images: path.resolve(srcPath, 'assets/images'), //alias is 'images/[name]' - for js or 'url(~/images/[name]) - for css
+                fonts: path.resolve(srcPath, 'assets/fonts'), //alias is 'fonts/[name]' - for js or 'url(~/fonts/[name]) - for css
             }
         },
         optimization: {
@@ -86,14 +87,35 @@ module.exports = function(_env, argv) {
                 {
                     //TODO: exclude for fonts
                     test: /\.(svg)(\?.*)?$/, //for reducing file-size: OptimizeCSSAssetsPlugin > cssnano > SVGO, that congigured in webpack.prod.js
-                    exclude: /(node_modules)/,
+                    exclude: /(node_modules)|(fonts\\.+\.svg)(\?.*)?/,
                     use: [{
-                        loader: 'svg-url-loader?limit=20000&name=images/[name].[ext]', //despite url-loader that converts images into base64 format it converts images to native svg-css format
+                        loader: 'svg-url-loader', //despite url-loader that converts images into base64 format it converts images to native svg-css format
                         options: {
                             limit: filesThreshold,
-                            name: 'images/[name].[ext]' //if file-size more then limit, file-loader copies one into outputPath
+                            name: 'images/[name].[ext]' //if file-size more then limit, file-loader copies ones into outputPath
                                 //by default it uses => fallback: 'file-loader'
                                 //TODO: add fallback: 'responsive-loader' //it converts image to multiple images using srcset (IE isn't supported): https://caniuse.com/#search=srcset
+                        }
+                    }]
+                },
+                //rule for fonts
+                {
+                    test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/i,
+                    use: [{
+                        loader: 'url-loader',
+                        options: {
+                            limit: filesThreshold,
+                            name: 'fonts/[name].[ext]' //if file-size more then limit, file-loader copies ones into outputPath
+                        }
+                    }]
+                },
+                {
+                    test: /(fonts\\.+\.svg)(\?.*)?$/i, //special rule for fonts in svg-format
+                    use: [{
+                        loader: 'svg-url-loader',
+                        options: {
+                            limit: filesThreshold,
+                            name: 'fonts/[name].[ext]'
                         }
                     }]
                 },
