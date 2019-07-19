@@ -85,7 +85,6 @@ module.exports = function(_env, argv) {
                 },
                 //rule for svg-images
                 {
-                    //TODO: exclude for fonts
                     test: /\.(svg)(\?.*)?$/, //for reducing file-size: OptimizeCSSAssetsPlugin > cssnano > SVGO, that congigured in webpack.prod.js
                     exclude: /(node_modules)|(fonts\\.+\.svg)(\?.*)?/,
                     use: [{
@@ -109,8 +108,9 @@ module.exports = function(_env, argv) {
                         }
                     }]
                 },
+                //special rule for fonts in svg-format
                 {
-                    test: /(fonts\\.+\.svg)(\?.*)?$/i, //special rule for fonts in svg-format
+                    test: /(fonts\\.+\.svg)(\?.*)?$/i, //for reducing file-size: OptimizeCSSAssetsPlugin > cssnano > SVGO, that congigured in webpack.prod.js
                     use: [{
                         loader: 'svg-url-loader',
                         options: {
