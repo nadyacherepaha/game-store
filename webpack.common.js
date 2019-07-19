@@ -6,6 +6,7 @@ const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CleanPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const MinifyCssNames = require('mini-css-class-name/css-loader');
 
 const path = require('path');
 const srcPath = path.resolve(__dirname, "./src/");
@@ -132,16 +133,16 @@ module.exports = function(_env, argv) {
                                     loader: 'css-loader', //it interprets @import and url() like import/require() and it resolves them (you can use [import *.css] into *.js).
                                     options: {
                                         modules: {
-                                            //TODO: minify classNames for prod-build
-                                            getLocalIdent: (loaderContext, _localIdentName, localName, options) => { //it simplifies classNames fo debug purpose
-                                                const request = path.relative(options.context || "", loaderContext.resourcePath)
-                                                    .replace('src\\', '')
-                                                    .replace('.module.css', '')
-                                                    .replace('.module.scss', '')
-                                                    .replace(/\\/g, '-')
-                                                    .replace(/\./g, '_');
-                                                return `${request}__${localName}`;
-                                            }
+                                            getLocalIdent: isDevMode ?
+                                                (loaderContext, _localIdentName, localName, options) => { //it simplifies classNames fo debug purpose
+                                                    const request = path.relative(options.context || "", loaderContext.resourcePath)
+                                                        .replace('src\\', '')
+                                                        .replace('.module.css', '')
+                                                        .replace('.module.scss', '')
+                                                        .replace(/\\/g, '-')
+                                                        .replace(/\./g, '_');
+                                                    return `${request}__${localName}`;
+                                                } : MinifyCssNames() //minify classNames for prod-build
                                         },
                                     }
                                 },
