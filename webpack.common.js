@@ -218,7 +218,8 @@ module.exports = function(_env, argv) {
                 to: destPath,
                 toType: "dir",
                 ignore: [".DS_Store"]
-            }])
+            }]),
+            new webpack.ProgressPlugin()
         ]
     };
 
