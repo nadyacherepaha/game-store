@@ -15,6 +15,11 @@ module.exports = (env, argv) => {
       filename: "[name].[contenthash:8].js",
       chunkFilename: "[name].[contenthash:8].js"
     },
+    performance: {
+      assetFilter: function assetFilter(assetFilename) {
+        return !/(\.map$)|(fonts)|(images)/.test(assetFilename);
+      }
+    },
     optimization: {
       minimizer: [
         new TerserPlugin({
