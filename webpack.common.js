@@ -163,7 +163,10 @@ module.exports = function(_env, argv) {
                               .replace(/\./g, "_");
                             return `${request}__${localName}`;
                           }
-                        : MinifyCssNames() // minify classNames for prod-build
+                        : MinifyCssNames(
+                            // minify classNames for prod-build
+                            { excludePattern: /[_dD]/gi } // exclude '_','d','D' because Adblock blocks '%ad%' classNames
+                          )
                     }
                   }
                 },
