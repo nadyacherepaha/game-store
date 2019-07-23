@@ -10,7 +10,7 @@ module.exports = {
     node: true,
     browser: true
   },
-  plugins: ["react", "json"],
+  plugins: ["json"],
   rules: {
     "max-len": [
       "error",
