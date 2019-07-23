@@ -1,22 +1,22 @@
 .mainTitle {
-    background: beige;
+  background: beige;
 }
 
 .background {
-    background: url(~images/testBig.jpeg) no-repeat;
-    /* or background: url(../images/testBig.jpeg) no-repeat; */
-    /*!!!For background images there are only relative pathes { url(../images/testBig.jpeg) } and aliases from webpack { url(~images/testBig.jpeg) }*/
-    background-size: contain;
-    background-position: center;
-    height: 300px;
-    margin: auto;
+  background: url(~images/testBig.jpeg) no-repeat;
+  /* or background: url(../images/testBig.jpeg) no-repeat; */
+  /*!!!For background images there are only relative pathes { url(../images/testBig.jpeg) } and aliases from webpack { url(~images/testBig.jpeg) }*/
+  background-size: contain;
+  background-position: center;
+  height: 300px;
+  margin: auto;
 }
 
 .svgBackground {
-    background: url(~images/background.svg) no-repeat;
-    background-size: contain;
-    background-position: center;
-    height: 300px;
-    margin: auto;
-    background-color: gray;
+  background: url(~images/background.svg) no-repeat;
+  background-size: contain;
+  background-position: center;
+  height: 300px;
+  margin: auto;
+  background-color: gray;
 }

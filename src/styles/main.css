@@ -3,27 +3,27 @@
 @import "fontface.css";
 
 body {
-    font-family: 'OpenSans-Regular';
+  font-family: "OpenSans-Regular", sans-serif;
 }
 
 h2 {
-    font-size: 50px;
-    display: block;
-    background-color: white;
+  font-size: 50px;
+  display: block;
+  background-color: white;
 }
 
 ::placeholder {
-    /*test for autoprefixer in postcss*/
-    color: antiquewhite;
+  /*test for autoprefixer in postcss*/
+  color: antiquewhite;
 }
 
 .test-block {
-    border: 4px dotted black;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  border: 4px dotted black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.test-block+.test-block {
-    margin-top: 20px;
+.test-block + .test-block {
+  margin-top: 20px;
 }
