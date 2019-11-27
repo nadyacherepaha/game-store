@@ -32,6 +32,9 @@ module.exports = (env, argv) => {
           cache: true,
           parallel: true,
           terserOptions: {
+            output: {
+              comments: false // remove comments from files
+            },
             mangle: {
               safari10: true // for preventing safari10 bugs
             }
