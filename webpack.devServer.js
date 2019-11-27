@@ -32,7 +32,15 @@ module.exports = (env, argv) => {
       }, // it enables HTML5 mode: https://developer.mozilla.org/en-US/docs/Web/API/History
       stats: {
         children: false // disable console.info for node_modules/*
-      }
+      },
+      before: function mockServer(app) {
+        // you can use the following logic for mocking responses
+        app.get("/testMock", function mockData(_req, res) {
+          res.json("mockServer is ready");
+        });
+      },
+      contentBase: "./public", // folder with static content
+      watchContentBase: true // enable hot-reload by changes in contentBase folder
     }
   });
 

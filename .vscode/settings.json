@@ -9,32 +9,41 @@
   "less.validate": false,
   "scss.validate": false,
 
-  //watch: eslintIntegration is false because VSCode extension prettier has bug: https://github.com/prettier/prettier-vscode/issues/867
-  "prettier.tslintIntegration": false,
-  "prettier.eslintIntegration": false,
-  "prettier.stylelintIntegration": true,
-  //TODO: disalbe all eslint rules as prettier rules will be fixed
+  /*
+    if you want fix by format set the following in keybindings.json:
+     {
+      "key": "shift+alt+f",
+      "command": "eslint.executeAutofix"
+     }
+  */
   "eslint.autoFixOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.tslint": true
+  },
   "eslint.validate": [
     "javascript",
     "javascriptreact",
     "typescript",
     "typescriptreact"
   ],
-  //**end watch
-
   "editor.formatOnSave": false,
+  "editor.formatOnPaste": true,
+
   "[javascript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
   },
   "[javascriptreact]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
   },
   "[typescript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
   },
   "[typescriptreact]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
   },
   "[json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",

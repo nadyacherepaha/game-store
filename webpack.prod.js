@@ -27,11 +27,13 @@ module.exports = (env, argv) => {
           test: /\.m?js(\?.*)?$/i,
           chunkFilter: () => true,
           warningsFilter: () => true,
-          extractComments: false, // remove comments from js
+          extractComments: false, // disable extracting comments to a different file (since we don't have this)
           sourceMap: common.enableSourceMap,
-          cache: true,
-          parallel: true,
+          cache: (argv && argv.hot) || false, // enable caching only for hot-replacement-mode
           terserOptions: {
+            output: {
+              comments: false // remove comments from files
+            },
             mangle: {
               safari10: true // for preventing safari10 bugs
             }

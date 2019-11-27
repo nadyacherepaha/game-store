@@ -6,7 +6,8 @@
       //for sync with aliases in webpack
       "@/*": ["src/*"],
       "images/*": ["src/assets/images/*"], //it doesn't work with css and images
-      "fonts/*": ["src/assets/fonts/*"] //it doesn't work with css and images
+      "fonts/*": ["src/assets/fonts/*"], //it doesn't work with css and images
+      "~fonts/*": ["src/assets/fonts/*"] //it doesn't work with css and images
     },
     "jsx": "react"
   }
