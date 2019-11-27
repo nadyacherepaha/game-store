@@ -10,6 +10,7 @@ const CleanPlugin = require("clean-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const MinifyCssNames = require("mini-css-class-name/css-loader");
 const ObsoleteWebpackPlugin = require("obsolete-webpack-plugin");
+const ScriptExtHtmlWebpackPlugin = require("script-ext-html-webpack-plugin");
 const path = require("path");
 
 const pathAlias = require("./webpack.alias");
@@ -263,6 +264,10 @@ module.exports = function(_env, argv) {
         name: "obsolete",
         promptOnNonTargetBrowser: true
         // optional: browser: [template: 'html string here']
+      }),
+      new ScriptExtHtmlWebpackPlugin({
+        // it adds to obsole-plugin-script 'async' tag (for perfomance puprpose)
+        async: "obsolete"
       })
     ]
   };

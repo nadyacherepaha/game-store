@@ -64,6 +64,7 @@
     "preload-webpack-plugin": "^3.0.0-beta.3",
     "prettier": "^1.19.1",
     "sass-loader": "^8.0.0",
+    "script-ext-html-webpack-plugin": "^2.1.4",
     "style-loader": "^0.23.1",
     "stylelint": "^11.1.1",
     "stylelint-config-prettier": "^6.0.0",
