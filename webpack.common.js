@@ -10,6 +10,7 @@ const CleanPlugin = require("clean-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const MinifyCssNames = require("mini-css-class-name/css-loader");
 const path = require("path");
+
 const pathAlias = require("./webpack.alias");
 
 const srcPath = path.resolve(__dirname, "./src/");
@@ -252,7 +253,10 @@ module.exports = function(_env, argv) {
           ignore: [".DS_Store"]
         }
       ]),
-      new webpack.ProgressPlugin() // it shows progress of building
+      new webpack.ProgressPlugin(), // it shows progress of building
+      new webpack.ProvidePlugin({
+        React: "react" // optional: react. it adds [import React from 'react'] as ES6 module to every file into the project
+      })
     ]
   };
 
