@@ -57,6 +57,7 @@
     "mini-css-class-name": "^0.6.0",
     "mini-css-extract-plugin": "^0.7.0",
     "node-sass": "^4.13.0",
+    "obsolete-webpack-plugin": "^0.5.6",
     "optimize-css-assets-webpack-plugin": "^5.0.3",
     "postcss-loader": "^3.0.0",
     "postcss-normalize": "^8.0.1",
