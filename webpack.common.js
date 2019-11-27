@@ -22,7 +22,7 @@ const filesThreshold = 8196; // (bytes) threshold for compression, url-loader pl
 let enableSourceMap = false;
 
 /* eslint-disable func-names */
-module.exports = function(_env, argv) {
+module.exports = function(env, argv) {
   const isDevServer = argv.$0.indexOf("webpack-dev-server") !== -1;
   const mode = argv.mode || (isDevServer ? "development" : "production");
   const isDevMode = mode !== "production";
@@ -43,7 +43,8 @@ module.exports = function(_env, argv) {
       publicPath: "/"
     },
     resolve: {
-      alias: pathAlias
+      alias: pathAlias,
+      extensions: [".js", ".jsx", ".scss"]
     },
     optimization: {
       splitChunks: {
@@ -176,8 +177,10 @@ module.exports = function(_env, argv) {
                 {
                   loader: "sass-loader", // it compiles Sass to CSS, using Node Sass by default
                   options: {
-                    data: '@import "variables";', // inject this import by default in each scss-file
-                    includePaths: [path.resolve(__dirname, "src/styles")]
+                    prependData: '@import "variables";', // inject this import by default in each scss-file
+                    sassOptions: {
+                      includePaths: [path.resolve(__dirname, "src/styles")]
+                    }
                   }
                 },
                 "postcss-loader" // it provides adding vendor prefixes to CSS rules using values from Can I Use (see postcss.config.js in the project)
@@ -193,8 +196,10 @@ module.exports = function(_env, argv) {
                 {
                   loader: "sass-loader", // it compiles Sass to CSS, using Node Sass by default
                   options: {
-                    data: '@import "variables";', // inject this import by default in each scss-file
-                    includePaths: [path.resolve(__dirname, "src/style")]
+                    prependData: '@import "variables";', // inject this import by default in each scss-file
+                    sassOptions: {
+                      includePaths: [path.resolve(__dirname, "src/styles")]
+                    }
                   }
                 },
                 "postcss-loader" // it provides adding vendor prefixes to CSS rules using values from Can I Use (see postcss.config.js in the project)
@@ -232,7 +237,7 @@ module.exports = function(_env, argv) {
         // it adds 'preload' tag for async js-files: https://developer.mozilla.org/en-US/docs/Web/HTML/Preloading_content
         rel: "preload",
         include: "initial",
-        fileBlacklist: [/\.map$/, /hot-update\.js$/]
+        fileBlacklist: [/\.map$/, /hot-update\.js$/, /obsolete\.js$/]
       }),
       new PreloadPlugin({
         // it adds 'prefetch' tag for async js-files: https://developer.mozilla.org/en-US/docs/Web/HTTP/Link_prefetching_FAQ
@@ -248,7 +253,7 @@ module.exports = function(_env, argv) {
       new CleanPlugin.CleanWebpackPlugin(), // it cleans output folder before extracting files
       new CopyWebpackPlugin([
         {
-          // it copies files like images, fonts etc. from 'public' path 'destPath' (since not every file will be injected into css and js)
+          // it copies files like images, fonts etc. from 'public' path to 'destPath' (since not every file will be injected into css and js)
           from: assetsPath,
           to: destPath,
           toType: "dir",
