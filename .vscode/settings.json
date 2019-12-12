@@ -1,9 +1,11 @@
 {
-  "path-autocomplete.pathMappings": {
-    "images": "${folder}/src/assets/images"
+  "path-intellisense.mappings": {
+    "@": "${workspaceRoot}",
+    "images": "${workspaceRoot}/src/assets/images",
+    "~images": "${workspaceRoot}/src/assets/images", //alias for using with src:url(~fonts/someFont.eot) in *.modules.css|scss|less (css-modules) - https://github.com/webpack-contrib/css-loader/issues/49
+    "fonts": "${workspaceRoot}/src/assets/fonts",
+    "~fonts": "${workspaceRoot}/src/assets/fonts" //alias for using with src:url(~fonts/someFont.eot) in *.modules.css|scss|less (css-modules) - https://github.com/webpack-contrib/css-loader/issues/49
   },
-  "path-autocomplete.includeExtension": true,
-  "path-autocomplete.extensionOnImport": true,
   "stylelint.enable": true,
   "css.validate": false,
   "less.validate": false,
