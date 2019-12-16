@@ -6,13 +6,18 @@ import imgCamera from "images/camera.svg";
 import { Component } from "react";
 import ReactDom from "react-dom";
 import style from "./styles/main.module.css";
+import tsTest from "./tsTest";
+import jsTest from "./jsTest";
+import someTypeScript from "./someTypeScript";
 
 class AppContainer extends Component {
   constructor() {
     super();
     this.state = {
-      title1: "Test-block for css-modules"
+      title1: someTypeScript("Test-block for css-modules")
     };
+    tsTest();
+    jsTest();
   }
 
   render() {
