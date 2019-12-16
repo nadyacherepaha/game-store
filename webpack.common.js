@@ -70,11 +70,11 @@ module.exports = function(env, argv) {
     },
     module: {
       rules: [
+        // rule for js, jsx files
         {
-          // rule for js, jsx files
           test: /\.(js|jsx|ts|tsx)$/,
           exclude: /node_modules/,
-          use: ["babel-loader"] // babel-loader: transpile *.js, **.jsx to result according to .browserlistsrc and babel.config.js files
+          use: ["babel-loader"] // babel-loader: transpile *.js, **.jsx to result according to .browserlistrc and babel.config.js files
           // optional: you can add 'eslint-loader' for providing lint-errors into wepback output
         },
         // rule for images
