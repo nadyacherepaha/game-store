@@ -9,7 +9,6 @@
     "build-prod": "./node_modules/.bin/webpack --mode production --config webpack.prod.js",
     "build-prod-withMap": "./node_modules/.bin/webpack --mode production --config webpack.prod.js --sourceMap",
     "build-dev": "./node_modules/.bin/webpack --mode development --config webpack.dev.js",
-    "build": "npm run build-prod",
     "lint": "npm run lint-code && npm run lint-styles",
     "lint-code": "./node_modules/.bin/eslint --fix ./**/*.{js,jsx,ts,tsx,json}",
     "lint-styles": "./node_modules/.bin/stylelint --fix ./**/*.{css,scss,less}"
