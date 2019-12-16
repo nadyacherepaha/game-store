@@ -17,7 +17,7 @@ const pathAlias = require("./webpack.alias");
 
 const srcPath = path.resolve(__dirname, "./src/");
 const destPath = path.resolve(__dirname, "./build/"); // ('../Api/wwwroot')
-const assetsPath = path.resolve(__dirname, "./public/");
+const assetsPath = "./public";
 const filesThreshold = 8196; // (bytes) threshold for compression, url-loader plugins
 let enableSourceMap = false;
 
@@ -35,33 +35,35 @@ module.exports = function(env, argv) {
     stats: {
       children: false // disable console.info for node_modules/*
     },
-    entry: path.resolve(srcPath, "main.jsx"), // entyPoint for webpack
+    entry: path.resolve(srcPath, "main.jsx"), // entryPoint for webpack; it can be object with key-value pairs for multibuild (https://webpack.js.org/concepts/entry-points/)
     output: {
       path: destPath,
       filename: "[name].js",
       chunkFilename: "[name].js",
-      publicPath: "/"
+      publicPath: "/" // url that should be used for providing assets
     },
     resolve: {
       alias: pathAlias,
-      extensions: [".js", ".jsx", ".scss"]
+      extensions: [".js", ".jsx", ".scss"] // using import without file-extensions
     },
     optimization: {
+      // config is taken from vue-cli
       splitChunks: {
-        minChunks: 1,
+        // for avoiding duplicated dependencies across modules
+        minChunks: 1, // Minimum number of chunks that must share a module before splitting.
         cacheGroups: {
           vendors: {
             name: "chunk-vendors", // move js-files from node_modules into splitted file [chunk-vendors].js
-            test: /[\\/]node_modules[\\/]/,
-            priority: -10,
-            chunks: "initial"
+            test: /[\\/]node_modules[\\/]/, // filtering files that should be included
+            priority: -10, // a module can belong to multiple cache groups. The optimization will prefer the cache group with a higher priority
+            chunks: "initial" // type of optimization: [initial | async | all]
           },
           common: {
             name: "chunk-common", // move reusable nested js-files into splitted file [chunk-common].js
-            minChunks: 2,
+            minChunks: 2, // minimum number of chunks that must share a module before splitting
             priority: -20,
             chunks: "initial",
-            reuseExistingChunk: true
+            reuseExistingChunk: true // If the current chunk contains modules already split out from the main bundle, it will be reused instead of a new one being generated. This can impact the resulting file name of the chunk
           }
         }
       }
@@ -77,7 +79,7 @@ module.exports = function(env, argv) {
         },
         // rule for images
         {
-          test: /\.(png|jpe?g|gif|webp)(\?.*)?$/, // TODO: optimizing images
+          test: /\.(png|jpe?g|gif|webp)(\?.*)?$/, // optional: optimizing images via pngo etc.
           exclude: /(node_modules)/,
           use: [
             {
@@ -86,7 +88,7 @@ module.exports = function(env, argv) {
                 name: "images/[name].[ext]",
                 limit: filesThreshold // if file-size more then limit, file-loader copies one into outputPath
                 // by default it uses fallback: 'file-loader'
-                // TODO: add fallback: 'responsive-loader' //it converts image to multiple images using srcset (IE isn't supported): https://caniuse.com/#search=srcset
+                // optional: fallback: 'responsive-loader' //it converts image to multiple images using srcset (IE isn't supported): https://caniuse.com/#search=srcset
               }
             }
           ]
@@ -113,7 +115,7 @@ module.exports = function(env, argv) {
               loader: "url-loader",
               options: {
                 limit: filesThreshold,
-                name: "fonts/[name].[ext]" // if file-size more then limit,  [file-loader] copies ones into outputPath
+                name: "fonts/[name].[ext]" // if file-size more then limit, [file-loader] copies ones into outputPath
               }
             }
           ]
@@ -179,7 +181,7 @@ module.exports = function(env, argv) {
                   options: {
                     prependData: '@import "variables";', // inject this import by default in each scss-file
                     sassOptions: {
-                      includePaths: [path.resolve(__dirname, "src/styles")]
+                      includePaths: [path.resolve(__dirname, "src/styles")] // using pathes as root
                     }
                   }
                 },
@@ -245,7 +247,7 @@ module.exports = function(env, argv) {
         include: "asyncChunks"
       }),
       new MiniCssExtractPlugin({
-        // it extracts css-code into different file
+        // it extracts css-code from js into splitted file
         filename: isDevMode ? "[name].css" : "[name].[contenthash].css",
         chunkFilename: isDevMode ? "[id].css" : "[id].[contenthash].css",
         sourceMap: enableSourceMap
@@ -265,13 +267,13 @@ module.exports = function(env, argv) {
         React: "react" // optional: react. it adds [import React from 'react'] as ES6 module to every file into the project
       }),
       new ObsoleteWebpackPlugin({
-        // optional: browser: provides popup via aler-script if browser unsupported (according to .browserlistrc)
+        // optional: browser: provides popup via alert-script if browser unsupported (according to .browserlistrc)
         name: "obsolete",
-        promptOnNonTargetBrowser: true
+        promptOnNonTargetBrowser: true // show popup if browser is not listed in .browserlistrc
         // optional: browser: [template: 'html string here']
       }),
       new ScriptExtHtmlWebpackPlugin({
-        // it adds to obsole-plugin-script 'async' tag (for perfomance puprpose)
+        // it adds to obsolete-plugin-script 'async' tag (for perfomance puprpose)
         async: "obsolete"
       })
     ]
@@ -281,3 +283,4 @@ module.exports = function(env, argv) {
 };
 
 module.exports.filesThreshold = filesThreshold;
+module.exports.assetsPath = assetsPath;
