@@ -1,5 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
-// console.clear(); // TODO: watchFix => it doesn't work properly since webpack has bug: https://github.com/webpack/webpack/issues/9442
+// console.clear(); // TODO: watchFix => it doesn't work properly since VSCode-terminal has bug: https://github.com/microsoft/vscode/issues/75141
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CaseSensitivePathsPlugin = require("case-sensitive-paths-webpack-plugin");
