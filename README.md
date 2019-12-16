@@ -32,3 +32,4 @@ Webpack version: 4.41.2
 - update style-loader when hot-replacemnet for css-modules will be fixed
 - simplify config for webpack.styles when css-loader will be updated: <https://github.com/webpack-contrib/css-loader/issues/994>
 - add icomoon to fonts
+- find solution for .browserslistrs and stylelint integration
