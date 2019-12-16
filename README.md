@@ -2,7 +2,7 @@
 
 ## Info
 
-Webpack version: 4.41.2
+Webpack version: 4.41.3
 
 ## How to run project
 
