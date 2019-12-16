@@ -1,7 +1,13 @@
 const pathAlias = require("./webpack.alias");
 
+/* 
+tslint won't be supported: https://github.com/palantir/tslint/issues/4534
+you should use typescript-eslint/eslint-plugin: https://github.com/typescript-eslint/typescript-eslint/tree/master/packages/eslint-plugin
+but you can't do it with {parser: 'babel-eslint'}: https://github.com/typescript-eslint/typescript-eslint#what-about-babel-and-babel-eslint
+*/
+
 module.exports = {
-  parser: "babel-eslint",
+  parser: "babel-eslint", //optional: @typescript-eslint/parser can be here but impossible to use with babel-eslint
   parserOptions: {
     sourceType: "module",
     ecmaFeatures: {

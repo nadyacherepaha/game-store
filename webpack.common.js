@@ -1,5 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
-// console.clear(); // TODO: watchFix => it doesn't work properly since webpack has bug: https://github.com/webpack/webpack/issues/9442
+// console.clear(); // TODO: watchFix => it doesn't work properly since VSCode-terminal has bug: https://github.com/microsoft/vscode/issues/75141
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CaseSensitivePathsPlugin = require("case-sensitive-paths-webpack-plugin");
@@ -44,7 +44,7 @@ module.exports = function(env, argv) {
     },
     resolve: {
       alias: pathAlias,
-      extensions: [".js", ".jsx", ".scss"] // using import without file-extensions
+      extensions: [".js", ".jsx", ".ts", ".tsx"] // using import without file-extensions
     },
     optimization: {
       // config is taken from vue-cli
@@ -72,7 +72,7 @@ module.exports = function(env, argv) {
       rules: [
         {
           // rule for js, jsx files
-          test: /\.(js|jsx)$/,
+          test: /\.(js|jsx|ts|tsx)$/,
           exclude: /node_modules/,
           use: ["babel-loader"] // babel-loader: transpile *.js, **.jsx to result according to .browserlistsrc and babel.config.js files
           // optional: you can add 'eslint-loader' for providing lint-errors into wepback output

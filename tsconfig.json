@@ -1,13 +1,17 @@
 {
+  // jsconfig.json === tsconfig.json with allowJs: true
   "compilerOptions": {
     //intellisense config for VSCode
     "baseUrl": "./",
     "paths": {
       //none-js-ts files is not supported by intellisense. Use 'path-intellisense.mappings' in .vscode/settings.json instead
-      //this is shoulbe sync with aliases in webpack
+      //this is should be sync with aliases in webpack
       "@/*": ["src/*"]
     },
-    "jsx": "react"
+    "jsx": "react",
+    "allowJs": true,
+    "outDir": "",
+    "noEmit": true //exlcude errors in console because it should be wrapped by webpack
   },
   "exclude": ["node_modules", "dist", "build", ".vscode"]
 }

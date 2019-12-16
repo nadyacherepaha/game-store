@@ -2,7 +2,7 @@
 
 ## Info
 
-Webpack version: 4.41.2
+Webpack version: 4.41.3
 
 ## How to run project
 
@@ -24,11 +24,14 @@ Webpack version: 4.41.2
 - Prettier - Code formatter: <https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode>
 - Import Cost: <https://marketplace.visualstudio.com/items?itemName=wix.vscode-import-cost>
 
-## TODO
+## TODO. Issues
 
 - add webpack-mock-server (with hot-replacement and ts-support)
-- fix peek-to-definition (for none-js-files)
+- fix peek-to-definition (for none-js-files): <https://github.com/microsoft/TypeScript/issues/15146>
 - replace Prettier by better alternative (Prettier works bad)
-- update style-loader when hot-replacemnet for css-modules will be fixed
 - simplify config for webpack.styles when css-loader will be updated: <https://github.com/webpack-contrib/css-loader/issues/994>
 - add icomoon to fonts
+- find solution for .browserslistrc and stylelint integration
+- Eslint. Add tslint integration (impossible to use with babel-eslint): <https://github.com/typescript-eslint/typescript-eslint#what-about-babel-and-babel-eslint>
+- Stylelint. Update stylelint to version >=12 when issue will be fixed: <https://github.com/stylelint/vscode-stylelint/issues/4>
+- CSS-Modules. Update style-loader to version >=1 when hot-replacement for css-modules will be fixed: <https://github.com/webpack-contrib/style-loader/issues/422>
