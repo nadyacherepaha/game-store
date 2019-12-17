@@ -74,8 +74,11 @@ module.exports = function(env, argv) {
         {
           test: /\.(js|jsx|ts|tsx)$/,
           exclude: /node_modules/,
-          use: ["babel-loader"] // babel-loader: transpile *.js, *.jsx, *.ts, *.tsx to result according to .browserlistrc and babel.config.js files
-          // optional: you can add 'eslint-loader' for providing lint-errors into wepback output
+          use: [
+            "babel-loader" // transpile *.js, *.jsx, *.ts, *.tsx to result according to .browserlistrc and babel.config.js files
+            // optional: "ifdef-loader" // prodives conditinal compilation: https://github.com/nippur72/ifdef-loader
+            // optional: "eslint-loader" //provides lint-errors into wepback output
+          ]
         },
         // rule for images
         {
@@ -276,6 +279,7 @@ module.exports = function(env, argv) {
         // it adds to obsolete-plugin-script 'async' tag (for perfomance puprpose)
         async: "obsolete"
       })
+      // optional: new BundleAnalyzerPlugin() // creates bundles-map in browser https://github.com/webpack-contrib/webpack-bundle-analyzer
     ]
   };
 
