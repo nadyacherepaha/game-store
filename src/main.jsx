@@ -9,6 +9,8 @@ import style from "./styles/main.module.css";
 import tsTest from "./tsTest";
 import jsTest from "./jsTest";
 import someTypeScript from "./someTypeScript";
+import { valueNodeJs } from "./treeShakeNodeTest";
+import { valueEs6 } from "./treeShakeES6Test";
 
 class AppContainer extends Component {
   constructor() {
@@ -18,6 +20,7 @@ class AppContainer extends Component {
     };
     tsTest();
     jsTest();
+    console.warn(valueNodeJs, valueEs6);
   }
 
   render() {
