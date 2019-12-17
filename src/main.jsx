@@ -9,6 +9,11 @@ import style from "./styles/main.module.css";
 import tsTest from "./tsTest";
 import jsTest from "./jsTest";
 import someTypeScript from "./someTypeScript";
+import testConst from "./constTest";
+
+import { valueEs6 } from "./treeShakeES6Test";
+// eslint-disable-next-line prefer-destructuring
+const valueNodeJs = require("./treeShakeNodeTest").valueNodeJs;
 
 class AppContainer extends Component {
   constructor() {
@@ -18,6 +23,14 @@ class AppContainer extends Component {
     };
     tsTest();
     jsTest();
+    console.warn(valueNodeJs, valueEs6);
+    testConst();
+
+    // test class-dead-code
+    const goExlcude = true;
+    if (!goExlcude) {
+      console.warn("class-dead-code doesn't work");
+    }
   }
 
   render() {

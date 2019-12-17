@@ -12,7 +12,7 @@ module.exports = (env, argv) => {
     mode: "production",
     devtool: common.enableSourceMap ? "source-map" : "none", // option controls how source maps are generated (affects on build speed dramatically): https://v4.webpack.js.org/configuration/devtool/
     output: {
-      filename: "[name].[contenthash:8].js", // contenthash-this is version for avoing browser-cache issue: user always had to get the last version of files
+      filename: "[name].[contenthash:8].js", // contenthash-this is version for avoding browser-cache issue: user always has to get the last version of files
       chunkFilename: "[name].[contenthash:8].js"
     },
     performance: {

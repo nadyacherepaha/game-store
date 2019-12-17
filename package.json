@@ -1,7 +1,7 @@
 {
-  "name": "fromscratch_react",
-  "version": "0.0.1",
-  "description": "Basic src-project with config for React and Webpack 4",
+  "name": "webpack-must-have",
+  "version": "0.0.2",
+  "description": "Must-have config for Webpack 4",
   "main": "main.jsx",
   "scripts": {
     "test": "npm run lint",
@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Yegorich555/FromScratch_React.git"
+    "url": "git+https://github.com/Yegorich555/WebpackMustHave.git"
   },
   "keywords": [
     "React",
@@ -23,12 +23,12 @@
     "ReactJS",
     "Webpack4"
   ],
-  "author": "Yegor.Golubchyk",
+  "author": "Yegor.Golubchik",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Yegorich555/FromScratch_React/issues"
+    "url": "https://github.com/Yegorich555/WebpackMustHave/issues"
   },
-  "homepage": "https://github.com/Yegorich555/FromScratch_React#readme",
+  "homepage": "https://github.com/Yegorich555/WebpackMustHave#readme",
   "devDependencies": {
     "@babel/core": "^7.7.2",
     "@babel/plugin-proposal-class-properties": "^7.7.0",
