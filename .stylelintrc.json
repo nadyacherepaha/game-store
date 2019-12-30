@@ -1,3 +1,7 @@
 {
-  "extends": ["stylelint-prettier/recommended"]
+  "plugins": ["stylelint-no-unsupported-browser-features"],
+  "extends": ["stylelint-prettier/recommended"],
+  "rules": {
+    "plugin/no-unsupported-browser-features": true
+  }
 }
