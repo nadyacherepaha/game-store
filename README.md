@@ -18,20 +18,20 @@ Webpack version: 4.41.3
 - CSS Modules: <https://marketplace.visualstudio.com/items?itemName=clinyong.vscode-css-modules>
 - CSS Modules Syntax Highlighter: <https://marketplace.visualstudio.com/items?itemName=andrewleedham.vscode-css-modules>
 - ESlint: <https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint>
-- Stylelint: <https://marketplace.visualstudio.com/items?itemName=thibaudcolas.stylelint>
+- Stylelint: <https://marketplace.visualstudio.com/items?itemName=stylelint.vscode-stylelint>
 - SCSS intellisense: <https://marketplace.visualstudio.com/items?itemName=mrmlnc.vscode-scss>
 - Path intellisense: <https://marketplace.visualstudio.com/items?itemName=christian-kohler.path-intellisense>
 - Prettier - Code formatter: <https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode>
 - Import Cost: <https://marketplace.visualstudio.com/items?itemName=wix.vscode-import-cost>
+- Markdownlint: <https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint>
 
 ## TODO. Issues
 
 - add webpack-mock-server (with hot-replacement and ts-support)
+- add Prepack
 - fix peek-to-definition (for none-js-files): <https://github.com/microsoft/TypeScript/issues/15146>
 - replace Prettier by better alternative (Prettier works bad)
 - simplify config for webpack.styles when css-loader will be updated: <https://github.com/webpack-contrib/css-loader/issues/994>
 - add icomoon to fonts
-- find solution for .browserslistrc and stylelint integration
 - Eslint. Add tslint integration (impossible to use with babel-eslint): <https://github.com/typescript-eslint/typescript-eslint#what-about-babel-and-babel-eslint>
-- Stylelint. Update stylelint to version >=12 when issue will be fixed: <https://github.com/stylelint/vscode-stylelint/issues/4>
 - CSS-Modules. Update style-loader to version >=1 when hot-replacement for css-modules will be fixed: <https://github.com/webpack-contrib/style-loader/issues/422>
