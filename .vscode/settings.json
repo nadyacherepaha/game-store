@@ -53,15 +53,18 @@
   },
   "[json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.formatOnSave": true
+    "editor.formatOnSave": true,
+    "editor.wordSeparators": "`!%&()[{]}|;'\",?#" // ability to select '$propery', 'json-variable', 'editor.wordSeparators', '>=0.0.2' at once
   },
   "[css]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.formatOnSave": true
+    "editor.formatOnSave": true,
+    "editor.wordSeparators": "`~!%^&*()=+[{]}\\|;:'\",.<>/?$" // ability to select '#fff', 'font-family', '--cssVariable' at once
   },
   "[scss]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.formatOnSave": true
+    "editor.formatOnSave": true,
+    "editor.wordSeparators": "`~!%^&*()=+[{]}\\|;:'\",.<>/?" // ability to select '#fff', 'font-family', '--cssVariable', '$var' at once
   },
   "[less]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
