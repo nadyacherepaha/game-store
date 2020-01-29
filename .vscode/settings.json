@@ -1,10 +1,12 @@
 {
-  "path-intellisense.mappings": {
-    "@": "${workspaceRoot}",
-    "images": "${workspaceRoot}/src/assets/images",
-    "~images": "${workspaceRoot}/src/assets/images", //alias for using with src:url(~fonts/someFont.eot) in *.modules.css|scss|less (css-modules) - https://github.com/webpack-contrib/css-loader/issues/49
-    "fonts": "${workspaceRoot}/src/assets/fonts",
-    "~fonts": "${workspaceRoot}/src/assets/fonts" //alias for using with src:url(~fonts/someFont.eot) in *.modules.css|scss|less (css-modules) - https://github.com/webpack-contrib/css-loader/issues/49
+  // todo-watch: path-intellisense doesn't work with none-js-files https://github.com/ChristianKohler/PathIntellisense/issues/110
+  "path-autocomplete.includeExtension": true,
+  "path-autocomplete.extensionOnImport": true,
+  "path-autocomplete.excludedItems": {
+    "**/*.+(ts|js|jsx|tsx)": { "when": "**" }, // ignore js files because VSCode works fine with ones
+    "**/*.map": { "when": "**" }, // always ignore *.map files
+    "**/{.git,node_modules}": { "when": "**" }, // always ignore .git and node_modules folders
+    "**/*": { "when": "**/*.+(less|css|scss|sass)" } //exclude for css files because VSCode works fine with ones
   },
   "stylelint.enable": true,
   "css.validate": false,
