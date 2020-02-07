@@ -1,7 +1,5 @@
 # WebpackMustHave
 
-## Info
-
 Webpack version: 4.41.3
 
 ## How to run project
@@ -25,9 +23,16 @@ Webpack version: 4.41.3
 - Import Cost: <https://marketplace.visualstudio.com/items?itemName=wix.vscode-import-cost>
 - Markdownlint: <https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint>
 
+## Features
+
+- **Lint**. Integrated the most popular linters: ESlint, Stylelint
+- **BrowserList**. All required browsers are pointed in **.browserslistrc**, so project will be compiled according to required browsers (babel, postcss, stylint use this file)
+- **BrowserList. Stylelint**. Integrated [no-unsupported-browser-features](https://www.npmjs.com/package/stylelint-no-unsupported-browser-features), so during the css,scss-coding stylelint will show on-css rule that unsupported (according to .browserslistrc)
+- **MockServer**. For mocking api responses integrated [webpack-mock-server](https://www.npmjs.com/package/webpack-mock-server) that supports JS,TS and hot-replacement:
+- **Styles**. Integrated [CSS-Modules](https://github.com/css-modules/css-modules) and [postcss-autoprefixer](https://www.npmjs.com/package/autoprefixer), [postcss-normalize](https://www.npmjs.com/package/postcss-normalize), [OptimizeCSSAssetsPlugin](https://www.npmjs.com/package/optimize-css-assets-webpack-plugin) (uses [css-nano](https://cssnano.co/) for production build)
+  
 ## TODO. Issues
 
-- add webpack-mock-server (with hot-replacement and ts-support)
 - add Prepack
 - fix peek-to-definition (for none-js-files): <https://github.com/microsoft/TypeScript/issues/15146>
 - replace Prettier by better alternative (Prettier works bad)

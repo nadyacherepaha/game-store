@@ -86,7 +86,8 @@
     "webpack": "^4.41.3",
     "webpack-cli": "^3.3.10",
     "webpack-dev-server": "^3.9.0",
-    "webpack-merge": "^4.2.2"
+    "webpack-merge": "^4.2.2",
+    "webpack-mock-server": "^1.0.0"
   },
   "dependencies": {
     "react": "^16.8.6",

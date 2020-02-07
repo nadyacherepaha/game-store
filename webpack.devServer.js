@@ -3,6 +3,7 @@ const merge = require("webpack-merge");
 const CleanPlugin = require("clean-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const webpackMockServer = require("webpack-mock-server");
 const dev = require("./webpack.dev");
 const assets = require("./webpack.common").assetsPath;
 
@@ -28,12 +29,16 @@ module.exports = (env, argv) => {
       stats: {
         children: false // disable console.info for node_modules/*
       },
-      before: function mockServer(app) {
-        // you can use the following logic for mocking responses
-        app.get("/testMock", function mockData(_req, res) {
-          res.json("mockServer is ready");
-        });
-      },
+      before: app =>
+        webpackMockServer.use(app, {
+          entry: ["webpack.mock.js"],
+          tsConfigFileName: "tsconfig.json",
+          before: (req, _res, next) => {
+            console.log(`Got request: ${req.method} ${req.url}`);
+            next();
+            console.log(`Sent response: ${req.method} ${req.url}`);
+          }
+        }),
       contentBase: assets, // folder with static content
       watchContentBase: true // enable hot-reload by changes in contentBase folder
     }
