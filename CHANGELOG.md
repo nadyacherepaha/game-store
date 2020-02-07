@@ -6,6 +6,7 @@
 ### Project
 
 * update vscode config
+* add package webpack-mock-server
 
 ### Stylelint
 
