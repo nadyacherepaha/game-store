@@ -10,8 +10,8 @@
     "build-prod-withMap": "./node_modules/.bin/webpack --mode production --config webpack.prod.js --sourceMap",
     "build-dev": "./node_modules/.bin/webpack --mode development --config webpack.dev.js",
     "lint": "npm run lint-code && npm run lint-styles",
-    "lint-code": "./node_modules/.bin/eslint --fix ./**/*.{js,jsx,ts,tsx,json}",
-    "lint-styles": "./node_modules/.bin/stylelint --fix ./**/*.{css,scss,less}",
+    "lint-code": "./node_modules/.bin/eslint --fix --cache ./**/*.{js,jsx,ts,tsx,json}",
+    "lint-styles": "./node_modules/.bin/stylelint --fix --cache ./**/*.{css,scss,less}",
     "lint-md": "./node_modules/.bin/markdownlint --fix **/*.md --ignore node_modules"
   },
   "repository": {
