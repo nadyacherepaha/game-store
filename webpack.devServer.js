@@ -33,10 +33,12 @@ module.exports = (env, argv) => {
         webpackMockServer.use(app, {
           entry: ["webpack.mock.js"],
           tsConfigFileName: "tsconfig.json",
-          before: (req, _res, next) => {
+          before: (req, res, next) => {
             console.log(`Got request: ${req.method} ${req.url}`);
+            res.once("finish", () => {
+              console.log(`Sent response: ${req.method} ${req.url}`);
+            });
             next();
-            console.log(`Sent response: ${req.method} ${req.url}`);
           }
         }),
       contentBase: assets, // folder with static content
