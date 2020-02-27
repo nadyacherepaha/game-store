@@ -32,6 +32,7 @@ module.exports = (env, argv) => {
           sourceMap: common.enableSourceMap, // generating *.map.js files
           cache: (argv && argv.hot) || false, // enable caching only for hot-replacement-mode
           terserOptions: {
+            toplevel: true, // https://github.com/terser/terser#minify-options
             output: {
               comments: false // remove comments from files
             },
