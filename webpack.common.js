@@ -165,10 +165,10 @@ module.exports = function(env, argv) {
                                 options.context || "",
                                 loaderContext.resourcePath
                               )
-                              .replace("src\\", "")
+                              .replace(`src${path.sep}`, "")
                               .replace(".module.css", "")
                               .replace(".module.scss", "")
-                              .replace(/\\/g, "-")
+                              .replace(/\\|\//g, "-")
                               .replace(/\./g, "_");
                             return `${request}__${localName}`;
                           }
