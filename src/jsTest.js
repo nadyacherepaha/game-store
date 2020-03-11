@@ -1,3 +1,4 @@
 export default function jsTest() {
-  console.warn("jsTested");
+  // array requires for checking babel-transform for IE
+  console.warn(["jsTested", ""].find(v => v === "jsTested"));
 }
