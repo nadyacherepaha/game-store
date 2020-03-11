@@ -3,6 +3,8 @@
 
 ## 0.0.3 (xxxx, 2020) - coming soon
 
+* fix IE support
+
 ### Project
 
 * update vscode config

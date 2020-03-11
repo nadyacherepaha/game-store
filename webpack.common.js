@@ -11,7 +11,9 @@ const CopyWebpackPlugin = require("copy-webpack-plugin");
 const MinifyCssNames = require("mini-css-class-name/css-loader");
 const ObsoleteWebpackPlugin = require("obsolete-webpack-plugin");
 const ScriptExtHtmlWebpackPlugin = require("script-ext-html-webpack-plugin");
+const fs = require("fs");
 const path = require("path");
+const browserslist = require("browserslist");
 
 const pathAlias = require("./webpack.alias");
 
@@ -20,6 +22,14 @@ const destPath = path.resolve(__dirname, "./build/"); // ('../Api/wwwroot')
 const assetsPath = "./public";
 const filesThreshold = 8196; // (bytes) threshold for compression, url-loader plugins
 let enableSourceMap = false;
+
+const packageInfo = JSON.parse(fs.readFileSync("package.json", "utf8"));
+function isPackageExists(packageName) {
+  return (
+    (packageInfo.devDependencies && packageInfo.devDependencies[packageName]) ||
+    (packageInfo.dependencies && packageInfo.dependencies[packageName])
+  );
+}
 
 /* eslint-disable func-names */
 module.exports = function(env, argv) {
@@ -31,11 +41,25 @@ module.exports = function(env, argv) {
   module.exports.enableSourceMap = enableSourceMap;
 
   process.env.NODE_ENV = mode; // it resolves issues in postcss.config.js (since Define plugin is loaded only after reading config-files)
+
+  // troubleshooting: use this if you support IE and react
+  const isNeedFixReactIE = !!browserslist.data.ie && isPackageExists("react");
+
   const result = {
     stats: {
       children: false // disable console.info for node_modules/*
     },
-    entry: path.resolve(srcPath, "main.jsx"), // entryPoint for webpack; it can be object with key-value pairs for multibuild (https://webpack.js.org/concepts/entry-points/)
+    // entryPoint for webpack; it can be object with key-value pairs for multibuild (https://webpack.js.org/concepts/entry-points/)
+    entry: isNeedFixReactIE // troubleshooting: use this if you support IE and react
+      ? [
+          "core-js/es/map",
+          "core-js/es/set",
+          "react",
+          isPackageExists("react-dom") && "react-dom",
+          path.resolve(srcPath, "main.jsx")
+        ].filter(v => v)
+      : path.resolve(srcPath, "main.jsx"),
+
     output: {
       path: destPath,
       filename: "[name].js",
@@ -165,10 +189,10 @@ module.exports = function(env, argv) {
                                 options.context || "",
                                 loaderContext.resourcePath
                               )
-                              .replace("src\\", "")
+                              .replace(`src${path.sep}`, "")
                               .replace(".module.css", "")
                               .replace(".module.scss", "")
-                              .replace(/\\/g, "-")
+                              .replace(/\\|\//g, "-")
                               .replace(/\./g, "_");
                             return `${request}__${localName}`;
                           }
