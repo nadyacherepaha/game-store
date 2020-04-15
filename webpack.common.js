@@ -160,80 +160,51 @@ module.exports = function(env, argv) {
             }
           ]
         },
+        // rules for style-files
         {
-          // rules for style-files
           test: /\.css$|\.scss$/,
-          oneOf: [
-            /* config .oneOf('normal-modules') - rule for [name].module.css files - rule for css-modules */
+          use: [
+            isDevServer
+              ? "style-loader" // it extracts style directly into html (MiniCssExtractPlugin works incorrect with hmr and modules architecture)
+              : MiniCssExtractPlugin.loader, // it extracts styles into file *.css
+            // TODO: improve plugin for splitting by files for dev purpose
             {
-              test: /\.module\.\w+$/,
-              use: [
-                isDevServer
-                  ? "style-loader" // it extracts style directly into html (MiniCssExtractPlugin works incorrect with hmr and modules architecture)
-                  : MiniCssExtractPlugin.loader, // it extracts styles into file *.css
-                // TODO: improve plugin for splitting by files for dev purpose
-                {
-                  loader: "css-loader", // it interprets @import and url() like import/require() and it resolves them (you can use [import *.css] into *.js).
-                  options: {
-                    modules: {
-                      getLocalIdent: isDevMode
-                        ? (
-                            loaderContext,
-                            _localIdentName,
-                            localName,
-                            options
-                          ) => {
-                            // it simplifies classNames fo debug purpose
-                            const request = path
-                              .relative(
-                                options.context || "",
-                                loaderContext.resourcePath
-                              )
-                              .replace(`src${path.sep}`, "")
-                              .replace(".module.css", "")
-                              .replace(".module.scss", "")
-                              .replace(/\\|\//g, "-")
-                              .replace(/\./g, "_");
-                            return `${request}__${localName}`;
-                          }
-                        : MinifyCssNames(
-                            // minify classNames for prod-build
-                            { excludePattern: /[_dD]/gi } // exclude '_','d','D' because Adblock blocks '%ad%' classNames
+              loader: "css-loader", // it interprets @import and url() like import/require() and it resolves them (you can use [import *.css] into *.js).
+              options: {
+                modules: {
+                  auto: /\.module\.\w+$/, // enable css-modules option for files *.module*.
+                  getLocalIdent: isDevMode
+                    ? (loaderContext, _localIdentName, localName, options) => {
+                        // it simplifies classNames fo debug purpose
+                        const request = path
+                          .relative(
+                            options.context || "",
+                            loaderContext.resourcePath
                           )
-                    }
-                  }
-                },
-                {
-                  loader: "sass-loader", // it compiles Sass to CSS, using Node Sass by default
-                  options: {
-                    prependData: '@import "variables";', // inject this import by default in each scss-file
-                    sassOptions: {
-                      includePaths: [path.resolve(__dirname, "src/styles")] // using pathes as root
-                    }
-                  }
-                },
-                "postcss-loader" // it provides adding vendor prefixes to CSS rules using values from Can I Use (see postcss.config.js in the project)
-              ]
+                          .replace(`src${path.sep}`, "")
+                          .replace(".module.css", "")
+                          .replace(".module.scss", "")
+                          .replace(/\\|\//g, "-")
+                          .replace(/\./g, "_");
+                        return `${request}__${localName}`;
+                      }
+                    : MinifyCssNames(
+                        // minify classNames for prod-build
+                        { excludePattern: /[_dD]/gi } // exclude '_','d','D' because Adblock blocks '%ad%' classNames
+                      )
+                }
+              }
             },
-            /* config .oneOf('normal') */
             {
-              use: [
-                isDevServer
-                  ? "style-loader" // it extracts style directly into html (MiniCssExtractPlugin works incorrect with hmr and modules architecture)
-                  : MiniCssExtractPlugin.loader, // it extracts styles into file *.css
-                "css-loader", // it interprets @import and url() like import/require() and it resolves them (you can use [import *.css] into *.js).
-                {
-                  loader: "sass-loader", // it compiles Sass to CSS, using Node Sass by default
-                  options: {
-                    prependData: '@import "variables";', // inject this import by default in each scss-file
-                    sassOptions: {
-                      includePaths: [path.resolve(__dirname, "src/styles")]
-                    }
-                  }
-                },
-                "postcss-loader" // it provides adding vendor prefixes to CSS rules using values from Can I Use (see postcss.config.js in the project)
-              ]
-            }
+              loader: "sass-loader", // it compiles Sass to CSS, using Node Sass by default
+              options: {
+                prependData: '@import "variables";', // inject this import by default in each scss-file
+                sassOptions: {
+                  includePaths: [path.resolve(__dirname, "src/styles")] // using pathes as root
+                }
+              }
+            },
+            "postcss-loader" // it provides adding vendor prefixes to CSS rules using values from Can I Use (see postcss.config.js in the project)
           ]
         }
       ]
