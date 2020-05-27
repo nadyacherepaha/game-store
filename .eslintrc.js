@@ -7,22 +7,22 @@ but you can't do it with {parser: 'babel-eslint'}: https://github.com/typescript
 */
 
 module.exports = {
-  parser: "babel-eslint", //optional: @typescript-eslint/parser can be here but impossible to use with babel-eslint
+  parser: "babel-eslint", // optional: @typescript-eslint/parser can be here but impossible to use with babel-eslint
   parserOptions: {
     sourceType: "module",
     ecmaFeatures: {
-      jsx: true
-    }
+      jsx: true,
+    },
   },
   extends: ["airbnb", "prettier"],
   env: {
     es6: true,
     node: true,
-    browser: true
+    browser: true,
   },
   globals: {
     DEV_SERVER: true,
-    API_DOMAIN: true
+    API_DOMAIN: true,
   },
   plugins: ["json", "prettier"],
   rules: {
@@ -34,7 +34,7 @@ module.exports = {
     "react/prefer-stateless-function": 0,
     "react/react-in-jsx-scope": 0,
     "react/jsx-props-no-spreading": 0,
-    "react/jsx-curly-newline": 0, //it conflicts with prettier
+    "react/jsx-curly-newline": 0, // it conflicts with prettier
     "react/jsx-wrap-multilines": ["error", { arrow: true, return: true, declaration: true }],
     "no-underscore-dangle": 0,
     "no-unused-expressions": ["error", { allowShortCircuit: true }],
@@ -54,8 +54,8 @@ module.exports = {
         ignoreUrls: true,
         ignoreStrings: true,
         ignoreTemplateLiterals: true,
-        ignoreRegExpLiterals: true
-      }
+        ignoreRegExpLiterals: true,
+      },
     ],
     "import/extensions": [
       "error",
@@ -64,16 +64,16 @@ module.exports = {
         js: "never",
         jsx: "never",
         ts: "never",
-        tsx: "never"
-      }
-    ]
+        tsx: "never",
+      },
+    ],
   },
   settings: {
     "import/resolver": {
       alias: {
         map: Object.keys(pathAlias).map((key) => [key, pathAlias[key]]),
-        extensions: [".ts", ".js", ".jsx", ".tsx", ".json"]
-      }
-    }
-  }
+        extensions: [".ts", ".js", ".jsx", ".tsx", ".json"],
+      },
+    },
+  },
 };

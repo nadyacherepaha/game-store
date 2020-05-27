@@ -19,7 +19,7 @@ class AppContainer extends Component {
   constructor() {
     super();
     this.state = {
-      title1: someTypeScript("Test-block for css-modules")
+      title1: someTypeScript("Test-block for css-modules"),
     };
     tsTest();
     jsTest();

@@ -7,12 +7,12 @@ module.exports = {
       {
         // requires for pollyfills: https://babeljs.io/docs/en/babel-preset-env#usebuiltins-usage
         useBuiltIns: "usage",
-        corejs: { version: 3 }
-      }
-    ]
+        corejs: { version: 3 },
+      },
+    ],
   ],
   plugins: [
     "@babel/plugin-proposal-class-properties", // transforms static class properties as well as properties declared with the property initializer syntax
-    "jsx-classnames-advanced" // optional: react: this resolves className={object}
-  ]
+    "jsx-classnames-advanced", // optional: react: this resolves className={object}
+  ],
 };

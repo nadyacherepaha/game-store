@@ -13,12 +13,12 @@ module.exports = (env, argv) => {
     devtool: common.enableSourceMap ? "source-map" : "none", // option controls how source maps are generated (affects on build speed dramatically): https://v4.webpack.js.org/configuration/devtool/
     output: {
       filename: "[name].[contenthash:8].js", // contenthash-this is version for avoding browser-cache issue: user always has to get the last version of files
-      chunkFilename: "[name].[contenthash:8].js"
+      chunkFilename: "[name].[contenthash:8].js",
     },
     performance: {
       assetFilter: function assetFilter(assetFilename) {
         return !/(\.map$)|(fonts)|(images)/.test(assetFilename); // ignore these files from perfomance-hints
-      }
+      },
     },
     optimization: {
       minimizer: [
@@ -33,23 +33,23 @@ module.exports = (env, argv) => {
           terserOptions: {
             toplevel: true, // https://github.com/terser/terser#minify-options
             output: {
-              comments: false // remove comments from files
+              comments: false, // remove comments from files
             },
             mangle: {
-              safari10: true // for preventing Safari 10/11 bugs in loop scoping and await
-            }
-          }
+              safari10: true, // for preventing Safari 10/11 bugs in loop scoping and await
+            },
+          },
         }),
-        new OptimizeCSSAssetsPlugin({}) // it minifies css and optimize it with cssnano: https://cssnano.co/guides/optimisations
-      ]
+        new OptimizeCSSAssetsPlugin({}), // it minifies css and optimize it with cssnano: https://cssnano.co/guides/optimisations
+      ],
     },
     plugins: [
       // additional config for plugins is placed in webpack.common.js
       new CompressionPlugin({
         // optional: it creates gzipped (compressed) files in '[path].gz[query]'
-        threshold: common.filesThreshold // (bytes). Only assets bigger than this size are processed
-      })
-    ]
+        threshold: common.filesThreshold, // (bytes). Only assets bigger than this size are processed
+      }),
+    ],
   });
 
   return result;

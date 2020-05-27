@@ -6,7 +6,7 @@ export default webpackMockServer.add((app, helper) => {
     const response = {
       id: helper.getUniqueIdInt(),
       randomInt: helper.getRandomInt(),
-      lastDate: new Date()
+      lastDate: new Date(),
     };
 
     res.json(response);

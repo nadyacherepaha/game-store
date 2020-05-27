@@ -14,22 +14,22 @@ module.exports = (env, argv) => {
     devConfig.plugins.splice(devConfig.plugins.findIndex(searchFunction), 1);
   }
   // remove plugins because these aren't required for devServer
-  remove(a => a instanceof CleanPlugin.CleanWebpackPlugin);
-  remove(a => a instanceof CopyWebpackPlugin);
-  remove(a => a instanceof MiniCssExtractPlugin);
+  remove((a) => a instanceof CleanPlugin.CleanWebpackPlugin);
+  remove((a) => a instanceof CopyWebpackPlugin);
+  remove((a) => a instanceof MiniCssExtractPlugin);
 
   const result = merge(devConfig, {
     devServer: {
       historyApiFallback: {
         // provide index.html instead of 404:not found error (for SPA app)
         rewrites: [
-          { from: /favicon.ico/, to: "public/favicon.ico" } // provide favicon
-        ]
+          { from: /favicon.ico/, to: "public/favicon.ico" }, // provide favicon
+        ],
       }, // it enables HTML5 mode: https://developer.mozilla.org/en-US/docs/Web/API/History
       stats: {
-        children: false // disable console.info for node_modules/*
+        children: false, // disable console.info for node_modules/*
       },
-      before: app =>
+      before: (app) =>
         webpackMockServer.use(app, {
           entry: ["webpack.mock.js"],
           tsConfigFileName: "tsconfig.json",
@@ -39,11 +39,11 @@ module.exports = (env, argv) => {
             //   console.log(`Sent response: ${req.method} ${req.url}`);
             // });
             next();
-          }
+          },
         }),
       contentBase: assets, // folder with static content
-      watchContentBase: true // enable hot-reload by changes in contentBase folder
-    }
+      watchContentBase: true, // enable hot-reload by changes in contentBase folder
+    },
   });
 
   return result;

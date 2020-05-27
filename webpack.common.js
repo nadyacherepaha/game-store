@@ -32,7 +32,7 @@ function isPackageExists(packageName) {
 }
 
 /* eslint-disable func-names */
-module.exports = function(env, argv) {
+module.exports = function (env, argv) {
   const isDevServer = argv.$0.indexOf("webpack-dev-server") !== -1;
   const mode = argv.mode || (isDevServer ? "development" : "production");
   const isDevMode = mode !== "production";
@@ -47,7 +47,7 @@ module.exports = function(env, argv) {
 
   const result = {
     stats: {
-      children: false // disable console.info for node_modules/*
+      children: false, // disable console.info for node_modules/*
     },
     // entryPoint for webpack; it can be object with key-value pairs for multibuild (https://webpack.js.org/concepts/entry-points/)
     entry: isNeedFixReactIE // troubleshooting: use this if you support IE and react
@@ -56,19 +56,19 @@ module.exports = function(env, argv) {
           "core-js/es/set",
           "react",
           isPackageExists("react-dom") && "react-dom",
-          path.resolve(srcPath, "main.jsx")
-        ].filter(v => v)
+          path.resolve(srcPath, "main.jsx"),
+        ].filter((v) => v)
       : path.resolve(srcPath, "main.jsx"),
 
     output: {
       path: destPath,
       filename: "[name].js",
       chunkFilename: "[name].js",
-      publicPath: "/" // url that should be used for providing assets
+      publicPath: "/", // url that should be used for providing assets
     },
     resolve: {
       alias: pathAlias,
-      extensions: [".js", ".jsx", ".ts", ".tsx"] // using import without file-extensions
+      extensions: [".js", ".jsx", ".ts", ".tsx"], // using import without file-extensions
     },
     optimization: {
       // config is taken from vue-cli
@@ -80,17 +80,17 @@ module.exports = function(env, argv) {
             name: "chunk-vendors", // move js-files from node_modules into splitted file [chunk-vendors].js
             test: /[\\/]node_modules[\\/]/, // filtering files that should be included
             priority: -10, // a module can belong to multiple cache groups. The optimization will prefer the cache group with a higher priority
-            chunks: "initial" // type of optimization: [initial | async | all]
+            chunks: "initial", // type of optimization: [initial | async | all]
           },
           common: {
             name: "chunk-common", // move reusable nested js-files into splitted file [chunk-common].js
             minChunks: 2, // minimum number of chunks that must share a module before splitting
             priority: -20,
             chunks: "initial",
-            reuseExistingChunk: true // If the current chunk contains modules already split out from the main bundle, it will be reused instead of a new one being generated. This can impact the resulting file name of the chunk
-          }
-        }
-      }
+            reuseExistingChunk: true, // If the current chunk contains modules already split out from the main bundle, it will be reused instead of a new one being generated. This can impact the resulting file name of the chunk
+          },
+        },
+      },
     },
     module: {
       rules: [
@@ -99,10 +99,10 @@ module.exports = function(env, argv) {
           test: /\.(js|jsx|ts|tsx)$/,
           exclude: /node_modules/,
           use: [
-            "babel-loader" // transpile *.js, *.jsx, *.ts, *.tsx to result according to .browserlistrc and babel.config.js files
+            "babel-loader", // transpile *.js, *.jsx, *.ts, *.tsx to result according to .browserlistrc and babel.config.js files
             // optional: "ifdef-loader" // prodives conditinal compilation: https://github.com/nippur72/ifdef-loader
             // optional: "eslint-loader" //provides lint-errors into wepback output
-          ]
+          ],
         },
         // rule for images
         {
@@ -113,12 +113,12 @@ module.exports = function(env, argv) {
               loader: "url-loader", // it converts images that have size less 'limit' option into inline base64-css-format
               options: {
                 name: "images/[name].[ext]",
-                limit: filesThreshold // if file-size more then limit, file-loader copies one into outputPath
+                limit: filesThreshold, // if file-size more then limit, file-loader copies one into outputPath
                 // by default it uses fallback: 'file-loader'
                 // optional: fallback: 'responsive-loader' //it converts image to multiple images using srcset (IE isn't supported): https://caniuse.com/#search=srcset
-              }
-            }
-          ]
+              },
+            },
+          ],
         },
         // rule for svg-images
         {
@@ -130,10 +130,10 @@ module.exports = function(env, argv) {
               options: {
                 limit: filesThreshold,
                 iesafe: filesThreshold >= 4000 && !!browserslist.data.ie, // https://github.com/bhovhannes/svg-url-loader#iesafe
-                name: "images/[name].[ext]" // if file-size more then limit, [file-loader] copies ones into outputPath
-              }
-            }
-          ]
+                name: "images/[name].[ext]", // if file-size more then limit, [file-loader] copies ones into outputPath
+              },
+            },
+          ],
         },
         // rule for fonts
         {
@@ -143,10 +143,10 @@ module.exports = function(env, argv) {
               loader: "url-loader",
               options: {
                 limit: filesThreshold,
-                name: "fonts/[name].[ext]" // if file-size more then limit, [file-loader] copies ones into outputPath
-              }
-            }
-          ]
+                name: "fonts/[name].[ext]", // if file-size more then limit, [file-loader] copies ones into outputPath
+              },
+            },
+          ],
         },
         // special rule for fonts in svg-format
         {
@@ -157,10 +157,10 @@ module.exports = function(env, argv) {
               options: {
                 limit: filesThreshold,
                 iesafe: filesThreshold >= 4000 && !!browserslist.data.ie, // https://github.com/bhovhannes/svg-url-loader#iesafe
-                name: "fonts/[name].[ext]" // if file-size more then limit,  [file-loader] copies ones into outputPath
-              }
-            }
-          ]
+                name: "fonts/[name].[ext]", // if file-size more then limit,  [file-loader] copies ones into outputPath
+              },
+            },
+          ],
         },
         // rules for style-files
         {
@@ -179,10 +179,7 @@ module.exports = function(env, argv) {
                     ? (loaderContext, _localIdentName, localName, options) => {
                         // it simplifies classNames fo debug purpose
                         const request = path
-                          .relative(
-                            options.context || "",
-                            loaderContext.resourcePath
-                          )
+                          .relative(options.context || "", loaderContext.resourcePath)
                           .replace(`src${path.sep}`, "")
                           .replace(".module.css", "")
                           .replace(".module.scss", "")
@@ -193,23 +190,23 @@ module.exports = function(env, argv) {
                     : MinifyCssNames(
                         // minify classNames for prod-build
                         { excludePattern: /[_dD]/gi } // exclude '_','d','D' because Adblock blocks '%ad%' classNames
-                      )
-                }
-              }
+                      ),
+                },
+              },
             },
             {
               loader: "sass-loader", // it compiles Sass to CSS, using Node Sass by default
               options: {
                 prependData: '@import "variables";', // inject this import by default in each scss-file
                 sassOptions: {
-                  includePaths: [path.resolve(__dirname, "src/styles")] // using pathes as root
-                }
-              }
+                  includePaths: [path.resolve(__dirname, "src/styles")], // using pathes as root
+                },
+              },
             },
-            "postcss-loader" // it provides adding vendor prefixes to CSS rules using values from Can I Use (see postcss.config.js in the project)
-          ]
-        }
-      ]
+            "postcss-loader", // it provides adding vendor prefixes to CSS rules using values from Can I Use (see postcss.config.js in the project)
+          ],
+        },
+      ],
     },
     plugins: [
       new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/), // it adds force-ignoring unused parts of modules like moment/locale/*.js
@@ -217,8 +214,8 @@ module.exports = function(env, argv) {
         // it adds custom Global definition to the project like BASE_URL for index.html
         "process.env": {
           NODE_ENV: JSON.stringify(mode),
-          BASE_URL: '"/"'
-        }
+          BASE_URL: '"/"',
+        },
       }),
       new CaseSensitivePathsPlugin(), // it fixes bugs between OS in caseSensitivePaths (since Windows isn't CaseSensitive but Linux is)
       new FriendlyErrorsWebpackPlugin(), // it provides user-friendly errors from webpack (since the last has ugly useless bug-report)
@@ -232,25 +229,25 @@ module.exports = function(env, argv) {
               collapseWhitespace: true,
               removeAttributeQuotes: true,
               collapseBooleanAttributes: true,
-              removeScriptTypeAttributes: true
-            }
+              removeScriptTypeAttributes: true,
+            },
       }),
       new PreloadPlugin({
         // it adds 'preload' tag for async js-files: https://developer.mozilla.org/en-US/docs/Web/HTML/Preloading_content
         rel: "preload",
         include: "initial",
-        fileBlacklist: [/\.map$/, /hot-update\.js$/, /obsolete\.js$/]
+        fileBlacklist: [/\.map$/, /hot-update\.js$/, /obsolete\.js$/],
       }),
       new PreloadPlugin({
         // it adds 'prefetch' tag for async js-files: https://developer.mozilla.org/en-US/docs/Web/HTTP/Link_prefetching_FAQ
         rel: "prefetch",
-        include: "asyncChunks"
+        include: "asyncChunks",
       }),
       new MiniCssExtractPlugin({
         // it extracts css-code from js into splitted file
         filename: isDevMode ? "[name].css" : "[name].[contenthash].css",
         chunkFilename: isDevMode ? "[id].css" : "[id].[contenthash].css",
-        sourceMap: enableSourceMap
+        sourceMap: enableSourceMap,
       }),
       new CleanPlugin.CleanWebpackPlugin(), // it cleans output folder before extracting files
       // it copies files like images, fonts etc. from 'public' path to 'destPath' (since not every file will be injected into css and js)
@@ -259,26 +256,26 @@ module.exports = function(env, argv) {
           {
             from: assetsPath,
             to: destPath,
-            toType: "dir"
-          }
-        ]
+            toType: "dir",
+          },
+        ],
       }),
       new webpack.ProgressPlugin(), // it shows progress of building
       new webpack.ProvidePlugin({
-        React: "react" // optional: react. it adds [import React from 'react'] as ES6 module to every file into the project
+        React: "react", // optional: react. it adds [import React from 'react'] as ES6 module to every file into the project
       }),
       new ObsoleteWebpackPlugin({
         // optional: browser: provides popup via alert-script if browser unsupported (according to .browserlistrc)
         name: "obsolete",
-        promptOnNonTargetBrowser: true // show popup if browser is not listed in .browserlistrc
+        promptOnNonTargetBrowser: true, // show popup if browser is not listed in .browserlistrc
         // optional: browser: [template: 'html string here']
       }),
       new ScriptExtHtmlWebpackPlugin({
         // it adds to obsolete-plugin-script 'async' tag (for perfomance puprpose)
-        async: "obsolete"
-      })
+        async: "obsolete",
+      }),
       // optional: new BundleAnalyzerPlugin() // creates bundles-map in browser https://github.com/webpack-contrib/webpack-bundle-analyzer
-    ]
+    ],
   };
 
   return result;

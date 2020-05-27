@@ -6,7 +6,7 @@ module.exports = {
     "postcss-normalize": {
       // it adds normalize.css and sanitize.css. https://github.com/csstools/postcss-normalize
       // forceImport: true, //it adds twice
-      allowDuplicates: false
-    }
-  }
+      allowDuplicates: false,
+    },
+  },
 };
