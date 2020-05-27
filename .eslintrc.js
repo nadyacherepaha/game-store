@@ -56,12 +56,22 @@ module.exports = {
         ignoreTemplateLiterals: true,
         ignoreRegExpLiterals: true
       }
+    ],
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        js: "never",
+        jsx: "never",
+        ts: "never",
+        tsx: "never"
+      }
     ]
   },
   settings: {
     "import/resolver": {
       alias: {
-        map: Object.keys(pathAlias).map(key => [key, pathAlias[key]]),
+        map: Object.keys(pathAlias).map((key) => [key, pathAlias[key]]),
         extensions: [".ts", ".js", ".jsx", ".tsx", ".json"]
       }
     }

@@ -19,6 +19,7 @@ h2 {
 
 .test-block {
   border: 4px dotted black;
+  /* stylelint-disable-next-line plugin/no-unsupported-browser-features*/
   display: flex;
   flex-direction: column;
   align-items: center;
