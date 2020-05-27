@@ -4,6 +4,7 @@
 ## 0.0.3 (xxxx, 2020) - coming soon
 
 * fix IE support
+* update packages to latest
 
 ### Project
 
