@@ -26,11 +26,10 @@ module.exports = (env, argv) => {
           // default webpack plugin for js-optimization which should be configured: https://v4.webpack.js.org/configuration/optimization/#optimizationminimizer
           // speedest alternative of UglifyJS (it improves minifying js files)
           test: /\.m?js(\?.*)?$/i,
-          chunkFilter: () => true, // set false if we don't need uglifying (for debug purpose)
+          // exclude: /\.m?js(\?.*)?$/i, // uncomment if we don't need uglifying (for debug purpose)
           warningsFilter: () => true, // removing console.warn from files
           extractComments: false, // disable extracting comments to a different file
           sourceMap: common.enableSourceMap, // generating *.map.js files
-          cache: (argv && argv.hot) || false, // enable caching only for hot-replacement-mode
           terserOptions: {
             toplevel: true, // https://github.com/terser/terser#minify-options
             output: {

@@ -129,6 +129,7 @@ module.exports = function(env, argv) {
               loader: "svg-url-loader", // despite url-loader that converts images into base64 format it converts images to native svg-css format
               options: {
                 limit: filesThreshold,
+                iesafe: filesThreshold >= 4000 && !!browserslist.data.ie, // https://github.com/bhovhannes/svg-url-loader#iesafe
                 name: "images/[name].[ext]" // if file-size more then limit, [file-loader] copies ones into outputPath
               }
             }
@@ -155,6 +156,7 @@ module.exports = function(env, argv) {
               loader: "svg-url-loader", // despite url-loader that converts images into base64 format it converts images to native svg-css format
               options: {
                 limit: filesThreshold,
+                iesafe: filesThreshold >= 4000 && !!browserslist.data.ie, // https://github.com/bhovhannes/svg-url-loader#iesafe
                 name: "fonts/[name].[ext]" // if file-size more then limit,  [file-loader] copies ones into outputPath
               }
             }
@@ -251,15 +253,16 @@ module.exports = function(env, argv) {
         sourceMap: enableSourceMap
       }),
       new CleanPlugin.CleanWebpackPlugin(), // it cleans output folder before extracting files
-      new CopyWebpackPlugin([
-        {
-          // it copies files like images, fonts etc. from 'public' path to 'destPath' (since not every file will be injected into css and js)
-          from: assetsPath,
-          to: destPath,
-          toType: "dir",
-          ignore: [".DS_Store"]
-        }
-      ]),
+      // it copies files like images, fonts etc. from 'public' path to 'destPath' (since not every file will be injected into css and js)
+      new CopyWebpackPlugin({
+        patterns: [
+          {
+            from: assetsPath,
+            to: destPath,
+            toType: "dir"
+          }
+        ]
+      }),
       new webpack.ProgressPlugin(), // it shows progress of building
       new webpack.ProvidePlugin({
         React: "react" // optional: react. it adds [import React from 'react'] as ES6 module to every file into the project
