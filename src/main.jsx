@@ -16,8 +16,8 @@ import { valueEs6 } from "./treeShakeES6Test";
 const valueNodeJs = require("./treeShakeNodeTest").valueNodeJs;
 
 class AppContainer extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       title1: someTypeScript("Test-block for css-modules"),
     };
