@@ -1,5 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
-const merge = require("webpack-merge");
+const { merge } = require("webpack-merge");
 const CleanPlugin = require("clean-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
