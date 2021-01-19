@@ -31,15 +31,15 @@
   },
   "homepage": "https://github.com/Yegorich555/WebpackMustHave#readme",
   "devDependencies": {
-    "@babel/core": "^7.10.0",
-    "@babel/plugin-proposal-class-properties": "^7.8.3",
-    "@babel/preset-env": "^7.10.0",
-    "@babel/preset-react": "^7.10.0",
-    "@babel/preset-typescript": "^7.9.0",
-    "@types/react": "^16.14.2",
+    "@babel/core": "^7.12.10",
+    "@babel/plugin-proposal-class-properties": "^7.12.1",
+    "@babel/preset-env": "^7.12.11",
+    "@babel/preset-react": "^7.12.10",
+    "@babel/preset-typescript": "^7.12.7",
+    "@types/react": "^17.0.0",
     "autoprefixer": "^9.8.0",
     "babel-eslint": "^10.1.0",
-    "babel-loader": "^8.1.0",
+    "babel-loader": "^8.2.2",
     "babel-plugin-jsx-classnames-advanced": "^1.0.2",
     "browserlist": "^1.0.1",
     "case-sensitive-paths-webpack-plugin": "^2.3.0",
@@ -84,7 +84,7 @@
     "stylelint-scss": "^3.17.2",
     "svg-url-loader": "^6.0.0",
     "terser-webpack-plugin": "^3.0.2",
-    "typescript": "^3.9.3",
+    "typescript": "^4.1.3",
     "url-loader": "^4.1.0",
     "webpack": "^4.45.0",
     "webpack-cli": "^3.3.12",
@@ -94,7 +94,7 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
   }
 }
