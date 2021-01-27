@@ -197,7 +197,7 @@ module.exports = function (env, argv) {
             {
               loader: "sass-loader", // it compiles Sass to CSS, using Node Sass by default
               options: {
-                prependData: '@import "variables";', // inject this import by default in each scss-file
+                additionalData: '@import "variables";', // inject this import by default in each scss-file
                 sassOptions: {
                   includePaths: [path.resolve(__dirname, "src/styles")], // using pathes as root
                 },
@@ -247,7 +247,6 @@ module.exports = function (env, argv) {
         // it extracts css-code from js into splitted file
         filename: isDevMode ? "[name].css" : "[name].[contenthash].css",
         chunkFilename: isDevMode ? "[id].css" : "[id].[contenthash].css",
-        sourceMap: enableSourceMap,
       }),
       new CleanPlugin.CleanWebpackPlugin(), // it cleans output folder before extracting files
       // it copies files like images, fonts etc. from 'public' path to 'destPath' (since not every file will be injected into css and js)
