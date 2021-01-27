@@ -27,7 +27,6 @@ module.exports = (env, argv) => {
           // speedest alternative of UglifyJS (it improves minifying js files)
           test: /\.m?js(\?.*)?$/i,
           // exclude: /\.m?js(\?.*)?$/i, // uncomment if we don't need uglifying (for debug purpose)
-          warningsFilter: () => true, // removing console.warn from files
           extractComments: false, // disable extracting comments to a different file
           sourceMap: common.enableSourceMap, // generating *.map.js files
           terserOptions: {
@@ -38,6 +37,7 @@ module.exports = (env, argv) => {
             mangle: {
               safari10: true, // for preventing Safari 10/11 bugs in loop scoping and await
             },
+            compress: { pure_funcs: ["console.info", "console.debug", "console.warn"] }, // remove this functions when their return values are not used
           },
         }),
         new OptimizeCSSAssetsPlugin({}), // it minifies css and optimize it with cssnano: https://cssnano.co/guides/optimisations
