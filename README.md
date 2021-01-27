@@ -1,6 +1,6 @@
 # WebpackMustHave
 
-Webpack version: 4.41.3
+Webpack version: 4.46
 
 ## How to run project
 
@@ -36,7 +36,5 @@ Webpack version: 4.41.3
 - add Prepack
 - fix peek-to-definition (for none-js-files): <https://github.com/microsoft/TypeScript/issues/15146>
 - replace Prettier by better alternative (Prettier works bad)
-- simplify config for webpack.styles when css-loader will be updated: <https://github.com/webpack-contrib/css-loader/issues/994>
 - add icomoon to fonts
 - Eslint. Add tslint integration (impossible to use with babel-eslint): <https://github.com/typescript-eslint/typescript-eslint#what-about-babel-and-babel-eslint>
-- CSS-Modules. Update style-loader to version >=1 when hot-replacement for css-modules will be fixed: <https://github.com/webpack-contrib/style-loader/issues/422>

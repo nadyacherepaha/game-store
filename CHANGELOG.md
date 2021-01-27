@@ -1,7 +1,7 @@
 <!-- markdownlint-disable MD024 -->
 <!-- markdownlint-disable MD041 -->
 
-## 0.0.3 (xxxx, 2020) - coming soon
+## 0.0.3 (Januaty 27, 2021)
 
 * fix IE support
 * update packages to latest
@@ -10,6 +10,7 @@
 
 * update vscode config
 * add package webpack-mock-server
+* minor fixes
 
 ### Stylelint
 
