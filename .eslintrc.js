@@ -1,13 +1,11 @@
-const pathAlias = require("./webpack.alias");
-
-/* 
+/*
 tslint won't be supported: https://github.com/palantir/tslint/issues/4534
 you should use typescript-eslint/eslint-plugin: https://github.com/typescript-eslint/typescript-eslint/tree/master/packages/eslint-plugin
 but you can't do it with {parser: 'babel-eslint'}: https://github.com/typescript-eslint/typescript-eslint#what-about-babel-and-babel-eslint
 */
-
+/** @type {import("eslint").Linter.Config} */
 module.exports = {
-  parser: "babel-eslint", // optional: @typescript-eslint/parser can be here but impossible to use with babel-eslint
+  parser: "@typescript-eslint/parser",
   parserOptions: {
     sourceType: "module",
     ecmaFeatures: {
@@ -24,7 +22,7 @@ module.exports = {
     DEV_SERVER: true,
     API_DOMAIN: true,
   },
-  plugins: ["json", "prettier"],
+  plugins: ["json", "prettier", "import"],
   rules: {
     "prettier/prettier": ["error"],
     "react/destructuring-assignment": 0,
@@ -69,10 +67,13 @@ module.exports = {
     ],
   },
   settings: {
+    "import/parsers": {
+      "@typescript-eslint/parser": [".ts", ".tsx"],
+    },
     "import/resolver": {
-      alias: {
-        map: Object.keys(pathAlias).map((key) => [key, pathAlias[key]]),
-        extensions: [".ts", ".js", ".jsx", ".tsx", ".json"],
+      typescript: {
+        alwaysTryTypes: true, // always try to resolve types under `<root>@types` directory even it doesn't contain any source code, like `@types/unist`
+        project: ["./tsconfig.json"],
       },
     },
   },

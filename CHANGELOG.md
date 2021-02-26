@@ -1,7 +1,11 @@
 <!-- markdownlint-disable MD024 -->
 <!-- markdownlint-disable MD041 -->
+## 1.0.0 (February 26, 2021)
 
-## 0.0.3 (Januaty 27, 2021)
+* deprecate webpack.alias.json to single tsconfig.json
+* better TS support (added ts-loader, ts-eslint parser etc.)
+
+## 0.0.3 (January 27, 2021)
 
 * fix IE support
 * update packages to latest

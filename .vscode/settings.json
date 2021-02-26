@@ -3,6 +3,7 @@
   "path-autocomplete.includeExtension": true,
   "path-autocomplete.extensionOnImport": true,
   "path-autocomplete.excludedItems": {
+    //todo read path-alias from tsconfig.json
     "**/*.+(ts|js|jsx|tsx)": { "when": "**" }, // ignore js files because VSCode works fine with ones
     "**/*.map": { "when": "**" }, // always ignore *.map files
     "**/{.git,node_modules}": { "when": "**" }, // always ignore .git and node_modules folders

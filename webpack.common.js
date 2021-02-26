@@ -14,8 +14,7 @@ const ScriptExtHtmlWebpackPlugin = require("script-ext-html-webpack-plugin");
 const fs = require("fs");
 const path = require("path");
 const browserslist = require("browserslist");
-
-const pathAlias = require("./webpack.alias");
+const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
 
 const srcPath = path.resolve(__dirname, "./src/");
 const destPath = path.resolve(__dirname, "./build/"); // ('../Api/wwwroot')
@@ -45,6 +44,7 @@ module.exports = function (env, argv) {
   // troubleshooting: use this if you support IE and react
   const isNeedFixReactIE = !!browserslist.data.ie && isPackageExists("react");
 
+  /** @type {import('webpack').Configuration} */
   const result = {
     stats: {
       children: false, // disable console.info for node_modules/*
@@ -67,8 +67,8 @@ module.exports = function (env, argv) {
       publicPath: "/", // url that should be used for providing assets
     },
     resolve: {
-      alias: pathAlias,
       extensions: [".js", ".jsx", ".ts", ".tsx"], // using import without file-extensions
+      plugins: [new TsconfigPathsPlugin({ configFile: "./tsconfig.json" })],
     },
     optimization: {
       // config is taken from vue-cli
@@ -225,6 +225,7 @@ module.exports = function (env, argv) {
       ],
     },
     plugins: [
+      new webpack.WatchIgnorePlugin([/\.d\.ts$/]), // ignore d.ts files in --watch mode
       new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/), // it adds force-ignoring unused parts of modules like moment/locale/*.js
       new webpack.DefinePlugin({
         // it adds custom Global definition to the project like BASE_URL for index.html

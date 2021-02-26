@@ -18,7 +18,7 @@ Webpack version: 4.46
 - ESlint: <https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint>
 - Stylelint: <https://marketplace.visualstudio.com/items?itemName=stylelint.vscode-stylelint>
 - SCSS intellisense: <https://marketplace.visualstudio.com/items?itemName=mrmlnc.vscode-scss>
-- Path intellisense: <https://marketplace.visualstudio.com/items?itemName=christian-kohler.path-intellisense>
+- Path autocomplete: <https://marketplace.visualstudio.com/items?itemName=ionutvmi.path-autocomplete>
 - Prettier - Code formatter: <https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode>
 - Import Cost: <https://marketplace.visualstudio.com/items?itemName=wix.vscode-import-cost>
 - Markdownlint: <https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint>
@@ -30,11 +30,11 @@ Webpack version: 4.46
 - **BrowserList. Stylelint**. Integrated [no-unsupported-browser-features](https://www.npmjs.com/package/stylelint-no-unsupported-browser-features), so during the css,scss-coding stylelint will show on-css rule that unsupported (according to .browserslistrc)
 - **MockServer**. For mocking api responses integrated [webpack-mock-server](https://www.npmjs.com/package/webpack-mock-server) that supports JS,TS and hot-replacement:
 - **Styles**. Integrated [CSS-Modules](https://github.com/css-modules/css-modules) and [postcss-autoprefixer](https://www.npmjs.com/package/autoprefixer), [postcss-normalize](https://www.npmjs.com/package/postcss-normalize), [OptimizeCSSAssetsPlugin](https://www.npmjs.com/package/optimize-css-assets-webpack-plugin) (uses [css-nano](https://cssnano.co/) for production build)
-  
+
 ## TODO. Issues
 
 - add Prepack
 - fix peek-to-definition (for none-js-files): <https://github.com/microsoft/TypeScript/issues/15146>
 - replace Prettier by better alternative (Prettier works bad)
 - add icomoon to fonts
-- Eslint. Add tslint integration (impossible to use with babel-eslint): <https://github.com/typescript-eslint/typescript-eslint#what-about-babel-and-babel-eslint>
+- Path autocomplete doesn't read path-alias-config from tsconfig.json
