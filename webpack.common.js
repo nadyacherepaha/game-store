@@ -96,7 +96,23 @@ module.exports = function (env, argv) {
       rules: [
         // rule for js, jsx files
         {
-          test: /\.(js|jsx|ts|tsx)$/,
+          test: /\.(ts|tsx)$/,
+          exclude: /node_modules/,
+          use: [
+            "babel-loader", // transpile *.js, *.jsx, *.ts, *.tsx to result according to .browserlistrc and babel.config.js files
+            {
+              loader: "ts-loader", // transpile *.ts to *.js, despite babel-loader deals with typeScript wtithout restrictions but doesn't have .browserlist support
+              options: {
+                transpileOnly: true, // we don't type checking during the compilation - it's task for CodeEditor
+              },
+            },
+            // optional: "ifdef-loader" // prodives conditinal compilation: https://github.com/nippur72/ifdef-loader
+            // optional: "eslint-loader" //provides lint-errors into wepback output
+          ],
+        },
+        // rule for ts, tsx files
+        {
+          test: /\.(js|jsx)$/,
           exclude: /node_modules/,
           use: [
             "babel-loader", // transpile *.js, *.jsx, *.ts, *.tsx to result according to .browserlistrc and babel.config.js files
