@@ -14,7 +14,9 @@
     "allowJs": true,
     "outDir": "",
     "noEmit": true, //exlcude errors in console because it should be wrapped by webpack
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "target": "ESNext",
+    "module": "ESNext",
   },
   "exclude": ["node_modules", "dist", "build", ".vscode"]
 }

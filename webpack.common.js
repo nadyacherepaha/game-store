@@ -68,7 +68,7 @@ module.exports = function (env, argv) {
     },
     resolve: {
       extensions: [".js", ".jsx", ".ts", ".tsx"], // using import without file-extensions
-      plugins: [new TsconfigPathsPlugin({ configFile: "./tsconfig.json" })],
+      plugins: [new TsconfigPathsPlugin({ configFile: "./tsconfig.json" })], // plugin makes mapping from tsconfig.json to weback:alias
     },
     optimization: {
       // config is taken from vue-cli
@@ -101,7 +101,7 @@ module.exports = function (env, argv) {
           use: [
             "babel-loader", // transpile *.js, *.jsx, *.ts, *.tsx to result according to .browserlistrc and babel.config.js files
             {
-              loader: "ts-loader", // transpile *.ts to *.js, despite babel-loader deals with typeScript wtithout restrictions but doesn't have .browserlist support
+              loader: "ts-loader", // transpile *.ts to *.js, despite babel-loader deals with typeScript without restrictions but doesn't have .browserlist support
               options: {
                 transpileOnly: true, // we don't type checking during the compilation - it's task for CodeEditor
               },
