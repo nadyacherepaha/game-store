@@ -20,7 +20,6 @@ const srcPath = path.resolve(__dirname, "./src/");
 const destPath = path.resolve(__dirname, "./build/"); // ('../Api/wwwroot')
 const assetsPath = "./public";
 const filesThreshold = 8196; // (bytes) threshold for compression, url-loader plugins
-let enableSourceMap = false;
 
 const packageInfo = JSON.parse(fs.readFileSync("package.json", "utf8"));
 function isPackageExists(packageName) {
@@ -31,13 +30,10 @@ function isPackageExists(packageName) {
 }
 
 /* eslint-disable func-names */
-module.exports = function (env, argv) {
-  const isDevServer = argv.$0.indexOf("webpack-dev-server") !== -1;
+module.exports = function (_env, argv) {
+  const isDevServer = argv?.$0?.indexOf("webpack-dev-server") !== -1;
   const mode = argv.mode || (isDevServer ? "development" : "production");
   const isDevMode = mode !== "production";
-
-  enableSourceMap = argv.sourceMap != null; // it adds source map for css and js
-  module.exports.enableSourceMap = enableSourceMap;
 
   process.env.NODE_ENV = mode; // it resolves issues in postcss.config.js (since Define plugin is loaded only after reading config-files)
 
@@ -48,6 +44,9 @@ module.exports = function (env, argv) {
   const result = {
     stats: {
       children: false, // disable console.info for node_modules/*
+      modules: false,
+      errors: true,
+      errorDetails: true,
     },
     // entryPoint for webpack; it can be object with key-value pairs for multibuild (https://webpack.js.org/concepts/entry-points/)
     entry: isNeedFixReactIE // troubleshooting: use this if you support IE and react
@@ -76,7 +75,7 @@ module.exports = function (env, argv) {
         // for avoiding duplicated dependencies across modules
         minChunks: 1, // Minimum number of chunks that must share a module before splitting.
         cacheGroups: {
-          vendors: {
+          defaultVendors: {
             name: "chunk-vendors", // move js-files from node_modules into splitted file [chunk-vendors].js
             test: /[\\/]node_modules[\\/]/, // filtering files that should be included
             priority: -10, // a module can belong to multiple cache groups. The optimization will prefer the cache group with a higher priority
@@ -225,7 +224,7 @@ module.exports = function (env, argv) {
       ],
     },
     plugins: [
-      new webpack.WatchIgnorePlugin([/\.d\.ts$/]), // ignore d.ts files in --watch mode
+      // todo resolve new webpack.WatchIgnorePlugin([/\.d\.ts$/]), // ignore d.ts files in --watch mode
       new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/), // it adds force-ignoring unused parts of modules like moment/locale/*.js
       new webpack.DefinePlugin({
         // it adds custom Global definition to the project like BASE_URL for index.html
@@ -249,6 +248,7 @@ module.exports = function (env, argv) {
               removeScriptTypeAttributes: true,
             },
       }),
+      // todo: watchFix for update to webpack5: https://github.com/GoogleChromeLabs/preload-webpack-plugin/issues/132
       new PreloadPlugin({
         // it adds 'preload' tag for async js-files: https://developer.mozilla.org/en-US/docs/Web/HTML/Preloading_content
         rel: "preload",
