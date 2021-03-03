@@ -28,6 +28,7 @@ module.exports = (env, argv) => {
       }, // it enables HTML5 mode: https://developer.mozilla.org/en-US/docs/Web/API/History
       stats: {
         children: false, // disable console.info for node_modules/*
+        modules: false,
       },
       before: (app) =>
         webpackMockServer.use(app, {
