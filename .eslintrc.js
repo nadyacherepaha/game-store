@@ -22,8 +22,10 @@ module.exports = {
     DEV_SERVER: true,
     API_DOMAIN: true,
   },
-  plugins: ["json", "prettier", "import"],
+  plugins: ["json", "prettier", "import", "@typescript-eslint"],
   rules: {
+    "@typescript-eslint/no-use-before-define": "error",
+    "no-use-before-define": 0,
     "prettier/prettier": ["error"],
     "react/destructuring-assignment": 0,
     // "react/jsx-max-props-per-line": [1, { maximum: 1 }], //it doesn't work with prettier, you can remove prettier from rules: 'prettier/prettier'...
