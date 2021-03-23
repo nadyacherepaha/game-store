@@ -12,6 +12,7 @@
     },
     "jsx": "react",
     "allowJs": true,
+    "strict": true,
     "outDir": "",
     "noEmit": true, //exlcude errors in console because it should be wrapped by webpack
     "esModuleInterop": true,
