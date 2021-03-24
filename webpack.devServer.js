@@ -20,6 +20,7 @@ module.exports = (env, argv) => {
 
   const result = merge(devConfig, {
     devServer: {
+      hot: true,
       historyApiFallback: {
         // provide index.html instead of 404:not found error (for SPA app)
         rewrites: [
@@ -46,6 +47,5 @@ module.exports = (env, argv) => {
       watchContentBase: true, // enable hot-reload by changes in contentBase folder
     },
   });
-
   return result;
 };
