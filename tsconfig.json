@@ -8,9 +8,9 @@
       //this is should be sync with aliases in webpack
       "@/*": ["src/*"],
       "images/*": ["src/assets/images/*"],
-      "fonts/*": ["src/assets/fonts/*"],
+      "fonts/*": ["src/assets/fonts/*"]
     },
-    "jsx": "react",
+    "jsx": "react-jsx",
     "allowJs": true,
     "strict": true,
     "outDir": "",
@@ -18,6 +18,7 @@
     "esModuleInterop": true,
     "target": "ESNext",
     "module": "ESNext",
+    "moduleResolution": "node"
   },
   "exclude": ["node_modules", "dist", "build", ".vscode"]
 }

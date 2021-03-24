@@ -30,6 +30,7 @@ Webpack version: 5+
 - Prettier - Code formatter: <https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode>
 - Import Cost: <https://marketplace.visualstudio.com/items?itemName=wix.vscode-import-cost>
 - Markdownlint: <https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint>
+- EditConfig for VS Code: <https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig>
 
 ## Features
 

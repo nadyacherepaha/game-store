@@ -24,6 +24,7 @@ module.exports = {
   },
   plugins: ["json", "prettier", "import", "@typescript-eslint"],
   rules: {
+    "react/jsx-filename-extension": ["error", { extensions: [".tsx"] }],
     "@typescript-eslint/no-use-before-define": "error",
     "no-use-before-define": 0,
     "prettier/prettier": ["error"],

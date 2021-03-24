@@ -55,9 +55,9 @@ module.exports = function (_env, argv) {
           "core-js/es/set",
           "react",
           isPackageExists("react-dom") && "react-dom",
-          path.resolve(srcPath, "main.jsx"),
+          path.resolve(srcPath, "main.tsx"),
         ].filter((v) => v)
-      : path.resolve(srcPath, "main.jsx"),
+      : path.resolve(srcPath, "main.tsx"),
 
     output: {
       path: destPath,
