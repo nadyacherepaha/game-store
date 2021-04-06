@@ -31,3 +31,5 @@ node_modules
 .eslintcache
 
 .stylelintcache
+
+tsconfig.tsbuildinfo

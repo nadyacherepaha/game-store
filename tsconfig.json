@@ -12,13 +12,16 @@
     },
     "jsx": "react-jsx",
     "allowJs": true,
-    "strict": true,
     "outDir": "",
     "noEmit": true, //exlcude errors in console because it should be wrapped by webpack
     "esModuleInterop": true,
     "target": "ESNext",
     "module": "ESNext",
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "strict": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true
   },
   "exclude": ["node_modules", "dist", "build", ".vscode"]
 }

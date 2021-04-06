@@ -12,7 +12,7 @@ module.exports = {
       jsx: true,
     },
   },
-  extends: ["airbnb", "prettier", "plugin:@typescript-eslint/recommended"],
+  extends: ["eslint:recommended", "airbnb", "prettier", "plugin:@typescript-eslint/recommended"],
   env: {
     es6: true,
     node: true,
@@ -24,9 +24,10 @@ module.exports = {
   },
   plugins: ["json", "prettier", "import", "@typescript-eslint"],
   rules: {
-    "react/jsx-filename-extension": ["error", { extensions: [".tsx"] }],
     "@typescript-eslint/no-use-before-define": "error",
+    "require-await": "error",
     "prettier/prettier": ["error"],
+    "react/jsx-filename-extension": ["error", { extensions: [".tsx"] }],
     "react/destructuring-assignment": 0,
     // "react/jsx-max-props-per-line": [1, { maximum: 1 }], //it doesn't work with prettier, you can remove prettier from rules: 'prettier/prettier'...
     // "react/jsx-first-prop-new-line": [1, "multiline"], //it doesn't work with prettier, you can remove prettier from rules: 'prettier/prettier'...

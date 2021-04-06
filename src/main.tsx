@@ -52,4 +52,4 @@ class AppContainer extends Component<AppProps, AppState> {
   }
 }
 
-ReactDom.render(<AppContainer />, document.getElementById("app"));
+ReactDom.render(<AppContainer nothing={false} />, document.getElementById("app"));
