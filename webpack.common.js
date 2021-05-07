@@ -233,6 +233,9 @@ module.exports = function (_env, argv) {
           NODE_ENV: JSON.stringify(mode),
           BASE_URL: '"/"',
         },
+        "global.DEV": JSON.stringify(isDevMode),
+        "global.DEBUG": JSON.stringify(false),
+        "global.VERBOSE": JSON.stringify(false),
       }),
       new CaseSensitivePathsPlugin(), // it fixes bugs between OS in caseSensitivePaths (since Windows isn't CaseSensitive but Linux is)
       new FriendlyErrorsWebpackPlugin(), // it provides user-friendly errors from webpack (since the last has ugly useless bug-report)
