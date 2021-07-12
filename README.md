@@ -1,4 +1,4 @@
-# webpack-must-рave
+# webpack-must-have
 
 Webpack version: 5+
 
