@@ -1,4 +1,4 @@
-# WebpackMustHave
+# webpack-must-рave
 
 Webpack version: 5+
 
@@ -43,7 +43,6 @@ Webpack version: 5+
 ## TODO. Issues
 
 - add Prepack
-- fix peek-to-definition (for none-js-files): <https://github.com/microsoft/TypeScript/issues/15146>
 - replace Prettier by better alternative (Prettier works bad)
 - add icomoon to fonts
 - Path autocomplete doesn't read path-alias-config from tsconfig.json
