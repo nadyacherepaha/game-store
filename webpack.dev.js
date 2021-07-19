@@ -2,7 +2,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 const { merge } = require("webpack-merge");
 
-const common = require("./webpack.common.js");
+const common = require("./webpack.common");
 
 module.exports = (env, argv) =>
   merge(common(env, argv), {
