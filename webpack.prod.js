@@ -9,7 +9,8 @@ const common = require("./webpack.common");
 module.exports = (env, argv) => {
   const commonConfig = common(env, argv);
 
-  const result = merge(commonConfig, {
+  /** @type {import('webpack').Configuration} */
+  const extendedConfig = {
     mode: "production",
     devtool: argv.sourceMap != null ? "source-map" : false, // option controls how source maps are generated (affects on build speed dramatically): https://v4.webpack.js.org/configuration/devtool/
     output: {
@@ -50,7 +51,7 @@ module.exports = (env, argv) => {
         threshold: common.filesThreshold, // (bytes). Only assets bigger than this size are processed
       }),
     ],
-  });
+  };
 
-  return result;
+  return merge(commonConfig, extendedConfig);
 };

@@ -19,7 +19,8 @@ module.exports = (env, argv) => {
   remove((a) => a instanceof CopyWebpackPlugin);
   remove((a) => a instanceof MiniCssExtractPlugin);
 
-  const result = merge(devConfig, {
+  /** @type {import('webpack').Configuration} */
+  const extendedConfig = {
     devServer: {
       hot: true,
       historyApiFallback: {
@@ -47,6 +48,7 @@ module.exports = (env, argv) => {
       contentBase: assets, // folder with static content
       watchContentBase: true, // enable hot-reload by changes in contentBase folder
     },
-  });
-  return result;
+  };
+
+  return merge(devConfig, extendedConfig);
 };
