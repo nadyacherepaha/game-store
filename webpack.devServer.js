@@ -21,6 +21,7 @@ module.exports = (env, argv) => {
 
   /** @type {import('webpack').Configuration} */
   const extendedConfig = {
+    target: "web", // force target otherwise HMR doesn't work for style-loader
     devServer: {
       hot: true,
       historyApiFallback: {
