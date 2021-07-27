@@ -3,3 +3,5 @@ build
 coverage
 dist
 node_modules
+assets
+

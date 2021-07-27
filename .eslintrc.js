@@ -22,8 +22,15 @@ module.exports = {
     DEV_SERVER: true,
     API_DOMAIN: true,
   },
-  plugins: ["json", "prettier", "import", "@typescript-eslint"],
+  plugins: ["json", "prettier", "import", "@typescript-eslint", "unused-imports"],
   rules: {
+    "@typescript-eslint/no-explicit-any": [
+      "error",
+      {
+        fixToUnknown: true,
+        ignoreRestArgs: false,
+      },
+    ],
     "@typescript-eslint/no-use-before-define": "error",
     "require-await": "error",
     "prettier/prettier": ["error"],
@@ -37,6 +44,8 @@ module.exports = {
     "react/jsx-props-no-spreading": 0,
     "react/jsx-curly-newline": 0, // it conflicts with prettier
     "react/jsx-wrap-multilines": ["error", { arrow: true, return: true, declaration: true }],
+    "spaced-comment": ["error", "always"],
+    "unused-imports/no-unused-imports": "error",
     "no-underscore-dangle": 0,
     "no-unused-expressions": ["error", { allowShortCircuit: true }],
     "no-console": process.env.NODE_ENV === "production" ? "error" : "off",
