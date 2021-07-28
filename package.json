@@ -2,7 +2,7 @@
   "name": "webpack-must-have",
   "version": "1.1.0",
   "description": "Must-have config for Webpack 5",
-  "main": "main.jsx",
+  "main": "main.tsx",
   "scripts": {
     "test": "npm run lint",
     "start": "npm run serve",
@@ -18,20 +18,21 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Yegorich555/WebpackMustHave.git"
+    "url": "git+https://github.com/Yegorich555/webpack-must-have.git"
   },
   "keywords": [
     "React",
     "Webpack",
     "ReactJS",
-    "Webpack4"
+    "webpack-must-have",
+    "mock"
   ],
   "author": "Yegor.Golubchik",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Yegorich555/WebpackMustHave/issues"
+    "url": "https://github.com/Yegorich555/webpack-must-have/issues"
   },
-  "homepage": "https://github.com/Yegorich555/WebpackMustHave#readme",
+  "homepage": "https://github.com/Yegorich555/webpack-must-have#readme",
   "devDependencies": {
     "@babel/core": "^7.14.8",
     "@babel/plugin-proposal-class-properties": "^7.14.5",
