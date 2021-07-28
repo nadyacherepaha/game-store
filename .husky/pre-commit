@@ -1,0 +1,8 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+npx lint-staged
+npm test
+
+# uncomment for testing git-hooks
+#exit 1
