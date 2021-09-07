@@ -4,7 +4,7 @@
   "description": "Must-have config for Webpack 5",
   "main": "main.tsx",
   "scripts": {
-    "test": "exit 1",
+    "test": "exit 0",
     "start": "npm run serve",
     "serve": "./node_modules/.bin/webpack serve --open --config webpack.devServer.js",
     "build-prod": "./node_modules/.bin/webpack --mode production --config webpack.prod.js",
