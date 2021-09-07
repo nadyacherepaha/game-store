@@ -12,7 +12,6 @@ const CopyWebpackPlugin = require("copy-webpack-plugin");
 const MinifyCssNames = require("mini-css-class-name/css-loader");
 const ObsoleteWebpackPlugin = require("obsolete-webpack-plugin");
 const ScriptExtHtmlWebpackPlugin = require("script-ext-html-webpack-plugin");
-const fs = require("fs");
 const path = require("path");
 const browserslist = require("browserslist");
 const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
@@ -22,14 +21,6 @@ const destPath = path.resolve(__dirname, "./build/"); // ('../Api/wwwroot')
 const assetsPath = "./public";
 const filesThreshold = 8196; // (bytes) threshold for compression, url-loader plugins
 
-const packageInfo = JSON.parse(fs.readFileSync("package.json", "utf8"));
-function isPackageExists(packageName) {
-  return (
-    (packageInfo.devDependencies && packageInfo.devDependencies[packageName]) ||
-    (packageInfo.dependencies && packageInfo.dependencies[packageName])
-  );
-}
-
 /* eslint-disable func-names */
 module.exports = function (env, argv) {
   const isDevServer = env.WEBPACK_SERVE;
@@ -37,9 +28,6 @@ module.exports = function (env, argv) {
   const isDevMode = mode !== "production";
 
   process.env.NODE_ENV = mode; // it resolves issues in postcss.config.js (since Define plugin is loaded only after reading config-files)
-
-  // troubleshooting: use this if you support IE and react
-  const isNeedFixReactIE = !!browserslist.data.ie && isPackageExists("react");
 
   /** @type {import('webpack').Configuration} */
   const result = {
@@ -50,15 +38,7 @@ module.exports = function (env, argv) {
       errorDetails: true,
     },
     // entryPoint for webpack; it can be object with key-value pairs for multibuild (https://webpack.js.org/concepts/entry-points/)
-    entry: isNeedFixReactIE // troubleshooting: use this if you support IE and react
-      ? [
-          "core-js/es/map",
-          "core-js/es/set",
-          "react",
-          isPackageExists("react-dom") && "react-dom",
-          path.resolve(srcPath, "main.tsx"),
-        ].filter((v) => v)
-      : path.resolve(srcPath, "main.tsx"),
+    entry: path.resolve(srcPath, "main.tsx"),
 
     output: {
       path: destPath,
