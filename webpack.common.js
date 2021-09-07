@@ -31,8 +31,8 @@ function isPackageExists(packageName) {
 }
 
 /* eslint-disable func-names */
-module.exports = function (_env, argv) {
-  const isDevServer = argv?.$0?.indexOf("webpack-dev-server") !== -1;
+module.exports = function (env, argv) {
+  const isDevServer = env.WEBPACK_SERVE;
   const mode = argv.mode || (isDevServer ? "development" : "production");
   const isDevMode = mode !== "production";
 
