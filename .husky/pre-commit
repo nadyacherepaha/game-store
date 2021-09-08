@@ -1,5 +1,3 @@
-echo "test husky"
-
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
