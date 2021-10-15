@@ -15,8 +15,7 @@
     "lint-es": "./node_modules/.bin/eslint --fix --cache ./**/*.{js,jsx,ts,tsx,json} && prettier --write **/*.{js,jsx,ts,tsx,json,html} --loglevel warn",
     "lint-styles": "./node_modules/.bin/stylelint --fix --cache ./**/*.{css,scss,less} && prettier --write **/*.{css,scss,less} --loglevel warn",
     "lint-md": "./node_modules/.bin/markdownlint --fix **/*.md --ignore node_modules",
-    "prepare": "husky install && shx rm -rf .git/hooks && shx ln -s ../.husky .git/hooks && git config --unset core.hooksPath",
-    "postinstall": "npm audit fix"
+    "prepare": "husky install && shx rm -rf .git/hooks && shx ln -s ../.husky .git/hooks && git config --unset core.hooksPath"
   },
   "repository": {
     "type": "git",
