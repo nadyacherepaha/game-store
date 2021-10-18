@@ -1,7 +1,7 @@
 import "./styles/main.scss";
 import { Component, StrictMode } from "react";
 import ReactDom from "react-dom";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import HomePage from "./pages/homePage/HomePage";
 import ProductsPage from "./pages/productsPage/ProductsPage";
 import AboutPage from "./pages/aboutPage/AboutPage";
@@ -16,7 +16,7 @@ class AppContainer extends Component<AppState> {
       <StrictMode>
         <Router>
           <Switch>
-            <Route path="/">
+            <Route path="/home" exact>
               <HomePage />
             </Route>
             <Route path="/products" exact>
@@ -25,6 +25,7 @@ class AppContainer extends Component<AppState> {
             <Route path="/about" exact>
               <AboutPage />
             </Route>
+            <Redirect to="/home" />
           </Switch>
         </Router>
       </StrictMode>

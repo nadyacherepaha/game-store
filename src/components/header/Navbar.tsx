@@ -7,7 +7,7 @@ interface NavbarProps {}
 const Navbar: FunctionComponent<NavbarProps> = () => (
   <nav className="header__nav">
     <ul className="header__list">
-      <NavLink className="header__item" to="/">
+      <NavLink className="header__item" to="/home">
         Home
       </NavLink>
 
