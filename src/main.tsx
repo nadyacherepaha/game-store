@@ -1,8 +1,10 @@
-import "./styles/main.css";
 import "./styles/main.scss";
 import { Component, StrictMode } from "react";
 import ReactDom from "react-dom";
-import style from "./styles/main.module.css";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import HomePage from "./pages/homePage/HomePage";
+import ProductsPage from "./pages/productsPage/ProductsPage";
+import AboutPage from "./pages/aboutPage/AboutPage";
 
 interface AppState {}
 
@@ -12,9 +14,19 @@ class AppContainer extends Component<AppState> {
   render() {
     return (
       <StrictMode>
-        <div className="test-block">
-          <h2 className={style.mainTitle}>Hi</h2>
-        </div>
+        <Router>
+          <Switch>
+            <Route path="/">
+              <HomePage />
+            </Route>
+            <Route path="/products" exact>
+              <ProductsPage />
+            </Route>
+            <Route path="/about" exact>
+              <AboutPage />
+            </Route>
+          </Switch>
+        </Router>
       </StrictMode>
     );
   }

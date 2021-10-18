@@ -1,0 +1,27 @@
+.header {
+  &__list {
+    display: flex;
+  }
+
+  &__item {
+    padding: 15px;
+    border-bottom: 5px solid transparent;
+
+    &:hover,
+    &:focus,
+    &:active,
+    .active {
+      background-color: #262726;
+      border-color: #9933cc;
+    }
+
+    & > a {
+      font-size: 18px;
+    }
+
+    .arrow-icon {
+      color: #fff;
+      font-size: 1rem;
+    }
+  }
+}
