@@ -32,6 +32,7 @@ module.exports = {
       },
     ],
     "@typescript-eslint/no-use-before-define": "error",
+    "@typescript-eslint/no-empty-interface": "off",
     "require-await": "error",
     "prettier/prettier": ["error"],
     "react/jsx-filename-extension": ["error", { extensions: [".tsx"] }],
