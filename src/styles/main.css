@@ -8,23 +8,7 @@ body {
 
 h2 {
   font-size: 50px;
+  text-align: center;
   display: block;
   background-color: white;
-}
-
-::placeholder {
-  /*test for autoprefixer in postcss*/
-  color: antiquewhite;
-}
-
-.test-block {
-  border: 4px dotted black;
-  /* stylelint-disable-next-line plugin/no-unsupported-browser-features*/
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.test-block + .test-block {
-  margin-top: 20px;
 }

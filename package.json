@@ -1,7 +1,7 @@
 {
-  "name": "webpack-must-have",
+  "name": "nadya-cherepaha-internship",
   "version": "1.1.1",
-  "description": "Must-have config for Webpack 5",
+  "description": "React web application",
   "main": "main.tsx",
   "scripts": {
     "test": "exit 0",
@@ -26,10 +26,9 @@
     "React",
     "Webpack",
     "ReactJS",
-    "webpack-must-have",
     "mock"
   ],
-  "author": "Yegor.Golubchik",
+  "author": "Nadya Cherepaha",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Yegorich555/webpack-must-have/issues"
