@@ -1,0 +1,37 @@
+.footer {
+  height: 80px;
+  margin-top: -55px;
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+  color: #fff;
+  background-color: #121212;
+
+  &__title,
+  &__copyright {
+    line-height: 3rem;
+  }
+
+  .company__list {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    .company__item {
+      padding: 0 15px;
+    }
+  }
+
+  svg {
+    fill: #fff;
+    width: 50px;
+    height: auto;
+    transition: 0.5s linear;
+
+    &:hover,
+    &:active,
+    &:focus {
+      fill: #9933cc;
+    }
+  }
+}

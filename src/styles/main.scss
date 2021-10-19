@@ -1,5 +1,6 @@
 @import "../components/header/header";
 @import "../components/header/navbar";
+@import "../components/footer/footer";
 
 * {
   font-family: "Arial", sans-serif;
@@ -17,4 +18,14 @@ ul {
 a {
   text-decoration: none;
   color: #fff;
+}
+
+.content {
+  padding-top: 200px;
+  text-align: center;
+  min-height: calc(100vh - 80px);
+
+  &__title {
+    font-size: 20px;
+  }
 }
