@@ -1,5 +1,5 @@
 import "./styles/main.scss";
-import { Component, StrictMode } from "react";
+import React, { Component, StrictMode } from "react";
 import ReactDom from "react-dom";
 import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import HomePage from "./pages/homePage/HomePage";
