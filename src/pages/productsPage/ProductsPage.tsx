@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import Header from "../../components/header/Header";
 import Footer from "../../components/footer/Footer";
 
-interface ProductsProps {}
+export interface ProductsProps {}
 
 const Products: FC<ProductsProps> = () => (
   <div>

@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 // import Logo from "../../assets/images/sonyLogo.svg";
 
-interface FooterProps {}
+export interface FooterProps {}
 
 const Footer: FC<FooterProps> = () => (
   <footer className="footer">

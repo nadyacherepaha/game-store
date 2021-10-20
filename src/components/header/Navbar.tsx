@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import { NavLink } from "react-router-dom";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 
-interface NavbarProps {}
+export interface NavbarProps {}
 
 const Navbar: FC<NavbarProps> = () => (
   <nav className="header__nav">

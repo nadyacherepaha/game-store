@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import Header from "../../components/header/Header";
 import Footer from "../../components/footer/Footer";
 
-interface AboutPageProps {}
+export interface AboutPageProps {}
 
 const AboutPage: FC<AboutPageProps> = () => (
   <div>

@@ -6,7 +6,7 @@ import HomePage from "./pages/homePage/HomePage";
 import ProductsPage from "./pages/productsPage/ProductsPage";
 import AboutPage from "./pages/aboutPage/AboutPage";
 
-interface AppState {}
+export interface AppState {}
 
 class AppContainer extends Component<AppState> {
   ["constructor"]: typeof AppContainer;
