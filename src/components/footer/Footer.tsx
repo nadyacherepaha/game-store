@@ -1,9 +1,9 @@
-import React, { FunctionComponent } from "react";
+import React, { FC } from "react";
 // import Logo from "../../assets/images/sonyLogo.svg";
 
 interface FooterProps {}
 
-const Footer: FunctionComponent<FooterProps> = () => (
+const Footer: FC<FooterProps> = () => (
   <footer className="footer">
     <span className="footer__title">Incredible convenient</span>
     <div className="company__list">

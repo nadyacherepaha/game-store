@@ -1,9 +1,9 @@
-import React, { FunctionComponent } from "react";
+import React, { FC } from "react";
 import Navbar from "./Navbar";
 
 interface HeaderProps {}
 
-const Header: FunctionComponent<HeaderProps> = () => (
+const Header: FC<HeaderProps> = () => (
   <header className="header">
     <div className="header__logo">
       <a href="#!" className="header__logo-link">

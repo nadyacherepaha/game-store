@@ -1,10 +1,10 @@
-import React, { FunctionComponent } from "react";
+import React, { FC } from "react";
 import Header from "../../components/header/Header";
 import Footer from "../../components/footer/Footer";
 
 interface AboutPageProps {}
 
-const AboutPage: FunctionComponent<AboutPageProps> = () => (
+const AboutPage: FC<AboutPageProps> = () => (
   <div>
     <Header />
     <div className="content">

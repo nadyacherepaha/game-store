@@ -1,10 +1,10 @@
-import React, { FunctionComponent } from "react";
+import React, { FC } from "react";
 import { NavLink } from "react-router-dom";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 
 interface NavbarProps {}
 
-const Navbar: FunctionComponent<NavbarProps> = () => (
+const Navbar: FC<NavbarProps> = () => (
   <nav className="header__nav">
     <ul className="header__list">
       <NavLink className="header__item" to="/home">
