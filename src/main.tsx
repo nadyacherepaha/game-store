@@ -6,11 +6,9 @@ import HomePage from "./pages/homePage/HomePage";
 import ProductsPage from "./pages/productsPage/ProductsPage";
 import AboutPage from "./pages/aboutPage/AboutPage";
 
-export interface AppState {}
+interface AppState {}
 
 class AppContainer extends Component<AppState> {
-  ["constructor"]: typeof AppContainer;
-
   render() {
     return (
       <StrictMode>

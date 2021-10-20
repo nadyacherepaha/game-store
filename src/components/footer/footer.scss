@@ -1,16 +1,10 @@
 .footer {
   height: 80px;
-  margin-top: -55px;
   display: flex;
   justify-content: space-around;
-  text-align: center;
+  align-items: center;
   color: #fff;
   background-color: #121212;
-
-  &__title,
-  &__copyright {
-    line-height: 3rem;
-  }
 
   .company__list {
     display: flex;
