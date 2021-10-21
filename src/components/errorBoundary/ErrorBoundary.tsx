@@ -1,4 +1,5 @@
 import React from "react";
+import { Redirect } from "react-router-dom";
 
 export interface AppProps {
   props?: unknown;
@@ -31,10 +32,12 @@ class ErrorBoundary extends React.Component<AppProps, AppState> {
       // Fallback UI if an error occurs
       return (
         <div>
-          <h2>Oh-no! Something went wrong</h2>
-          <p className="red">{this.state.error && this.state.error.toString()}</p>
-          <div>{"Component Stack Error Details: "}</div>
-          <p className="red">{this.state.errorInfo.componentStack}</p>
+          <Redirect to="/error">
+            {/* <h2>Oh-no! Something went wrong</h2>
+            <p className="red">{this.state.error && this.state.error.toString()}</p>
+            <div>{"Component Stack Error Details: "}</div>
+            <p className="red">{this.state.errorInfo.componentStack}</p> */}
+          </Redirect>
         </div>
       );
     }

@@ -1,8 +1,7 @@
 import React from "react";
+import Button from "@mui/material/Button";
 
-export interface AppProps {
-  // code related to your props goes here
-}
+export interface AppProps {}
 
 export interface AppState {
   releaseBugs: unknown;
@@ -26,12 +25,11 @@ class BuggyButton extends React.Component<AppProps, AppState> {
   render() {
     if (this.state.releaseBugs) {
       throw new Error("I crashed!");
-      return <ErrorPage />;
     }
     return (
-      <button type="button" className="btn" onClick={this.handleClick}>
+      <Button variant="outlined" onClick={this.handleClick} color="error">
         Scary Button!
-      </button>
+      </Button>
     );
   }
 }

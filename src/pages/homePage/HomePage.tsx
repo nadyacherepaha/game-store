@@ -12,6 +12,7 @@ const HomePage: FC<HomePageProps> = () => (
     <div className="content">
       <span className="content__title">Best Games Market</span>
       <div>
+        <br />
         <ErrorBoundary>
           <BuggyButton />
         </ErrorBoundary>
