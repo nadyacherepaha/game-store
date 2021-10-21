@@ -1,6 +1,8 @@
 import React, { FC } from "react";
 import Header from "../../components/header/Header";
 import Footer from "../../components/footer/Footer";
+import ErrorBoundary from "../../components/errorBoundary/ErrorBoundary";
+import BuggyButton from "../../components/errorBoundary/BuggyButton";
 
 export interface HomePageProps {}
 
@@ -9,6 +11,11 @@ const HomePage: FC<HomePageProps> = () => (
     <Header />
     <div className="content">
       <span className="content__title">Best Games Market</span>
+      <div>
+        <ErrorBoundary>
+          <BuggyButton />
+        </ErrorBoundary>
+      </div>
     </div>
     <Footer />
   </div>
