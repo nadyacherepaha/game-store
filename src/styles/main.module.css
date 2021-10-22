@@ -1,3 +1,13 @@
 .mainTitle {
   background: beige;
 }
+
+.content {
+  padding-top: 200px;
+  text-align: center;
+  min-height: calc(100vh - 135px);
+
+  .title {
+    font-size: 20px;
+  }
+}

@@ -1,13 +1,14 @@
 .header {
   display: flex;
+  align-items: center;
   justify-content: space-between;
   background-color: #121212;
 
-  &__logo {
+  .logo {
     font-size: 20px;
     padding: 15px;
 
-    &-link {
+    .link {
       font-size: 20px;
     }
   }

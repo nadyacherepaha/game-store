@@ -1,30 +1,31 @@
 import React, { FC } from "react";
 import { NavLink } from "react-router-dom";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import style from "./navbar.module.scss";
 
 export interface NavbarProps {}
 
 const Navbar: FC<NavbarProps> = () => (
   <nav className="header__nav">
-    <ul className="header__list">
-      <NavLink className="header__item" to="/home">
+    <ul className={style.list}>
+      <NavLink className={style.item} to="/home">
         Home
       </NavLink>
 
-      <NavLink className="header__item" to="/products">
+      <NavLink className={style.item} to="/products">
         Products
-        <ArrowDropDownIcon className="arrow-icon" />
+        <ArrowDropDownIcon className={style.arrowIcon} />
       </NavLink>
 
-      <NavLink className="header__item" to="/about">
+      <NavLink className={style.item} to="/about">
         About
       </NavLink>
 
-      <NavLink className="header__item" to="/signIn">
+      <NavLink className={style.item} to="/signIn">
         Sign In
       </NavLink>
 
-      <NavLink className="header__item" to="/signUp">
+      <NavLink className={style.item} to="/signUp">
         Sign Up
       </NavLink>
     </ul>

@@ -1,12 +1,13 @@
 import React, { FC } from "react";
 import Navbar from "./Navbar";
+import style from "./header.module.scss";
 
 export interface HeaderProps {}
 
 const Header: FC<HeaderProps> = () => (
-  <header className="header">
-    <div className="header__logo">
-      <a href="#!" className="header__logo-link">
+  <header className={style.header}>
+    <div className={style.link}>
+      <a href="#!" className={style.logo}>
         Game Store
       </a>
     </div>
