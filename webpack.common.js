@@ -116,44 +116,28 @@ module.exports = function (env, argv) {
             },
           ],
         },
-        // rule for svg-images
         {
-          test: /\.(svg)(\?.*)?$/, // for reducing file-size: OptimizeCSSAssetsPlugin > cssnano > SVGO, that congigured in webpack.prod.js
-          exclude: /(node_modules)|(fonts\\.+\.svg)(\?.*)?/,
+          test: /\.(png|jp(e*)g|svg|gif)$/,
           use: [
             {
-              loader: "svg-url-loader", // despite url-loader that converts images into base64 format it converts images to native svg-css format
-              options: {
-                limit: filesThreshold,
-                iesafe: filesThreshold >= 4000 && !!browserslist.data.ie, // https://github.com/bhovhannes/svg-url-loader#iesafe
-                name: "images/[name].[ext]", // if file-size more then limit, [file-loader] copies ones into outputPath
-              },
+              loader: "file-loader",
+              // options: {
+              //   name: "images/[hash]-[name].[ext]",
+              // },
             },
           ],
         },
+        // rule for svg-images
+
         // rule for fonts
         {
-          test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/i,
+          test: /\.(woff2?|eot|f|otf)(\?.*)?$/i,
           use: [
             {
               loader: "url-loader",
               options: {
                 limit: filesThreshold,
                 name: "fonts/[name].[ext]", // if file-size more then limit, [file-loader] copies ones into outputPath
-              },
-            },
-          ],
-        },
-        // special rule for fonts in svg-format
-        {
-          test: /(fonts\\.+\.svg)(\?.*)?$/i, // for reducing file-size: OptimizeCSSAssetsPlugin > cssnano > SVGO, that congigured in webpack.prod.js
-          use: [
-            {
-              loader: "svg-url-loader", // despite url-loader that converts images into base64 format it converts images to native svg-css format
-              options: {
-                limit: filesThreshold,
-                iesafe: filesThreshold >= 4000 && !!browserslist.data.ie, // https://github.com/bhovhannes/svg-url-loader#iesafe
-                name: "fonts/[name].[ext]", // if file-size more then limit,  [file-loader] copies ones into outputPath
               },
             },
           ],

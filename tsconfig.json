@@ -10,7 +10,7 @@
       "images/*": ["src/assets/images/*"],
       "fonts/*": ["src/assets/fonts/*"]
     },
-    "jsx": "react-jsx",
+    "jsx": "react",
     "allowJs": true,
     "outDir": "",
     "noEmit": true, //exlcude errors in console because it should be wrapped by webpack

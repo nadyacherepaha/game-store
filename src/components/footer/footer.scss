@@ -1,0 +1,32 @@
+.footer {
+  height: 80px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  color: #fff;
+  background-color: #121212;
+
+  .company__list {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    .company__item {
+      padding: 0 15px;
+    }
+  }
+
+  a {
+    img {
+      width: 60px;
+      height: auto;
+      transition: 0.5s linear;
+
+      &:hover,
+      &:active,
+      &:focus {
+        filter: invert(8%) sepia(100%) saturate(6481%) hue-rotate(246deg) brightness(102%) contrast(143%);
+      }
+    }
+  }
+}
