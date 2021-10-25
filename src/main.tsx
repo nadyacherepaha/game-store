@@ -1,4 +1,4 @@
-import "./styles/main.scss";
+import "./styles/main.module.scss";
 import React, { Component, StrictMode } from "react";
 import ReactDom from "react-dom";
 import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
