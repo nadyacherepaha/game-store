@@ -1,7 +1,7 @@
-import HomePage from "../pages/homePage/HomePage";
-import ProductsPage from "../pages/productsPage/ProductsPage";
-import AboutPage from "../pages/aboutPage/AboutPage";
-import ErrorPage from "../pages/errorPage/ErrorPage";
+import HomePage from "../pages/home-page/HomePage";
+import ProductsPage from "../pages/products-page/ProductsPage";
+import AboutPage from "../pages/about-page/AboutPage";
+import ErrorPage from "../pages/error-page/ErrorPage";
 
 const routes = [
   {

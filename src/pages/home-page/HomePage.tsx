@@ -1,8 +1,8 @@
 import React, { FC } from "react";
 import Header from "../../components/header/Header";
 import Footer from "../../components/footer/Footer";
-import ErrorBoundary from "../../components/errorBoundary/ErrorBoundary";
-import BuggyButton from "../../components/errorBoundary/BuggyButton";
+import ErrorBoundary from "../../components/error-boundary/ErrorBoundary";
+import BuggyButton from "../../components/error-boundary/BuggyButton";
 import style from "../../styles/main.module.css";
 
 const HomePage: FC = () => (
