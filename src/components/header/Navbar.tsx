@@ -4,7 +4,7 @@ import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import style from "./navbar.module.scss";
 
 const Navbar: FC = () => (
-  <nav className="header__nav">
+  <nav>
     <ul className={style.list}>
       <NavLink className={style.item} to="/home">
         Home
