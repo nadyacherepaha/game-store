@@ -2,9 +2,7 @@ import React, { FC } from "react";
 import { AlertTitle, Alert } from "@mui/material";
 import style from "./errorPage.module.scss";
 
-export interface ErrorPageProps {}
-
-const ErrorPage: FC<ErrorPageProps> = () => (
+const ErrorPage: FC = () => (
   <div className={style.errorMessage}>
     <Alert className={style.title} severity="error">
       <AlertTitle>

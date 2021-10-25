@@ -1,47 +1,39 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
 
-export interface AppProps {
+export interface ErrorBoundaryProps {
   props?: unknown;
 }
 
-export interface AppState {
+export interface ErrorBoundaryState {
   error?: unknown;
-  errorInfo?: unknown;
+  hasError?: boolean;
 }
 
-class ErrorBoundary extends React.Component<AppProps, AppState> {
-  constructor(props: unknown) {
+class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundaryState> {
+  constructor(props: ErrorBoundaryProps) {
     super(props);
     this.state = {
       error: null,
-      errorInfo: null,
+      hasError: null,
     };
   }
 
-  componentDidCatch(error: unknown, errorInfo: unknown) {
-    // Catch errors in any child components and re-renders with an error message
+  componentDidCatch(error: unknown, hasError: true) {
     this.setState({
       error,
-      errorInfo,
+      hasError,
     });
   }
 
   render() {
     if (this.state.error) {
-      // Fallback UI if an error occurs
       return (
         <div>
-          <Redirect to="/error">
-            {/* <h2>Oh-no! Something went wrong</h2>
-            <p className="red">{this.state.error && this.state.error.toString()}</p>
-            <div>{"Component Stack Error Details: "}</div>
-            <p className="red">{this.state.errorInfo.componentStack}</p> */}
-          </Redirect>
+          <Redirect to="/error" />
         </div>
       );
     }
-    // component normally just renders children
     return this.props.children;
   }
 }

@@ -3,9 +3,7 @@ import { NavLink } from "react-router-dom";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import style from "./navbar.module.scss";
 
-export interface NavbarProps {}
-
-const Navbar: FC<NavbarProps> = () => (
+const Navbar: FC = () => (
   <nav className="header__nav">
     <ul className={style.list}>
       <NavLink className={style.item} to="/home">

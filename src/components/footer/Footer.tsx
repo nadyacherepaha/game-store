@@ -5,9 +5,7 @@ import ValveLogo from "../../assets/images/valveLogo.svg";
 import NintendoLogo from "../../assets/images/nintendoLogo.svg";
 import style from "./footer.module.scss";
 
-export interface FooterProps {}
-
-const Footer: FC<FooterProps> = () => (
+const Footer: FC = () => (
   <footer className={style.footer}>
     <span>Incredible convenient</span>
     <div className={style.list}>

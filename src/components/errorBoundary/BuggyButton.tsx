@@ -1,15 +1,13 @@
 import React from "react";
 import Button from "@mui/material/Button";
 
-export interface AppProps {}
-
-export interface AppState {
+export interface BuggyButtonState {
   releaseBugs: unknown;
 }
 
-class BuggyButton extends React.Component<AppProps, AppState> {
-  constructor(props: unknown) {
-    super(props);
+class BuggyButton extends React.Component<BuggyButtonState> {
+  constructor(prop: BuggyButtonState) {
+    super(prop);
     this.state = {
       releaseBugs: false,
     };

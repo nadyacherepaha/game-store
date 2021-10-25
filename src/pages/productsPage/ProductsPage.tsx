@@ -3,9 +3,7 @@ import Header from "../../components/header/Header";
 import Footer from "../../components/footer/Footer";
 import style from "../../styles/main.module.css";
 
-export interface ProductsProps {}
-
-const Products: FC<ProductsProps> = () => (
+const Products: FC = () => (
   <div>
     <Header />
     <div className={style.content}>

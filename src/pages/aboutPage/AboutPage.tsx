@@ -3,9 +3,7 @@ import Header from "../../components/header/Header";
 import Footer from "../../components/footer/Footer";
 import style from "../../styles/main.module.css";
 
-export interface AboutPageProps {}
-
-const AboutPage: FC<AboutPageProps> = () => (
+const AboutPage: FC = () => (
   <div>
     <Header />
     <div className={style.content}>

@@ -5,9 +5,7 @@ import ErrorBoundary from "../../components/errorBoundary/ErrorBoundary";
 import BuggyButton from "../../components/errorBoundary/BuggyButton";
 import style from "../../styles/main.module.css";
 
-export interface HomePageProps {}
-
-const HomePage: FC<HomePageProps> = () => (
+const HomePage: FC = () => (
   <div>
     <Header />
     <div className={style.content}>
