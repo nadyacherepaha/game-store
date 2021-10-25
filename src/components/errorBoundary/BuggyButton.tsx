@@ -11,14 +11,13 @@ class BuggyButton extends React.Component<BuggyButtonState> {
     this.state = {
       releaseBugs: false,
     };
-    this.handleClick = this.handleClick.bind(this);
   }
 
-  handleClick() {
+  handleClick = () => {
     this.setState({
       releaseBugs: true,
     });
-  }
+  };
 
   render() {
     if (this.state.releaseBugs) {
