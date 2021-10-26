@@ -4,6 +4,7 @@ import Footer from "../../components/footer/Footer";
 import ErrorBoundary from "../../components/error-boundary/ErrorBoundary";
 import BuggyButton from "../../components/error-boundary/BuggyButton";
 import style from "../../styles/main.module.css";
+import CardGame from "../../components/games/card-game/CardGame";
 
 const HomePage: FC = () => (
   <div>
@@ -16,6 +17,7 @@ const HomePage: FC = () => (
           <BuggyButton />
         </ErrorBoundary>
       </div>
+      <CardGame />
     </div>
     <Footer />
   </div>
