@@ -5,7 +5,7 @@ export const reloadPage = () => window.location.reload();
 
 export interface ErrorBoundaryState {
   error?: unknown;
-  hasError?: boolean;
+  hasError: false;
 }
 
 class ErrorBoundary extends React.Component<ErrorBoundaryState> {
