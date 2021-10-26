@@ -1,7 +1,8 @@
 import React, { FC } from "react";
 import { AlertTitle, Alert, Button } from "@mui/material";
 import style from "./errorPage.module.scss";
-import { reloadPage } from "../../components/error-boundary/ErrorBoundary";
+
+const onReloadPage = () => window.location.reload();
 
 const ErrorPage: FC = () => (
   <div className={style.errorMessage}>
@@ -11,7 +12,7 @@ const ErrorPage: FC = () => (
       </AlertTitle>
       You can refresh the page or try again later.
       <br />
-      <Button className={style.btn} variant="outlined" color="error" value="Reload Page" onClick={reloadPage}>
+      <Button className={style.btn} variant="outlined" color="error" value="Reload Page" onClick={onReloadPage}>
         Reload the page
       </Button>
     </Alert>

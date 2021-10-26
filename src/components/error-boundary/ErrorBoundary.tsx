@@ -1,8 +1,6 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
 
-export const reloadPage = () => window.location.reload();
-
 export interface ErrorBoundaryState {
   error?: unknown;
   hasError: false;
