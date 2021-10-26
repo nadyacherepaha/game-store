@@ -15,7 +15,7 @@ class AppContainer extends Component<AppState> {
             <Route>
               <Redirect to="/home" />
               {routes.map(({ path, component, exact }) => (
-                <Route exact={exact} path={path} component={component} />
+                <Route key={path} exact={exact} path={path} component={component} />
               ))}
             </Route>
           </Switch>
