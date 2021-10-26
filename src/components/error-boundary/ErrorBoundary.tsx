@@ -1,17 +1,15 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
 
-export interface ErrorBoundaryProps {
-  props?: unknown;
-}
+export const reloadPage = () => window.location.reload();
 
 export interface ErrorBoundaryState {
   error?: unknown;
   hasError?: boolean;
 }
 
-class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundaryState> {
-  constructor(props: ErrorBoundaryProps) {
+class ErrorBoundary extends React.Component<ErrorBoundaryState> {
+  constructor(props: ErrorBoundaryState) {
     super(props);
     this.state = {
       error: null,
@@ -28,11 +26,7 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundarySta
 
   render() {
     if (this.state.error) {
-      return (
-        <div>
-          <Redirect to="/error" />
-        </div>
-      );
+      return <Redirect to="/error" />;
     }
     return this.props.children;
   }

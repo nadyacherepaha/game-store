@@ -1,8 +1,7 @@
 import React, { FC } from "react";
 import { AlertTitle, Alert, Button } from "@mui/material";
 import style from "./errorPage.module.scss";
-
-const reloadPage = () => window.location.reload();
+import { reloadPage } from "../../components/error-boundary/ErrorBoundary";
 
 const ErrorPage: FC = () => (
   <div className={style.errorMessage}>
