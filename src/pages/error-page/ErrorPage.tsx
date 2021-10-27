@@ -4,6 +4,7 @@ import style from "./errorPage.module.scss";
 
 const ErrorPage: FC = () => {
   const onReloadPage = () => window.location.reload();
+
   return (
     <div className={style.errorMessage}>
       <Alert className={style.title} severity="error">
