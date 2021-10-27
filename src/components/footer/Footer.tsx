@@ -7,7 +7,7 @@ const Footer: FC = () => (
     <span>Incredible convenient</span>
     <div className={style.list}>
       {footerItem.map(({ linkRef, imageLink, alt }) => (
-        <div className={style.item}>
+        <div key={imageLink} className={style.item}>
           <a href={linkRef}>
             <img src={imageLink} alt={alt} />
           </a>

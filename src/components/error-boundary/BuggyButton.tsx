@@ -6,8 +6,8 @@ export interface BuggyButtonState {
 }
 
 class BuggyButton extends React.Component<BuggyButtonState> {
-  constructor(prop: BuggyButtonState) {
-    super(prop);
+  constructor(props: BuggyButtonState) {
+    super(props);
     this.state = {
       releaseBugs: false,
     };
