@@ -1,8 +1,7 @@
-// import React, { Component, StrictMode } from "react";
-// import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
-import HomePage from "../pages/homePage/HomePage";
-import ProductsPage from "../pages/productsPage/ProductsPage";
-import AboutPage from "../pages/aboutPage/AboutPage";
+import HomePage from "../pages/home-page/HomePage";
+import ProductsPage from "../pages/products-page/ProductsPage";
+import AboutPage from "../pages/about-page/AboutPage";
+import ErrorPage from "../pages/error-page/ErrorPage";
 
 const routes = [
   {
@@ -18,6 +17,11 @@ const routes = [
   {
     path: "/about",
     component: AboutPage,
+    exact: true,
+  },
+  {
+    path: "/error",
+    component: ErrorPage,
     exact: true,
   },
 ];

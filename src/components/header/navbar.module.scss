@@ -1,0 +1,25 @@
+.list {
+  display: flex;
+}
+
+.item {
+  padding: 15px;
+  border-bottom: 5px solid transparent;
+
+  > a {
+    font-size: 18px;
+  }
+
+  .arrowIcon {
+    color: #fff;
+    font-size: 1rem;
+  }
+}
+
+.item:hover,
+.item:focus,
+.item:active,
+.active {
+  background-color: #262726;
+  border-color: #9933cc;
+}

@@ -1,4 +1,4 @@
-import "./styles/main.scss";
+import "./styles/main.module.scss";
 import React, { Component, StrictMode } from "react";
 import ReactDom from "react-dom";
 import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
@@ -15,7 +15,7 @@ class AppContainer extends Component<AppState> {
             <Route>
               <Redirect to="/home" />
               {routes.map(({ path, component, exact }) => (
-                <Route exact={exact} path={path} component={component} />
+                <Route key={path} exact={exact} path={path} component={component} />
               ))}
             </Route>
           </Switch>
