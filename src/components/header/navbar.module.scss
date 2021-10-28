@@ -1,5 +1,13 @@
 .list {
   display: flex;
+  margin: 0;
+}
+
+.item,
+a {
+  color: #fff;
+  text-decoration: none;
+  transition: 0.5s all linear;
 }
 
 .item {
@@ -19,7 +27,47 @@
 .item:hover,
 .item:focus,
 .item:active,
+a:hover,
+a:focus,
+a:active,
 .active {
-  background-color: #262726;
+  color: #fff;
   border-color: #9933cc;
+}
+
+.item:hover,
+.item:focus,
+.item:active {
+  background-color: #262726;
+}
+
+.dropdown {
+  border-bottom: 5px solid transparent;
+  transition: 0.5s all ease;
+  &:hover,
+  &:active,
+  &:focus {
+    border-color: #9933cc;
+  }
+  .btn {
+    padding: 15px;
+    background-color: transparent;
+    border-color: #121212;
+    border-radius: 0;
+    &:hover {
+      background-color: #262726;
+    }
+  }
+  .dropdownMenu {
+    min-width: 8rem;
+    background-color: #121212;
+  }
+  .dropdownItem {
+    color: #fff;
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: #9933cc;
+    }
+  }
 }
