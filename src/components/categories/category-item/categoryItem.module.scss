@@ -1,0 +1,16 @@
+.item {
+  display: block;
+  padding: 20px 0;
+  color: #727072;
+  background: #121212;
+  width: 200px;
+  height: 120px;
+  border-radius: 10px;
+  border-left: 2px solid #727072;
+  border-right: 2px solid #727072;
+  border-top: 2px solid #727072;
+  border-bottom: 6px solid #eeeae7;
+  svg {
+    font-size: 50px;
+  }
+}

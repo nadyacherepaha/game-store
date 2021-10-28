@@ -1,9 +1,14 @@
-.mainTitle {
-  background: beige;
+p {
+  margin: 0;
+}
+
+.wrapper {
+  background: url("https://gameguru.ru/media/f/wallpapers/3/1/16/47/1680.jpg") no-repeat;
+  background-size: cover;
 }
 
 .content {
-  padding-top: 200px;
+  margin: 0 20px;
   text-align: center;
   min-height: calc(100vh - 135px);
 
