@@ -1,5 +1,4 @@
 import React, { FC } from "react";
-import { faXbox, faWindows, faPlaystation } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import card from "../../../constants/card";
@@ -7,24 +6,22 @@ import style from "./cardGame.module.scss";
 
 const CardGame: FC = () => (
   <>
-    {card.map(({ icon, imageLink, alt, title, price, stars, desc, age, btn }) => (
-      <div className={style.card}>
+    {card.map(({ xbox, playstation, windows, imageLink, alt, title, price, desc, age, btn }) => (
+      <div key={title} className={style.card}>
         <div className={style.front}>
           <div className={style.icons}>
-            <FontAwesomeIcon icon={icon} />
-            <FontAwesomeIcon icon={faWindows} size="1x" />
-            <FontAwesomeIcon icon={faPlaystation} size="1x" />
-            <FontAwesomeIcon icon={faXbox} size="1x" />
+            <FontAwesomeIcon icon={windows} size="1x" />
+            <FontAwesomeIcon icon={playstation} size="1x" />
+            <FontAwesomeIcon icon={xbox} size="1x" />
           </div>
           <div className={style.image}>
-            <img src={imageLink} alt="overwatch" />
+            <img src={imageLink} alt={alt} />
           </div>
           <div className={style.info}>
             <p>{title}</p>
             <p>{price}</p>
           </div>
           <div className={style.stars}>
-            <FontAwesomeIcon icon={stars} />
             <FontAwesomeIcon icon={faStar} />
             <FontAwesomeIcon icon={faStar} />
             <FontAwesomeIcon icon={faStar} />
