@@ -2,6 +2,9 @@ import HomePage from "../pages/home-page/HomePage";
 import ProductsPage from "../pages/products-page/ProductsPage";
 import AboutPage from "../pages/about-page/AboutPage";
 import ErrorPage from "../pages/error-page/ErrorPage";
+import PcPage from "../pages/category-pc/PcPage";
+import PlaystationPage from "../pages/category-playstation/PlaystationPage";
+import XboxPage from "../pages/category-xbox/XboxPage";
 
 const routes = [
   {
@@ -22,6 +25,21 @@ const routes = [
   {
     path: "/error",
     component: ErrorPage,
+    exact: true,
+  },
+  {
+    path: "/category/pc",
+    component: PcPage,
+    exact: true,
+  },
+  {
+    path: "/category/playstation",
+    component: PlaystationPage,
+    exact: true,
+  },
+  {
+    path: "/category/xbox",
+    component: XboxPage,
     exact: true,
   },
 ];

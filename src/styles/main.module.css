@@ -8,9 +8,10 @@ p {
 }
 
 .content {
-  margin: 0 20px;
+  max-width: 800px;
+  margin: 0 auto;
   text-align: center;
-  min-height: calc(100vh - 135px);
+  min-height: calc(100vh - 80px);
 
   .title {
     font-size: 20px;

@@ -17,13 +17,13 @@ const Navbar: FC = () => (
         </Dropdown.Toggle>
         <Dropdown.Menu className={style.dropdownMenu}>
           <Dropdown.Item as={NavItem} className={style.dropdownItem} eventKey="baudratestate2400">
-            <Link to="/products">PC</Link>
+            <Link to="/category/pc">PC</Link>
           </Dropdown.Item>
           <Dropdown.Item as={NavItem} className={style.dropdownItem} eventKey="baudratestate4800">
-            <Link to="/home">Playstation 5</Link>
+            <Link to="/category/playstation">Playstation 5</Link>
           </Dropdown.Item>
           <Dropdown.Item as={NavItem} className={style.dropdownItem} eventKey="baudratestate2400">
-            <Link to="/about">XBox One</Link>
+            <Link to="/category/xbox">XBox One</Link>
           </Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>

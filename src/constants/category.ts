@@ -4,17 +4,17 @@ const category = [
   {
     icon: faWindows,
     title: "PC",
-    link: "/home",
+    link: "/category/pc",
   },
   {
     icon: faPlaystation,
     title: "Playstation 5",
-    link: "/home",
+    link: "/category/playstation",
   },
   {
     icon: faXbox,
     title: "XBox One",
-    link: "/home",
+    link: "/category/xbox",
   },
 ];
 
