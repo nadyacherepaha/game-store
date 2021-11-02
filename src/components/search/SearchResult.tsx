@@ -6,7 +6,6 @@ import CardGame from "../games/card-game/CardGame";
 import style from "../games/card-game/cardGame.module.scss";
 
 const fetchData = async (query, cb) => {
-  console.log(`fetching ${query}`);
   const res = await fetchSearchResults(query);
   cb(res);
 };
@@ -39,17 +38,7 @@ const SearchResult: FC = () => {
           .map((result, index) => (
             <div key={index}>
               <Fragment key={index}>
-                <CardGame
-                  id={result.id}
-                  name={result.name}
-                  image={result.image}
-                  description={result.description}
-                  ageLimit={result.ageLimit}
-                  price={result.price}
-                  rating={result.rating}
-                  platform={result.platform}
-                  alt={result.alt}
-                />
+                <CardGame {...result} />
               </Fragment>
             </div>
           ))}
