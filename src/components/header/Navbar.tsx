@@ -1,46 +1,57 @@
 import React, { FC } from "react";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 import { Dropdown, NavItem } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import style from "./navbar.module.scss";
+import navbar from "../../constants/navbar";
 
-const Navbar: FC = () => (
-  <nav>
-    <ul className={style.list}>
-      <NavLink className={style.item} to="/home">
-        Home
-      </NavLink>
+const Navbar: FC = () => {
+  const history = useHistory();
+  const handleClick = (e) => history.push(e);
 
-      <Dropdown className={style.dropdown}>
-        <Dropdown.Toggle className={style.btn} variant="dark" id="dropdown-basic">
-          Products
-        </Dropdown.Toggle>
-        <Dropdown.Menu className={style.dropdownMenu}>
-          <Dropdown.Item as={NavItem} className={style.dropdownItem} eventKey="baudratestate2400">
-            <Link to="/category/pc">PC</Link>
-          </Dropdown.Item>
-          <Dropdown.Item as={NavItem} className={style.dropdownItem} eventKey="baudratestate4800">
-            <Link to="/category/playstation">Playstation 5</Link>
-          </Dropdown.Item>
-          <Dropdown.Item as={NavItem} className={style.dropdownItem} eventKey="baudratestate2400">
-            <Link to="/category/xbox">XBox One</Link>
-          </Dropdown.Item>
-        </Dropdown.Menu>
-      </Dropdown>
+  return (
+    <nav>
+      <ul className={style.list}>
+        <NavLink className={style.item} to="/home">
+          Home
+        </NavLink>
 
-      <NavLink className={style.item} to="/about">
-        About
-      </NavLink>
+        <Dropdown className={style.dropdown}>
+          <Dropdown.Toggle className={style.btn} variant="dark" id="dropdown-basic">
+            Products
+          </Dropdown.Toggle>
+          <Dropdown.Menu className={style.dropdownMenu}>
+            <>
+              {navbar.map(({ onRoute, title }) => (
+                <Dropdown.Item
+                  key={title}
+                  as={NavItem}
+                  onClick={() => {
+                    handleClick(onRoute);
+                  }}
+                  className={style.dropdownItem}
+                >
+                  {title}
+                </Dropdown.Item>
+              ))}
+            </>
+          </Dropdown.Menu>
+        </Dropdown>
 
-      <NavLink className={style.item} to="/signIn">
-        Sign In
-      </NavLink>
+        <NavLink className={style.item} to="/about">
+          About
+        </NavLink>
 
-      <NavLink className={style.item} to="/signUp">
-        Sign Up
-      </NavLink>
-    </ul>
-  </nav>
-);
+        <NavLink className={style.item} to="/signIn">
+          Sign In
+        </NavLink>
+
+        <NavLink className={style.item} to="/signUp">
+          Sign Up
+        </NavLink>
+      </ul>
+    </nav>
+  );
+};
 
 export default Navbar;
