@@ -1,46 +1,60 @@
 import React, { FC } from "react";
+import { Rating } from "react-simple-star-rating";
+import { faPlaystation, faWindows, faXbox } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar } from "@fortawesome/free-solid-svg-icons";
-import card from "../../../constants/card";
 import style from "./cardGame.module.scss";
 
-const CardGame: FC = () => (
-  <>
-    {card.map(({ xbox, playstation, windows, imageLink, alt, title, price, desc, age, btn }) => (
-      <div key={title} className={style.card}>
+export interface ICardGameProps {
+  id: number;
+  name: string;
+  image: string;
+  price: number;
+  description: string;
+  ageLimit: number;
+  rating: number;
+  alt: string;
+  platform: {
+    pc: boolean;
+    playstation: boolean;
+    xbox: boolean;
+  };
+}
+
+const CardGame: FC<ICardGameProps> = ({ id, alt, name, image, price, description, ageLimit, rating, platform }) => {
+  const onAlert = () => alert("Got product!");
+  console.log(platform);
+
+  return (
+    <>
+      <div key={id} className={style.card}>
         <div className={style.front}>
           <div className={style.icons}>
-            <FontAwesomeIcon icon={windows} size="1x" />
-            <FontAwesomeIcon icon={playstation} size="1x" />
-            <FontAwesomeIcon icon={xbox} size="1x" />
+            {platform?.pc ? <FontAwesomeIcon icon={faWindows} size="1x" /> : null}
+            {platform?.playstation ? <FontAwesomeIcon icon={faPlaystation} size="1x" /> : null}
+            {platform?.xbox ? <FontAwesomeIcon icon={faXbox} size="1x" /> : null}
           </div>
           <div className={style.image}>
-            <img src={imageLink} alt={alt} />
+            <img src={image} alt={alt} />
           </div>
           <div className={style.info}>
-            <p>{title}</p>
-            <p>{price}</p>
+            <p>{name}</p>
+            <p>{price}$</p>
           </div>
           <div className={style.stars}>
-            <FontAwesomeIcon icon={faStar} />
-            <FontAwesomeIcon icon={faStar} />
-            <FontAwesomeIcon icon={faStar} />
-            <FontAwesomeIcon icon={faStar} />
-            <FontAwesomeIcon icon={faStar} />
+            <Rating ratingValue={rating} stars={5} fillColor="gold" size={20} />
           </div>
         </div>
         <div className={style.back}>
           <div>
-            <span className={style.desc}>{desc}</span>
-            <span className={style.age}>{age}</span>
-            <button type="button" className={style.btn}>
-              {btn}
+            <span className={style.desc}>{description}</span>
+            <span className={style.age}>{ageLimit}+</span>
+            <button type="button" className={style.btn} onClick={onAlert}>
+              Add to cart
             </button>
           </div>
         </div>
       </div>
-    ))}
-  </>
-);
-
+    </>
+  );
+};
 export default CardGame;
