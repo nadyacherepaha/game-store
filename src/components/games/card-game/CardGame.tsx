@@ -36,21 +36,19 @@ const CardGame: FC<ICardGameProps> = ({ alt, name, image, price, description, ag
             <img src={image} alt={alt} />
           </div>
           <div className={style.info}>
-            <p>{name}</p>
-            <p>{price}$</p>
+            <p className={style.title}>{name}</p>
+            <p className={style.price}>{price}$</p>
           </div>
           <div className={style.stars}>
             <Rating ratingValue={rating} stars={5} fillColor="gold" size={20} />
           </div>
         </div>
         <div className={style.back}>
-          <div>
-            <span className={style.desc}>{description}</span>
-            <span className={style.age}>{ageLimit}+</span>
-            <button type="button" className={style.btn} onClick={onAlert}>
-              Add to cart
-            </button>
-          </div>
+          <span className={style.desc}>{description}</span>
+          <span className={style.age}>{ageLimit}+</span>
+          <button type="button" className={style.btn} onClick={onAlert}>
+            Add to cart
+          </button>
         </div>
       </div>
     </>
