@@ -20,18 +20,17 @@ export interface ICardGameProps {
   };
 }
 
-const CardGame: FC<ICardGameProps> = ({ id, alt, name, image, price, description, ageLimit, rating, platform }) => {
+const CardGame: FC<ICardGameProps> = ({ alt, name, image, price, description, ageLimit, rating, platform }) => {
   const onAlert = () => alert("Got product!");
-  console.log(platform);
 
   return (
     <>
-      <div key={id} className={style.card}>
+      <div className={style.card}>
         <div className={style.front}>
           <div className={style.icons}>
-            {platform?.pc ? <FontAwesomeIcon icon={faWindows} size="1x" /> : null}
-            {platform?.playstation ? <FontAwesomeIcon icon={faPlaystation} size="1x" /> : null}
-            {platform?.xbox ? <FontAwesomeIcon icon={faXbox} size="1x" /> : null}
+            {platform?.pc && <FontAwesomeIcon icon={faWindows} size="1x" />}
+            {platform?.playstation && <FontAwesomeIcon icon={faPlaystation} size="1x" />}
+            {platform?.xbox && <FontAwesomeIcon icon={faXbox} size="1x" />}
           </div>
           <div className={style.image}>
             <img src={image} alt={alt} />
@@ -57,4 +56,5 @@ const CardGame: FC<ICardGameProps> = ({ id, alt, name, image, price, description
     </>
   );
 };
+
 export default CardGame;
