@@ -41,15 +41,13 @@ const SearchResult: FC = () => {
         }}
       />
       <div className={style.cards}>
-        {results
-          .filter((result) => result.name.toLowerCase().includes(query.toLowerCase()))
-          .map((result, index) => (
-            <div key={index}>
-              <Fragment key={index}>
-                <CardGame {...result} />
-              </Fragment>
-            </div>
-          ))}
+        {results.map((result, index) => (
+          <div key={index}>
+            <Fragment key={index}>
+              <CardGame {...result} />
+            </Fragment>
+          </div>
+        ))}
       </div>
     </>
   );
