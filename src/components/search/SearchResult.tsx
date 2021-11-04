@@ -18,18 +18,15 @@ const SearchResult: FC = () => {
   const [query, setQuery] = React.useState("");
   const [results, setResults] = React.useState([]);
 
-  React.useEffect(() => {
-    debouncedFetchData(query, (res) => {
-      setResults(res);
-    });
-  }, [query]);
-
   return (
     <>
       <SearchInput
         value={query}
         onChangeText={(e) => {
           setQuery(e.target.value);
+          debouncedFetchData(e.target.value, (res) => {
+            setResults(res);
+          });
         }}
       />
       <div className={style.cards}>
