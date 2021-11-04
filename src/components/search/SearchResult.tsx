@@ -1,17 +1,28 @@
 import React, { FC, Fragment } from "react";
 import debounce from "lodash.debounce";
-import { fetchSearchResults } from "../../utils";
+import { BASE_URL } from "../../utils";
 import SearchInput from "./SearchInput";
 import CardGame from "../games/card-game/CardGame";
 import style from "../games/card-game/cardGame.module.scss";
 
-const fetchData = async (query, cb) => {
+const fetchSearchResults = async (query: string) => {
+  if (query && query.length > 0) {
+    const url = `${BASE_URL}/games?search=${query.trim()}`;
+    const res = await fetch(url);
+    const resJson = res.json();
+    return resJson;
+  }
+  return [];
+};
+const fetchData = async (query: string, cb) => {
   const res = await fetchSearchResults(query);
   cb(res);
 };
 
-const debouncedFetchData = debounce((query, cb) => {
-  fetchData(query, cb);
+const debouncedFetchData = debounce((query: string, cb) => {
+  if (query?.length >= 3) {
+    fetchData(query, cb);
+  }
 }, 300);
 
 const SearchResult: FC = () => {
