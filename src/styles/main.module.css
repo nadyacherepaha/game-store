@@ -9,6 +9,7 @@ p {
 
 .content {
   max-width: 800px;
+  padding-bottom: 50px;
   margin: 0 auto;
   text-align: center;
   min-height: calc(100vh - 80px);
