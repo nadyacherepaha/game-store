@@ -21,5 +21,8 @@ export default webpackMockServer.add((app, helper) => {
   app.get("/games", (_req, res) => {
     const games = JSON.parse(fs.readFileSync(nodePath.join(__dirname, "./data/games.json"), "utf-8"));
     res.send(games);
+  app.get("/games-top", (_req, res) => {
+    const topGames = allGames.filter((result) => result.rating === 5);
+    res.send(topGames);
   });
 });

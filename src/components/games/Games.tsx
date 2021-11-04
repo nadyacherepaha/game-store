@@ -1,11 +1,18 @@
 import React, { FC, Fragment } from "react";
 import styles from "../categories/categories.module.scss";
-import game from "../../../data/games.json";
+import { BASE_URL } from "../../utils";
 import style from "./card-game/cardGame.module.scss";
 import CardGame, { ICardGameProps } from "./card-game/CardGame";
 
 const Games: FC<ICardGameProps> = () => {
-  const topGame = game.slice(0, 3);
+  const [topGames, setTopGames] = React.useState(null);
+  React.useEffect(() => {
+    fetch(`${BASE_URL}/games-top`)
+    .then(response => response.json())
+    .then(data => {
+      setTopGames(data)
+    })
+  },[])
 
   return (
     <>
@@ -14,7 +21,7 @@ const Games: FC<ICardGameProps> = () => {
           <p>New Games</p>
         </div>
         <div className={style.cards}>
-          {topGame.map((games, index) => (
+          {topGames && topGames.slice(0, 3).map((games, index) => (
             <Fragment key={index}>
               <CardGame {...games} />
             </Fragment>
