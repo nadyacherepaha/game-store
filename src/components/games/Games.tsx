@@ -5,14 +5,20 @@ import style from "./card-game/cardGame.module.scss";
 import CardGame, { ICardGameProps } from "./card-game/CardGame";
 
 const Games: FC<ICardGameProps> = () => {
-  const [topGames, setTopGames] = React.useState(null);
+  const [topGames, setTopGames] = React.useState([]);
   React.useEffect(() => {
-    fetch(`${BASE_URL}/games-top`)
-    .then(response => response.json())
-    .then(data => {
-      setTopGames(data)
-    })
-  },[])
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`${BASE_URL}/games-top`);
+        const result = await response.json();
+        setTopGames(result);
+      } catch (e) {
+        const errorMessage = "Something went wrong";
+        console.error(errorMessage);
+      }
+    };
+    fetchData();
+  }, []);
 
   return (
     <>

@@ -8,21 +8,28 @@ import mainStyle from "../../styles/main.module.css";
 import categoryStyle from "../../components/categories/categories.module.scss";
 
 const PcPage: FC<ICardGameProps> = () => {
-const [category, setCategory] = React.useState(null);
+  const [category, setCategory] = React.useState([]);
   React.useEffect(() => {
-    fetch(`${BASE_URL}/games/categories=pc`)
-    .then(response => response.json())
-    .then(data => {
-      setCategory(data)
-    })
-  },[])
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`${BASE_URL}/games?categories=pc`);
+        const result = await response.json();
+        setCategory(result);
+      } catch (e) {
+        const errorMessage = "Something went wrong";
+        console.error(errorMessage);
+      }
+    };
+    fetchData();
+  }, []);
 
   return (
     <div>
       <Header />
       <div className={mainStyle.content}>
         <div className={`${cardStyle.cards} ${categoryStyle.padding}`}>
-          {category && category.map((games: string[], index: number) => (
+          {category?.length &&
+            category.map((games, index) => (
               <Fragment key={index}>
                 <CardGame {...games} />
               </Fragment>
