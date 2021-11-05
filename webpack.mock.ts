@@ -23,6 +23,12 @@ export default webpackMockServer.add((app, helper) => {
     platform: Platform;
     name: string;
     rating: number;
+    id: number;
+    image: string;
+    price: number;
+    description: string;
+    ageLimit: number;
+    alt: string;
   }
 
   interface Platform {
