@@ -20,27 +20,27 @@ export default webpackMockServer.add((app, helper) => {
   });
 
   interface Game {
-    platform: Record<string, boolean>;
+    platform: Platform;
     name: string;
     rating: number;
   }
 
-  const allGames = JSON.parse(fs.readFileSync(nodePath.join(__dirname, "./data/games.json"), "utf-8")) as Game[];
-  const platforms = ["xbox", "pc", "playstation"];
-  const route: string = `/games/categories=(${platforms.join("|")})$`; 
-  const platformsRouteRegExp = new RegExp(route);
-  
-  app.get(["/games", platformsRouteRegExp], (_req, res) => {
-    const route = _req.path;
-    const matchesPlatform = route.match(platformsRouteRegExp);
-    let matchedGames: Game[];
+  interface Platform {
+    platform: { xbox: boolean; playstation: boolean; pc: boolean };
+  }
 
-    if (matchesPlatform) {
-      const [, platform] = matchesPlatform;
-      matchedGames = allGames.filter((result) => result.platform[platform]);
-      
-    } else {
-      const query = _req.query.search as string;
+  const allGames: Game[] = JSON.parse(fs.readFileSync(nodePath.join(__dirname, "./data/games.json"), "utf-8"));
+  const platforms = ["xbox", "pc", "playstation"];
+
+  app.get("/games", (_req, res) => {
+    const category = _req.query.categories as string;
+    const query = _req.query.search as string;
+    let matchedGames: Game[] = [];
+    if (category && platforms.some((result) => result === category)) {
+      const existingPlatform = platforms.find((result) => result === category) as string;
+      matchedGames = allGames.filter((result) => result.platform[existingPlatform as keyof Platform]);
+    }
+    if (query) {
       matchedGames = allGames.filter((result) => result.name.toLowerCase().includes(query.toLowerCase()));
     }
 
