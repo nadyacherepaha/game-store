@@ -6,7 +6,7 @@ import CardGame from "../games/card-game/CardGame";
 import style from "../games/card-game/cardGame.module.scss";
 
 const fetchSearchResults = async (query: string) => {
-  if (query && query.length > 0) {
+  if (query && query.length >= 3) {
     const url = `${BASE_URL}/games?search=${query.trim()}`;
     const res = await fetch(url);
     const resJson = res.json();
@@ -14,15 +14,13 @@ const fetchSearchResults = async (query: string) => {
   }
   return [];
 };
-const fetchData = async (query: string, cb) => {
-  const res = await fetchSearchResults(query);
-  cb(res);
-};
 
-const debouncedFetchData = debounce((query: string, cb) => {
-  if (query?.length >= 3) {
-    fetchData(query, cb);
-  }
+const debouncedFetchData = debounce((query: string, cb: () => void) => {
+  const fetchData = async (query: string, cb: () => void) => {
+    const res: string = await fetchSearchResults(query);
+    cb(res);
+  };
+  return fetchData(query, cb);
 }, 300);
 
 const SearchResult: FC = () => {
