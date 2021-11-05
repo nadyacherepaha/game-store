@@ -1,14 +1,14 @@
 const navbar = [
   {
-    onRoute: "/category/pc",
+    route: "/category/pc",
     title: "PC",
   },
   {
-    onRoute: "/category/playstation",
+    route: "/category/playstation",
     title: "Playstation",
   },
   {
-    onRoute: "/category/xbox",
+    route: "/category/xbox",
     title: "Xbox",
   },
 ];

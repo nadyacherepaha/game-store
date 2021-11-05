@@ -204,7 +204,10 @@ module.exports = function (env, argv) {
     },
     plugins: [
       new webpack.WatchIgnorePlugin({ paths: [/\.d\.ts$/] }), // ignore d.ts files in --watch mode
-      new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/), // it adds force-ignoring unused parts of modules like moment/locale/*.js
+      new webpack.IgnorePlugin({
+        resourceRegExp: /^\.\/locale$/,
+        contextRegExp: /moment$/,
+      }), // it adds force-ignoring unused parts of modules like moment/locale/*.js
       new webpack.DefinePlugin({
         // it adds custom Global definition to the project like BASE_URL for index.html
         "process.env": {

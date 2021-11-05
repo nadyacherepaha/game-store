@@ -7,7 +7,7 @@ import navbar from "../../constants/navbar";
 
 const Navbar: FC = () => {
   const history = useHistory();
-  const handleClick = (e) => history.push(e);
+  const handleClick = (e: string): void => history.push(e);
 
   return (
     <nav>
@@ -21,20 +21,18 @@ const Navbar: FC = () => {
             Products
           </Dropdown.Toggle>
           <Dropdown.Menu className={style.dropdownMenu}>
-            <>
-              {navbar.map(({ onRoute, title }) => (
-                <Dropdown.Item
-                  key={title}
-                  as={NavItem}
-                  onClick={() => {
-                    handleClick(onRoute);
-                  }}
-                  className={style.dropdownItem}
-                >
-                  {title}
-                </Dropdown.Item>
-              ))}
-            </>
+            {navbar.map(({ route, title }) => (
+              <Dropdown.Item
+                key={title}
+                as={NavItem}
+                onClick={() => {
+                  handleClick(route);
+                }}
+                className={style.dropdownItem}
+              >
+                {title}
+              </Dropdown.Item>
+            ))}
           </Dropdown.Menu>
         </Dropdown>
 
