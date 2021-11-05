@@ -21,11 +21,12 @@ const Games: FC<ICardGameProps> = () => {
           <p>New Games</p>
         </div>
         <div className={style.cards}>
-          {topGames && topGames.slice(0, 3).map((games, index) => (
-            <Fragment key={index}>
-              <CardGame {...games} />
-            </Fragment>
-          ))}
+          {topGames?.length &&
+            topGames.map((games, index) => (
+              <Fragment key={index}>
+                <CardGame {...games} />
+              </Fragment>
+            ))}
         </div>
       </div>
     </>

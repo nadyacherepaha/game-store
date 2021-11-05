@@ -47,7 +47,10 @@ export default webpackMockServer.add((app, helper) => {
     res.send(matchedGames);
   });
   app.get("/games-top", (_req, res) => {
-    const topGames = allGames.filter((result) => result.rating === 5);
+    const topGames = allGames
+      .filter((result) => result.rating === 5)
+      .sort()
+      .slice(0, 3);
     res.send(topGames);
   });
 });
