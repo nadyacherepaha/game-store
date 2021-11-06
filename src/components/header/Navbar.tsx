@@ -9,6 +9,21 @@ const Navbar: FC = () => {
   const history = useHistory();
   const handleClick = (e: string): void => history.push(e);
 
+  const navLink = [
+    {
+      path: "/about",
+      title: "About"
+    },
+    {
+      path: "/signIn",
+      title: "Sign In"
+    },
+    {
+      path: "/signUp",
+      title: "Sign Up"
+    }
+  ];
+
   return (
     <nav>
       <ul className={style.list}>
@@ -35,18 +50,15 @@ const Navbar: FC = () => {
             ))}
           </Dropdown.Menu>
         </Dropdown>
-
-        <NavLink className={style.item} to="/about">
-          About
-        </NavLink>
-
-        <NavLink className={style.item} to="/signIn">
-          Sign In
-        </NavLink>
-
-        <NavLink className={style.item} to="/signUp">
-          Sign Up
-        </NavLink>
+        {navLink.map(({path, title}) => (
+          <NavLink
+            key={title}
+            className={style.item}
+            to={path}
+          >
+            {title}
+          </NavLink>
+        ))}
       </ul>
     </nav>
   );
