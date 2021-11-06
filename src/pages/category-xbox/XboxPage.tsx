@@ -2,7 +2,7 @@ import React, { FC, Fragment } from "react";
 import Header from "../../components/header/Header";
 import Footer from "../../components/footer/Footer";
 import { BASE_URL } from "../../utils";
-import CardGame, { ICardGameProps } from "../../components/games/card-game/CardGame";
+import CardGame from "../../components/games/card-game/CardGame";
 import cardStyle from "../../components/games/card-game/cardGame.module.scss";
 import mainStyle from "../../styles/main.module.css";
 import categoryStyle from "../../components/categories/categories.module.scss";
@@ -10,7 +10,7 @@ import classnames from "classnames";
 
 let classNames: string = classnames(cardStyle.cards, categoryStyle.padding);
 
-const XboxPage: FC<ICardGameProps> = () => {
+const XboxPage: FC = () => {
   const [category, setCategory] = React.useState([]);
   React.useEffect(() => {
     const fetchData = async () => {

@@ -2,9 +2,9 @@ import React, { FC, Fragment } from "react";
 import styles from "../categories/categories.module.scss";
 import { BASE_URL } from "../../utils";
 import style from "./card-game/cardGame.module.scss";
-import CardGame, { ICardGameProps } from "./card-game/CardGame";
+import CardGame from "./card-game/CardGame";
 
-const Games: FC<ICardGameProps> = () => {
+const Games: FC = () => {
   const [topGames, setTopGames] = React.useState([]);
   React.useEffect(() => {
     const fetchData = async () => {
