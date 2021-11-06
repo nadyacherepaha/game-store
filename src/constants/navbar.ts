@@ -1,14 +1,16 @@
+import {pc, playstation, xbox} from "./category";
+
 const navbar = [
   {
-    route: "/category/pc",
+    route: pc,
     title: "PC",
   },
   {
-    route: "/category/playstation",
+    route: playstation,
     title: "Playstation",
   },
   {
-    route: "/category/xbox",
+    route: xbox,
     title: "Xbox",
   },
 ];

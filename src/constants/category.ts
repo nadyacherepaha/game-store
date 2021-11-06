@@ -1,20 +1,24 @@
 import { faXbox, faWindows, faPlaystation } from "@fortawesome/free-brands-svg-icons";
 
+export const pc: string = "/category/pc";
+export const playstation: string = "/category/playstation";
+export const xbox: string = "/category/xbox";
+
 const category = [
   {
     icon: faWindows,
     title: "PC",
-    link: "/category/pc",
+    link: pc,
   },
   {
     icon: faPlaystation,
     title: "Playstation 5",
-    link: "/category/playstation",
+    link: playstation,
   },
   {
     icon: faXbox,
     title: "XBox One",
-    link: "/category/xbox",
+    link: xbox,
   },
 ];
 
