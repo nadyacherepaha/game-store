@@ -6,6 +6,9 @@ import CardGame, { ICardGameProps } from "../../components/games/card-game/CardG
 import cardStyle from "../../components/games/card-game/cardGame.module.scss";
 import mainStyle from "../../styles/main.module.css";
 import categoryStyle from "../../components/categories/categories.module.scss";
+import classnames from "classnames";
+
+let classNames: string = classnames(cardStyle.cards, categoryStyle.padding);
 
 const XboxPage: FC<ICardGameProps> = () => {
   const [category, setCategory] = React.useState([]);
@@ -27,7 +30,7 @@ const XboxPage: FC<ICardGameProps> = () => {
     <div>
       <Header />
       <div className={mainStyle.content}>
-        <div className={`${cardStyle.cards} ${categoryStyle.padding}`}>
+        <div className={classNames}>
           {category?.length &&
             category.map((games, index) => (
               <Fragment key={index}>
