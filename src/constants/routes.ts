@@ -5,7 +5,7 @@ import ErrorPage from "../pages/error-page/ErrorPage";
 import PcPage from "../pages/category-pc/PcPage";
 import PlaystationPage from "../pages/category-playstation/PlaystationPage";
 import XboxPage from "../pages/category-xbox/XboxPage";
-import {pc, playstation, xbox} from "./category";
+import {pcRoute, playstationRoute, xboxRoute} from "./category";
 
 const routes = [
   {
@@ -29,17 +29,17 @@ const routes = [
     exact: true,
   },
   {
-    path: pc,
+    path: pcRoute,
     component: PcPage,
     exact: true,
   },
   {
-    path: playstation,
+    path: playstationRoute,
     component: PlaystationPage,
     exact: true,
   },
   {
-    path: xbox,
+    path: xboxRoute,
     component: XboxPage,
     exact: true,
   },
