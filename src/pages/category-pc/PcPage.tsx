@@ -6,9 +6,7 @@ import { BASE_URL } from "../../utils";
 import cardStyle from "../../components/games/card-game/cardGame.module.scss";
 import mainStyle from "../../styles/main.module.css";
 import categoryStyle from "../../components/categories/categories.module.scss";
-import classnames from "classnames";
-
-let classNames: string = classnames(cardStyle.cards, categoryStyle.padding);
+import classNames from "classnames";
 
 const PcPage: FC = () => {
   const [category, setCategory] = React.useState([]);
@@ -30,7 +28,7 @@ const PcPage: FC = () => {
     <div>
       <Header />
       <div className={mainStyle.content}>
-        <div className={classNames}>
+        <div className={classNames(cardStyle.cards, categoryStyle.padding)}>
           {category?.length &&
             category.map((games, index) => (
               <Fragment key={index}>
