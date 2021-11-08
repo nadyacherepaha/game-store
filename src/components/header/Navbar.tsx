@@ -4,25 +4,11 @@ import { Dropdown, NavItem } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import style from "./navbar.module.scss";
 import navbar from "../../constants/navbar";
+import navLink from "../../constants/navLink";
 
 const Navbar: FC = () => {
   const history = useHistory();
   const handleClick = (e: string): void => history.push(e);
-
-  const navLink = [
-    {
-      path: "/about",
-      title: "About"
-    },
-    {
-      path: "/signIn",
-      title: "Sign In"
-    },
-    {
-      path: "/signUp",
-      title: "Sign Up"
-    }
-  ];
 
   return (
     <nav>
