@@ -3,9 +3,9 @@ import { Rating } from "react-simple-star-rating";
 import { faPlaystation, faWindows, faXbox } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import style from "./cardGame.module.scss";
-import { Cards } from "../../../types/Cards";
+import { Card } from "../../../types/Card";
 
-export interface ICardGameProps extends Cards {}
+export interface ICardGameProps extends Card {}
 
 const CardGame: FC<ICardGameProps> = ({ alt, name, image, price, description, ageLimit, rating, platform }) => {
   const onAlert = () => alert("Got product!");
