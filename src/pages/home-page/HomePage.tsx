@@ -13,7 +13,7 @@ const HomePage: FC = () => (
       <div className={style.content}>
         <SearchResult />
         <Categories />
-        <Games<ICardGameProps> />
+        <Games />
       </div>
     </div>
     <Footer />

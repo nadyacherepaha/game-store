@@ -1,4 +1,5 @@
 import React, { FC, Fragment } from "react";
+import classNames from "classnames";
 import Header from "../../components/header/Header";
 import Footer from "../../components/footer/Footer";
 import CardGame from "../../components/games/card-game/CardGame";
@@ -6,7 +7,6 @@ import { BASE_URL } from "../../utils";
 import cardStyle from "../../components/games/card-game/cardGame.module.scss";
 import mainStyle from "../../styles/main.module.css";
 import categoryStyle from "../../components/categories/categories.module.scss";
-import classNames from "classnames";
 
 const PcPage: FC = () => {
   const [category, setCategory] = React.useState([]);

@@ -5,6 +5,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import style from "./navbar.module.scss";
 import navbar from "../../constants/navbar";
 import navLink from "../../constants/navLink";
+import ModalWindow from "../modal/ModalWindow";
 
 const Navbar: FC = () => {
   const history = useHistory();
@@ -36,15 +37,12 @@ const Navbar: FC = () => {
             ))}
           </Dropdown.Menu>
         </Dropdown>
-        {navLink.map(({path, title}) => (
-          <NavLink
-            key={title}
-            className={style.item}
-            to={path}
-          >
+        {navLink.map(({ path, title }) => (
+          <NavLink key={title} className={style.item} to={path}>
             {title}
           </NavLink>
         ))}
+        <ModalWindow />
       </ul>
     </nav>
   );
