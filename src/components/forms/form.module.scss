@@ -1,0 +1,89 @@
+.box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  background-color: rgba(17, 18, 18, 0.9);
+  color: "#fff";
+  padding: 32px;
+  .title {
+    color: #fff;
+  }
+}
+.form {
+  max-width: 700px;
+  margin: 15px auto;
+
+  & > div {
+    display: flex;
+    justify-content: flex-end;
+    flex-flow: row wrap;
+    line-height: 2em;
+    margin: 5px;
+    & > label {
+      color: #fff !important;
+      width: 170px;
+      font-size: 1em;
+      line-height: 32px;
+    }
+    & > input,
+    & > select,
+    & > textarea {
+      color: #fff;
+      flex: 1;
+      padding: 3px 5px;
+      font-size: 1em;
+      margin-left: 15px;
+      background-color: transparent;
+      border: 1px solid #ccc;
+    }
+    & > div {
+      margin-left: 16px;
+      & > label {
+        display: block;
+        & > input {
+          margin-right: 3px;
+        }
+      }
+    }
+    & > span {
+      line-height: 32px;
+      margin-left: 10px;
+      color: red;
+    }
+  }
+  .buttons,
+  .submitRegistr {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
+  }
+  button {
+    margin: 0 10px;
+    padding: 8px 60px;
+    color: #fff;
+    background-color: #562370;
+    border-radius: 10px;
+    border: none;
+  }
+}
+.navButton {
+  font-family: "Arial", sans-serif !important;
+  color: #fff !important;
+  padding: 15px !important;
+  font-size: 16px !important;
+  text-transform: none !important;
+  border-bottom: 5px solid transparent !important;
+  border-radius: 0 !important;
+  transition: 0.5s all linear !important;
+  &:hover,
+  &:focus,
+  &:active {
+    color: #fff !important;
+    border-color: #9933cc !important;
+    background-color: #262726 !important;
+  }
+}
