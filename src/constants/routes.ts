@@ -5,7 +5,9 @@ import ErrorPage from "../pages/error-page/ErrorPage";
 import PcPage from "../pages/category-pc/PcPage";
 import PlaystationPage from "../pages/category-playstation/PlaystationPage";
 import XboxPage from "../pages/category-xbox/XboxPage";
-import {pcRoute, playstationRoute, xboxRoute} from "./category";
+import Profile from "../pages/profile-page/Profile";
+import Cart from "../pages/cart-page/Cart";
+import { pcRoute, playstationRoute, xboxRoute } from "./category";
 
 const routes = [
   {
@@ -42,6 +44,16 @@ const routes = [
     path: xboxRoute,
     component: XboxPage,
     exact: true,
+  },
+  {
+    path: "/profile",
+    component: Profile,
+    exact: false,
+  },
+  {
+    path: "/cart",
+    component: Cart,
+    exact: false,
   },
 ];
 
