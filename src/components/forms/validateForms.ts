@@ -14,6 +14,7 @@ export const validateLoginForm = (values: AuthFormValues) => {
 export const validateRegistrationForm = (values: AuthFormValues) => {
   const errors = {} as AuthFormValues;
   const regularExpression = /^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$/;
+  const passwordLength = 6;
   if (!values.login) {
     errors.login = "Enter your username";
   }
@@ -23,8 +24,8 @@ export const validateRegistrationForm = (values: AuthFormValues) => {
   if (!regularExpression.test(values.password)) {
     errors.password = "The password must contain letters and numbers";
   }
-  if (values.password?.length < 6) {
-    errors.password = "Password length must be atleast 6 characters";
+  if (values.password?.length < passwordLength) {
+    errors.password = `Password length must be atleast ${passwordLength} characters`;
   }
   if (!values.confirm) {
     errors.confirm = "Repeat the password";
