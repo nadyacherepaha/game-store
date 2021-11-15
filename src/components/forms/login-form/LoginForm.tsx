@@ -19,19 +19,15 @@ const LoginForm: FC = () => {
 
   const { setIsAuth } = React.useContext(AuthContext);
 
-  const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
-    await sleep(300);
   const onSubmit = async (values: AuthFormValues) => {
     try {
-      const url = `${BASE_URL}/login`;
-      const response = await axios.post(url, values);
+      await axios.post(`${BASE_URL}/login`, values);
       setIsAuth(true);
       localStorage.setItem("user", JSON.stringify(values));
       alert(`Welcome, ${values.login}!`);
       handleClose();
-      console.log(response.data.message);
     } catch (e) {
-      alert(e.response.data.message);
+      console.error(e.response.data.message);
     }
   };
 

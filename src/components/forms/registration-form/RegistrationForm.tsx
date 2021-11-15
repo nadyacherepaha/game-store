@@ -15,16 +15,14 @@ const RegistrationForm: FC = () => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = (): void => setOpen(true);
   const handleClose = (): void => setOpen(false);
-  const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
-    await sleep(300);
+
   const onSubmit = async (values: AuthFormValues) => {
     try {
-      const url = `${BASE_URL}/registration`;
-      const response = await axios.post(url, values);
+      const response = await axios.post(`${BASE_URL}/registration`, values);
       alert(response.data.message);
       handleClose();
     } catch (e) {
-      alert(e.response.data.message);
+      console.error(e.response.data.message);
     }
   };
 
