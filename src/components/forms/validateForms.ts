@@ -23,7 +23,7 @@ export const validateRegistrationForm = (values: AuthFormValues) => {
   if (!regularExpression.test(values.password)) {
     errors.password = "The password must contain letters and numbers";
   }
-  if (values.password && values.password.length < 6) {
+  if (values.password?.length < 6) {
     errors.password = "Password length must be atleast 6 characters";
   }
   if (!values.confirm) {

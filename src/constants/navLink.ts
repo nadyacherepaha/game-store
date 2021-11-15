@@ -4,7 +4,7 @@ import { user } from "../services/auth.service";
 const navLink = [
   {
     path: "/profile",
-    title: user && user.login,
+    title: user?.login,
     icon: faUser,
   },
   {
