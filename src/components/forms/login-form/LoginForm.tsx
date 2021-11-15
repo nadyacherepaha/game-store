@@ -6,7 +6,7 @@ import Modal from "@mui/material/Modal";
 import Typography from "@mui/material/Typography";
 import { Form, Field } from "react-final-form";
 import style from "../form.module.scss";
-import FormInput from "../FormInput";
+import FormInput from "../../common/FormInput";
 import { validateLoginForm } from "../validateForms";
 import { BASE_URL } from "../../../utils";
 import { AuthFormValues } from "../../../types/User";

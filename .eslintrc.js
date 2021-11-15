@@ -33,6 +33,7 @@ module.exports = {
     ],
     "@typescript-eslint/no-use-before-define": "error",
     "@typescript-eslint/no-empty-interface": "off",
+    "@typescript-eslint/explicit-module-boundary-types": 0,
     "require-await": "error",
     "prettier/prettier": ["error"],
     "react/jsx-filename-extension": ["error", { extensions: [".tsx"] }],
@@ -42,14 +43,13 @@ module.exports = {
     "no-shadow": 0,
     "jsx-a11y/label-has-associated-control": 0,
     "consistent-return": 0,
-    "@typescript-eslint/no-explicit-any": off,
+    curly: "error",
     // "react/jsx-max-props-per-line": [1, { maximum: 1 }], //it doesn't work with prettier, you can remove prettier from rules: 'prettier/prettier'...
     // "react/jsx-first-prop-new-line": [1, "multiline"], //it doesn't work with prettier, you can remove prettier from rules: 'prettier/prettier'...
     "react/prop-types": 0,
     "react/prefer-stateless-function": 0,
     "react/react-in-jsx-scope": 0,
     "react/jsx-props-no-spreading": 0,
-    "react/jsx-curly-newline": 0, // it conflicts with prettier
     "react/jsx-wrap-multilines": ["error", { arrow: true, return: true, declaration: true }],
     "spaced-comment": ["error", "always"],
     "unused-imports/no-unused-imports": "error",

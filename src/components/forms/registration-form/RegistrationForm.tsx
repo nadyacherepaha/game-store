@@ -6,7 +6,7 @@ import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
 import Typography from "@mui/material/Typography";
 import style from "../form.module.scss";
-import FormInput from "../FormInput";
+import FormInput from "../../common/FormInput";
 import { validateRegistrationForm } from "../validateForms";
 import { BASE_URL } from "../../../utils";
 import { AuthFormValues } from "../../../types/User";
