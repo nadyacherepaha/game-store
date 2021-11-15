@@ -22,7 +22,7 @@ const RegistrationForm: FC = () => {
       alert(response.data.message);
       handleClose();
     } catch (e) {
-      console.error(e.response.data.message);
+      console.error(e.message);
     }
   };
 

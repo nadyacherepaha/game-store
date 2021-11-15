@@ -27,7 +27,7 @@ const LoginForm: FC = () => {
       alert(`Welcome, ${values.login}!`);
       handleClose();
     } catch (e) {
-      console.error(e.response.data.message);
+      console.error(e.message);
     }
   };
 
