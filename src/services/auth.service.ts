@@ -4,9 +4,6 @@ export const logout = () => {
 const userStr = localStorage.getItem("user");
 export const user = JSON.parse(userStr);
 
-export const getCurrentUser = () => {
-  if (userStr) return true;
-  return null;
-};
+export const getCurrentUser = (): boolean => !!userStr;
 
 export const currentUser = getCurrentUser();
