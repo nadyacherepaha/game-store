@@ -10,21 +10,20 @@ import FormInput from "../../common/FormInput";
 import { validateLoginForm } from "../validateForms";
 import { BASE_URL } from "../../../utils";
 import { AuthFormValues } from "../../../types/User";
-import { AuthContext } from "../../../contexts/AuthContext";
+import AuthContext from "../../../contexts/AuthContext";
 
 const LoginForm: FC = () => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = (): void => setOpen(true);
   const handleClose = (): void => setOpen(false);
 
-  const { setIsAuth } = React.useContext(AuthContext);
+  const { signIn } = React.useContext(AuthContext);
 
   const onSubmit = async (values: AuthFormValues) => {
     try {
       await axios.post(`${BASE_URL}/login`, values);
-      setIsAuth(true);
-      localStorage.setItem("user", JSON.stringify(values));
       alert(`Welcome, ${values.login}!`);
+      signIn && signIn(values.login);
       handleClose();
     } catch (e) {
       console.error(e.message);
