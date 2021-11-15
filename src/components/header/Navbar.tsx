@@ -9,7 +9,7 @@ import navLink from "../../constants/navLink";
 import LoginForm from "../forms/login-form/LoginForm";
 import RegistrationForm from "../forms/registration-form/RegistrationForm";
 import * as AuthService from "../../services/auth.service";
-import { Context } from "../../context";
+import { AuthContext } from "../../contexts/AuthContext";
 
 const Navbar: FC = () => {
   const [isAuth, setIsAuth] = React.useState<boolean>(false);
@@ -22,7 +22,7 @@ const Navbar: FC = () => {
   };
 
   return (
-    <Context.Provider value={{ setIsAuth }}>
+    <AuthContext.Provider value={{ setIsAuth }}>
       <nav>
         <ul className={style.list}>
           <NavLink className={style.item} to="/home">
@@ -73,7 +73,7 @@ const Navbar: FC = () => {
           )}
         </ul>
       </nav>
-    </Context.Provider>
+    </AuthContext.Provider>
   );
 };
 

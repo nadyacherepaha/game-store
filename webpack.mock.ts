@@ -74,7 +74,6 @@ export default webpackMockServer.add((app, helper) => {
         return res.status(400).json({ message: `User with login ${login} already exist` });
       }
       allUsers.push(_req.body);
-      console.log(allUsers);
 
       return res.json({ message: "User was create" });
     } catch (e) {

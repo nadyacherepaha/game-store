@@ -10,14 +10,14 @@ import FormInput from "../FormInput";
 import { validateLoginForm } from "../validateForms";
 import { BASE_URL } from "../../../utils";
 import User from "../../../types/User";
-import { Context } from "../../../context";
+import { AuthContext } from "../../../contexts/AuthContext";
 
 const LoginForm: FC = () => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = (): void => setOpen(true);
   const handleClose = (): void => setOpen(false);
 
-  const { setIsAuth } = React.useContext(Context);
+  const { setIsAuth } = React.useContext(AuthContext);
 
   const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
   const onSubmit = async (values: User) => {
