@@ -9,15 +9,15 @@ import style from "../form.module.scss";
 import FormInput from "../FormInput";
 import { validateRegistrationForm } from "../validateForms";
 import { BASE_URL } from "../../../utils";
-import User from "../../../types/User";
+import { AuthFormValues } from "../../../types/User";
 
 const RegistrationForm: FC = () => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = (): void => setOpen(true);
   const handleClose = (): void => setOpen(false);
   const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
-  const onSubmit = async (values: User) => {
     await sleep(300);
+  const onSubmit = async (values: AuthFormValues) => {
     try {
       const url = `${BASE_URL}/registration`;
       const response = await axios.post(url, values);

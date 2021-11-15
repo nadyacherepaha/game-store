@@ -9,7 +9,7 @@ import style from "../form.module.scss";
 import FormInput from "../FormInput";
 import { validateLoginForm } from "../validateForms";
 import { BASE_URL } from "../../../utils";
-import User from "../../../types/User";
+import { AuthFormValues } from "../../../types/User";
 import { AuthContext } from "../../../contexts/AuthContext";
 
 const LoginForm: FC = () => {
@@ -20,8 +20,8 @@ const LoginForm: FC = () => {
   const { setIsAuth } = React.useContext(AuthContext);
 
   const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
-  const onSubmit = async (values: User) => {
     await sleep(300);
+  const onSubmit = async (values: AuthFormValues) => {
     try {
       const url = `${BASE_URL}/login`;
       const response = await axios.post(url, values);

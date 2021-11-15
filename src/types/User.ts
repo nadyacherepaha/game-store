@@ -1,4 +1,4 @@
-export default interface Values {
+export interface AuthFormValues {
   values: string;
   login: string;
   password: string;

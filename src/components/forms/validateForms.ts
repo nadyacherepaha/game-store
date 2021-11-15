@@ -1,7 +1,7 @@
-import User from "../../types/User";
+import { AuthFormValues } from "../../types/User";
 
-export const validateLoginForm = (values: User) => {
-  const errors = {} as User;
+export const validateLoginForm = (values: AuthFormValues) => {
+  const errors = {} as AuthFormValues;
   if (!values.login) {
     errors.login = "Enter your username";
   }
@@ -11,8 +11,8 @@ export const validateLoginForm = (values: User) => {
   return errors;
 };
 
-export const validateRegistrationForm = (values: User) => {
-  const errors = {} as User;
+export const validateRegistrationForm = (values: AuthFormValues) => {
+  const errors = {} as AuthFormValues;
   const regularExpression = /^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$/;
   if (!values.login) {
     errors.login = "Enter your username";
