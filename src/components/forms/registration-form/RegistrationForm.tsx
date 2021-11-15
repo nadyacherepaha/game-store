@@ -43,15 +43,15 @@ const RegistrationForm: FC = () => {
               <form className={style.form} onSubmit={handleSubmit}>
                 <div>
                   <label>Login</label>
-                  <Field<string> name="login" component={LoginInput} placeholder="Login" />
+                  <Field type="text" name="login" component={FormInput} placeholder="Login" />
                 </div>
                 <div>
                   <label>Password</label>
-                  <Field<string> name="password" component={PasswordInput} placeholder="Password" />
+                  <Field type="password" name="password" component={FormInput} placeholder="Password" />
                 </div>
                 <div>
                   <label>Repeat password</label>
-                  <Field<string> name="confirm" component={PasswordInput} placeholder="Repeat password" />
+                  <Field<string> type="password" name="confirm" component={FormInput} placeholder="Repeat password" />
                 </div>
                 <div className={style.buttons}>
                   <button type="submit" disabled={submitting}>
