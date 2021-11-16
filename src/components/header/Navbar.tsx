@@ -8,10 +8,10 @@ import navbar from "../../constants/navbar";
 import navLink from "../../constants/navLink";
 import LoginForm from "../forms/login-form/LoginForm";
 import RegistrationForm from "../forms/registration-form/RegistrationForm";
-import AuthContext from "../../contexts/AuthContext";
+import AuthContext, { IAuthContext } from "../../contexts/AuthContext";
 
 const Navbar: FC = () => {
-  const { user, signOut } = React.useContext(AuthContext);
+  const { user, signOut } = React.useContext<IAuthContext>(AuthContext);
   const history = useHistory();
   const handleClick = (e: string): void => history.push(e);
 
