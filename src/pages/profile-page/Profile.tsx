@@ -1,8 +1,15 @@
 import React, { FC } from "react";
+import Header from "../../components/header/Header";
+import Footer from "../../components/footer/Footer";
+import style from "../../styles/main.module.css";
 
 const Profile: FC = () => (
   <>
-    <h1>Profile</h1>
+    <Header />
+    <div className={style.content}>
+      <span className={style.title}>Profile Page</span>
+    </div>
+    <Footer />
   </>
 );
 
