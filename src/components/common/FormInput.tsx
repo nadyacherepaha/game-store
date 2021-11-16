@@ -1,9 +1,11 @@
 import React from "react";
 import { FieldRenderProps } from "react-final-form";
 
-type Props = FieldRenderProps<string>;
+interface IFormInput extends FieldRenderProps<string> {
+  label: string;
+}
 
-const FormInput: React.FC<Props> = ({ label, input, meta, ...rest }: Props) => (
+const FormInput: React.FC<IFormInput> = ({ label, input, meta, ...rest }: IFormInput) => (
   <>
     <label>{label}</label>
     <input {...input} {...rest} />
