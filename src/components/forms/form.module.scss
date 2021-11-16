@@ -7,10 +7,12 @@
   background-color: rgba(17, 18, 18, 0.9);
   color: "#fff";
   padding: 32px;
+
   .title {
     color: #fff;
   }
 }
+
 .form {
   max-width: 700px;
   margin: 15px auto;
@@ -21,12 +23,14 @@
     flex-flow: row wrap;
     line-height: 2em;
     margin: 5px;
+
     & > label {
       color: #fff !important;
       width: 170px;
       font-size: 1em;
       line-height: 32px;
     }
+
     & > input,
     & > select,
     & > textarea {
@@ -38,29 +42,22 @@
       background-color: transparent;
       border: 1px solid #ccc;
     }
-    & > div {
-      margin-left: 16px;
-      & > label {
-        display: block;
-        & > input {
-          margin-right: 3px;
-        }
-      }
-    }
+
     & > span {
       line-height: 32px;
       margin-left: 10px;
       color: red;
     }
   }
-  .buttons,
-  .submitRegistr {
+
+  .buttons {
     display: flex;
     flex-flow: row nowrap;
     justify-content: center;
     align-items: center;
     margin-top: 15px;
   }
+
   button {
     margin: 0 10px;
     padding: 8px 60px;
@@ -70,6 +67,7 @@
     border: none;
   }
 }
+
 .navButton {
   font-family: "Arial", sans-serif !important;
   color: #fff !important;
@@ -79,6 +77,7 @@
   border-bottom: 5px solid transparent !important;
   border-radius: 0 !important;
   transition: 0.5s all linear !important;
+
   &:hover,
   &:focus,
   &:active {
