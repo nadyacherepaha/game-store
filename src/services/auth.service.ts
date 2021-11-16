@@ -8,5 +8,4 @@ export const login = (userName: string) => {
   localStorage.setItem(user, userName);
 };
 
-export const userStr = localStorage.getItem(user);
-export const getCurrentUser = (): boolean => !!userStr;
+export const getCurrentUser = (): boolean => !!localStorage.getItem(user);
