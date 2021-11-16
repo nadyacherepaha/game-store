@@ -1,7 +1,5 @@
 import React, { FC, Fragment } from "react";
 import classNames from "classnames";
-import Header from "../../components/header/Header";
-import Footer from "../../components/footer/Footer";
 import CardGame from "../../components/games/card-game/CardGame";
 import { BASE_URL } from "../../utils";
 import cardStyle from "../../components/games/card-game/cardGame.module.scss";
@@ -25,19 +23,15 @@ const PcPage: FC = () => {
   }, []);
 
   return (
-    <div>
-      <Header />
-      <div className={mainStyle.content}>
-        <div className={classNames(cardStyle.cards, categoryStyle.padding)}>
-          {category?.length &&
-            category.map((games, index) => (
-              <Fragment key={index}>
-                <CardGame {...games} />
-              </Fragment>
-            ))}
-        </div>
+    <div className={mainStyle.content}>
+      <div className={classNames(cardStyle.cards, categoryStyle.padding)}>
+        {category?.length &&
+          category.map((games, index) => (
+            <Fragment key={index}>
+              <CardGame {...games} />
+            </Fragment>
+          ))}
       </div>
-      <Footer />
     </div>
   );
 };

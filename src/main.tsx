@@ -5,6 +5,8 @@ import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-d
 import routes from "./constants/routes";
 import AuthContext from "./contexts/AuthContext";
 import * as AuthService from "./services/auth.service";
+import Footer from "./components/footer/Footer";
+import Header from "./components/header/Header";
 
 interface AppState {
   isAuth: boolean;
@@ -47,6 +49,7 @@ class AppContainer extends Component<unknown, AppState> {
       <StrictMode>
         <AuthContext.Provider value={{ user, signIn: this.signIn, signOut: this.signOut }}>
           <Router>
+            <Header />
             <Switch>
               <Route>
                 <Redirect to="/home" />
@@ -55,6 +58,7 @@ class AppContainer extends Component<unknown, AppState> {
                 ))}
               </Route>
             </Switch>
+            <Footer />
           </Router>
         </AuthContext.Provider>
       </StrictMode>

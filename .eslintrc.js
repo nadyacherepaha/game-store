@@ -39,6 +39,7 @@ module.exports = {
     "react/jsx-filename-extension": ["error", { extensions: [".tsx"] }],
     "react/destructuring-assignment": 0,
     "react/no-array-index-key": 0,
+    "newline-before-return": "error",
     "import/no-extraneous-dependencies": 0,
     "no-shadow": 0,
     "jsx-a11y/label-has-associated-control": 0,
