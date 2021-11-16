@@ -1,11 +1,11 @@
-const user = "user";
+const userKey = "user";
 
 export const logout = () => {
-  localStorage.removeItem(user);
+  localStorage.removeItem(userKey);
 };
 
 export const login = (userName: string) => {
-  localStorage.setItem(user, userName);
+  localStorage.setItem(userKey, userName);
 };
 
-export const getCurrentUser = (): boolean => !!localStorage.getItem(user);
+export const getCurrentUser = (): boolean => !!localStorage.getItem(userKey);
