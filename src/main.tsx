@@ -19,11 +19,11 @@ class AppContainer extends Component<unknown, AppState> {
   }
 
   componentDidMount() {
-    const currentUser = AuthService.getCurrentUser();
-    if (currentUser) {
-      this.signIn(AuthService.userStr);
+    if (AuthService.getCurrentUser()) {
+      this.setState({
+        isAuth: true,
+      });
     }
-    return this.state.isAuth;
   }
 
   signIn = (userName: string) => {
