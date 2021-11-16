@@ -44,12 +44,16 @@ const LoginForm: FC = () => {
             render={({ handleSubmit, submitting }) => (
               <form className={style.form} onSubmit={handleSubmit}>
                 <div>
-                  <label>Login</label>
-                  <Field type="text" name="login" component={FormInput} placeholder="Login" />
+                  <Field label="Login" type="text" name="login" component={FormInput} placeholder="Login" />
                 </div>
                 <div>
-                  <label>Password</label>
-                  <Field type="password" name="password" component={FormInput} placeholder="Password" />
+                  <Field
+                    label="Password"
+                    type="password"
+                    name="password"
+                    component={FormInput}
+                    placeholder="Password"
+                  />
                 </div>
                 <div className={style.buttons}>
                   <button type="submit" disabled={submitting}>

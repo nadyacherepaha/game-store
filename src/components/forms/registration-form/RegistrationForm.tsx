@@ -40,22 +40,31 @@ const RegistrationForm: FC = () => {
             render={({ handleSubmit, form, submitting, pristine }) => (
               <form className={style.form} onSubmit={handleSubmit}>
                 <div>
-                  <label>Login</label>
-                  <Field type="text" name="login" component={FormInput} placeholder="Login" />
+                  <Field label="Login" type="text" name="login" component={FormInput} placeholder="Login" />
                 </div>
                 <div>
-                  <label>Password</label>
-                  <Field type="password" name="password" component={FormInput} placeholder="Password" />
+                  <Field
+                    label="Password"
+                    type="password"
+                    name="password"
+                    component={FormInput}
+                    placeholder="Password"
+                  />
                 </div>
                 <div>
-                  <label>Repeat password</label>
-                  <Field<string> type="password" name="confirm" component={FormInput} placeholder="Repeat password" />
+                  <Field
+                    label="Repeat password"
+                    type="password"
+                    name="confirm"
+                    component={FormInput}
+                    placeholder="Repeat password"
+                  />
                 </div>
                 <div className={style.buttons}>
                   <button type="submit" disabled={submitting}>
                     Submit
                   </button>
-                  <button type="button" onClick={() => form.reset} disabled={submitting || pristine}>
+                  <button type="button" onClick={form.reset} disabled={submitting || pristine}>
                     Reset
                   </button>
                 </div>
