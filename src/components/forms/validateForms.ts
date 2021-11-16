@@ -1,26 +1,23 @@
-import { AuthFormValues } from "../../types/User";
+import { IAuthFormValues } from "../../types/User";
 
-export const validateLoginForm = (values: AuthFormValues) => {
-  const errors = {} as AuthFormValues;
+export const validateLoginForm = (values: IAuthFormValues) => {
+  const errors = {} as IAuthFormValues;
   if (!values.login) {
     errors.login = "Enter your username";
   }
   if (!values.password) {
     errors.password = "Enter the password";
   }
+
   return errors;
 };
 
-export const validateRegistrationForm = (values: AuthFormValues) => {
-  const errors = {} as AuthFormValues;
+export const validateRegistrationForm = (values: IAuthFormValues) => {
+  const errors = {} as IAuthFormValues;
   const regularExpression = /^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$/;
   const passwordLength = 6;
-  if (!values.login) {
-    errors.login = "Enter your username";
-  }
-  if (!values.password) {
-    errors.password = "Enter password";
-  }
+  validateLoginForm(values);
+
   if (!regularExpression.test(values.password)) {
     errors.password = "The password must contain letters and numbers";
   }
@@ -32,5 +29,6 @@ export const validateRegistrationForm = (values: AuthFormValues) => {
   } else if (values.confirm !== values.password) {
     errors.confirm = "Passwords are not same";
   }
+
   return errors;
 };

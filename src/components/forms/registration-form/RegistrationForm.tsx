@@ -9,14 +9,14 @@ import style from "../form.module.scss";
 import FormInput from "../../common/FormInput";
 import { validateRegistrationForm } from "../validateForms";
 import { BASE_URL } from "../../../utils";
-import { AuthFormValues } from "../../../types/User";
+import { IAuthFormValues } from "../../../types/User";
 
 const RegistrationForm: FC = () => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = (): void => setOpen(true);
   const handleClose = (): void => setOpen(false);
 
-  const onSubmit = async (values: AuthFormValues) => {
+  const onSubmit = async (values: IAuthFormValues) => {
     try {
       const response = await axios.post(`${BASE_URL}/registration`, values);
       alert(response.data.message);

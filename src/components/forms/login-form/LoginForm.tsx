@@ -9,7 +9,7 @@ import style from "../form.module.scss";
 import FormInput from "../../common/FormInput";
 import { validateLoginForm } from "../validateForms";
 import { BASE_URL } from "../../../utils";
-import { AuthFormValues } from "../../../types/User";
+import { IAuthFormValues } from "../../../types/User";
 import AuthContext from "../../../contexts/AuthContext";
 
 const LoginForm: FC = () => {
@@ -19,7 +19,7 @@ const LoginForm: FC = () => {
 
   const { signIn } = React.useContext(AuthContext);
 
-  const onSubmit = async (values: AuthFormValues) => {
+  const onSubmit = async (values: IAuthFormValues) => {
     try {
       await axios.post(`${BASE_URL}/login`, values);
       alert(`Welcome, ${values.login}!`);
