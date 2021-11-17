@@ -1,11 +1,11 @@
-const userKey = "user";
+const checkCurrentUserExistence = "user";
 
 export const logout = () => {
-  localStorage.removeItem(userKey);
+  localStorage.removeItem(checkCurrentUserExistence);
 };
 
 export const login = (userName: string) => {
-  localStorage.setItem(userKey, userName);
+  localStorage.setItem(checkCurrentUserExistence, userName);
 };
 
-export const getCurrentUser = (): boolean => !!localStorage.getItem(userKey);
+export const getCurrentUser = (): boolean => !!localStorage.getItem(checkCurrentUserExistence);
