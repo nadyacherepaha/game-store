@@ -1,10 +1,10 @@
 import React, { FC } from "react";
 import style from "../../styles/main.module.css";
 
-const Products: FC = () => (
+const Profile: FC = () => (
   <div className={style.content}>
-    <span className={style.title}>Product Page</span>
+    <span className={style.title}>Profile Page</span>
   </div>
 );
 
-export default Products;
+export default Profile;

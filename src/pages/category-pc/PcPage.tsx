@@ -1,12 +1,10 @@
 import React, { FC, Fragment } from "react";
-import Header from "../../components/header/Header";
-import Footer from "../../components/footer/Footer";
+import classNames from "classnames";
 import CardGame from "../../components/games/card-game/CardGame";
 import { BASE_URL } from "../../utils";
 import cardStyle from "../../components/games/card-game/cardGame.module.scss";
 import mainStyle from "../../styles/main.module.css";
 import categoryStyle from "../../components/categories/categories.module.scss";
-import classNames from "classnames";
 
 const PcPage: FC = () => {
   const [category, setCategory] = React.useState([]);
@@ -25,19 +23,15 @@ const PcPage: FC = () => {
   }, []);
 
   return (
-    <div>
-      <Header />
-      <div className={mainStyle.content}>
-        <div className={classNames(cardStyle.cards, categoryStyle.padding)}>
-          {category?.length &&
-            category.map((games, index) => (
-              <Fragment key={index}>
-                <CardGame {...games} />
-              </Fragment>
-            ))}
-        </div>
+    <div className={mainStyle.content}>
+      <div className={classNames(cardStyle.cards, categoryStyle.padding)}>
+        {category?.length &&
+          category.map((games, index) => (
+            <Fragment key={index}>
+              <CardGame {...games} />
+            </Fragment>
+          ))}
       </div>
-      <Footer />
     </div>
   );
 };

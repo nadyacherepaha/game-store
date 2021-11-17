@@ -1,0 +1,18 @@
+[
+  {
+    "login": "qwerty",
+    "password": "a12345"
+  },
+  {
+    "login": "asdf",
+    "password": "12345q"
+  },
+  {
+    "login": "nadya",
+    "password": "nadya5"
+  },
+  {
+    "login": "123",
+    "password": "11223q"
+  }
+]

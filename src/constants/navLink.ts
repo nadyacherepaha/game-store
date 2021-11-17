@@ -1,16 +1,16 @@
+import { faShoppingCart, faUser } from "@fortawesome/free-solid-svg-icons";
+
 const navLink = [
   {
-    path: "/about",
-    title: "About"
+    path: "/profile",
+    title: "User",
+    icon: faUser,
   },
   {
-    path: "/signIn",
-    title: "Sign In"
+    path: "/cart",
+    title: "Cart",
+    icon: faShoppingCart,
   },
-  {
-    path: "/signUp",
-    title: "Sign Up"
-  }
 ];
 
 export default navLink;

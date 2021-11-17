@@ -2,11 +2,16 @@ import React, { FC } from "react";
 import { NavLink, useHistory } from "react-router-dom";
 import { Dropdown, NavItem } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import style from "./navbar.module.scss";
 import navbar from "../../constants/navbar";
 import navLink from "../../constants/navLink";
+import LoginForm from "../forms/login-form/LoginForm";
+import RegistrationForm from "../forms/registration-form/RegistrationForm";
+import AuthContext, { IAuthContext } from "../../contexts/AuthContext";
 
 const Navbar: FC = () => {
+  const { user, signOut } = React.useContext<IAuthContext>(AuthContext);
   const history = useHistory();
   const handleClick = (e: string): void => history.push(e);
 
@@ -36,15 +41,29 @@ const Navbar: FC = () => {
             ))}
           </Dropdown.Menu>
         </Dropdown>
-        {navLink.map(({path, title}) => (
-          <NavLink
-            key={title}
-            className={style.item}
-            to={path}
-          >
-            {title}
-          </NavLink>
-        ))}
+
+        <NavLink className={style.item} to="/about">
+          About
+        </NavLink>
+
+        {user ? (
+          <>
+            {navLink.map(({ path, title, icon }) => (
+              <NavLink key={path} className={style.item} to={path}>
+                <FontAwesomeIcon className={style.icon} icon={icon} />
+                {title}
+              </NavLink>
+            ))}
+            <button className={style.item} type="button" onClick={() => signOut()}>
+              Logout
+            </button>
+          </>
+        ) : (
+          <>
+            <LoginForm />
+            <RegistrationForm />
+          </>
+        )}
       </ul>
     </nav>
   );

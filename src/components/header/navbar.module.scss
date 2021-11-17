@@ -12,7 +12,11 @@ a {
 
 .item {
   padding: 15px;
+  background-color: transparent;
   border-bottom: 5px solid transparent;
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
 
   > a {
     font-size: 18px;
@@ -39,6 +43,9 @@ a:active,
 .item:focus,
 .item:active {
   background-color: #262726;
+  .icon {
+    color: #9933cc;
+  }
 }
 
 .dropdown {
@@ -71,4 +78,8 @@ a:active,
       background-color: #9933cc;
     }
   }
+}
+.icon {
+  margin-right: 7px;
+  transition: 0.5s all ease;
 }

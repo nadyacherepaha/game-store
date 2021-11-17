@@ -31,11 +31,17 @@ export default webpackMockServer.add((app, helper) => {
     alt: string;
   }
 
+  interface User {
+    login: string;
+    password: string;
+  }
+
   interface Platform {
     platform: { xbox: boolean; playstation: boolean; pc: boolean };
   }
 
   const allGames: Game[] = JSON.parse(fs.readFileSync(nodePath.join(__dirname, "./data/games.json"), "utf-8"));
+  const allUsers: User[] = JSON.parse(fs.readFileSync(nodePath.join(__dirname, "./data/users.json"), "utf-8"));
   const platforms = ["xbox", "pc", "playstation"];
 
   app.get("/games", (_req, res) => {
@@ -58,5 +64,38 @@ export default webpackMockServer.add((app, helper) => {
       .sort()
       .slice(0, 3);
     res.send(topGames);
+  });
+  app.post("/registration", (_req, res) => {
+    try {
+      const { login } = _req.body;
+      const user = allUsers.find((result) => result.login === login);
+
+      if (user) {
+        return res.status(400).json({ message: `User with login ${login} already exist` });
+      }
+      allUsers.push(_req.body);
+
+      return res.json({ message: "User was create" });
+    } catch (e) {
+      console.log(e);
+      res.send({ message: "Server error" });
+    }
+  });
+  app.post("/login", (_req, res) => {
+    try {
+      const { login, password } = _req.body;
+      const user = allUsers.find((result) => result.login === login);
+
+      if (!user) {
+        return res.status(404).json({ message: "User not found" });
+      }
+      if (password !== user.password) {
+        return res.status(400).json({ message: "Invalid password" });
+      }
+      return res.json({ login, password });
+    } catch (e) {
+      console.log(e);
+      res.send({ message: "Server error" });
+    }
   });
 });
