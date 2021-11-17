@@ -1,53 +1,20 @@
 import "./styles/main.module.scss";
 import React, { Component, StrictMode } from "react";
 import ReactDom from "react-dom";
+import { Provider } from "react-redux";
 import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 import routes from "./constants/routes";
-import AuthContext from "./contexts/AuthContext";
-import * as AuthService from "./services/auth.service";
 import Footer from "./components/footer/Footer";
 import Header from "./components/header/Header";
+import store from "./redux/store/store";
 
-interface AppState {
-  isAuth: boolean;
-}
+interface AppState {}
 
-class AppContainer extends Component<unknown, AppState> {
-  constructor(props: unknown) {
-    super(props);
-    this.state = {
-      isAuth: false,
-    };
-  }
-
-  componentDidMount() {
-    if (AuthService.getCurrentUser()) {
-      this.setState({
-        isAuth: true,
-      });
-    }
-  }
-
-  signIn = (userName: string) => {
-    AuthService.login(userName);
-    this.setState({
-      isAuth: true,
-    });
-  };
-
-  signOut = () => {
-    AuthService.logout();
-    this.setState({
-      isAuth: false,
-    });
-  };
-
+class AppContainer extends Component<AppState> {
   render() {
-    const user = this.state.isAuth;
-
     return (
       <StrictMode>
-        <AuthContext.Provider value={{ user, signIn: this.signIn, signOut: this.signOut }}>
+        <Provider store={store}>
           <Router>
             <Header />
             <Switch>
@@ -60,7 +27,7 @@ class AppContainer extends Component<unknown, AppState> {
             </Switch>
             <Footer />
           </Router>
-        </AuthContext.Provider>
+        </Provider>
       </StrictMode>
     );
   }
