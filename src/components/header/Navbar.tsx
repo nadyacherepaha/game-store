@@ -1,5 +1,6 @@
 import React, { FC } from "react";
 import { NavLink, useHistory } from "react-router-dom";
+import { useSelector } from "react-redux";
 import { Dropdown, NavItem } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -8,10 +9,10 @@ import navbar from "../../constants/navbar";
 import navLink from "../../constants/navLink";
 import LoginForm from "../forms/login-form/LoginForm";
 import RegistrationForm from "../forms/registration-form/RegistrationForm";
-import AuthContext, { IAuthContext } from "../../contexts/AuthContext";
 
 const Navbar: FC = () => {
-  const { user, signOut } = React.useContext<IAuthContext>(AuthContext);
+  const user = useSelector((state) => state);
+
   const history = useHistory();
   const handleClick = (e: string): void => history.push(e);
 
@@ -46,7 +47,7 @@ const Navbar: FC = () => {
           About
         </NavLink>
 
-        {user ? (
+        {!user ? (
           <>
             {navLink.map(({ path, title, icon }) => (
               <NavLink key={path} className={style.item} to={path}>
