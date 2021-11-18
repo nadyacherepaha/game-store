@@ -6,12 +6,14 @@ import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-d
 import routes from "./constants/routes";
 import Footer from "./components/footer/Footer";
 import Header from "./components/header/Header";
-import store from "./redux/store/store";
+import setupStore from "./redux/store/store";
 
 interface AppState {}
 
 class AppContainer extends Component<AppState> {
   render() {
+    const store = setupStore();
+
     return (
       <StrictMode>
         <Provider store={store}>
