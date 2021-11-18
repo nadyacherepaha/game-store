@@ -10,20 +10,24 @@ import FormInput from "../../common/FormInput";
 import { validateLoginForm } from "../validateForms";
 import { BASE_URL } from "../../../utils";
 import { IAuthFormValues } from "../../../types/User";
-import AuthContext from "../../../contexts/AuthContext";
+import { useAppDispatch } from "../../../hooks/redux";
+import { userSlice } from "../../../redux/reducers/userReducer";
+import { login } from "../../../services/auth.service";
 
 const LoginForm: FC = () => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = (): void => setOpen(true);
   const handleClose = (): void => setOpen(false);
 
-  const { signIn } = React.useContext(AuthContext);
+  const dispatch = useAppDispatch();
+  const { signIn } = userSlice.actions;
 
   const onSubmit = async (values: IAuthFormValues) => {
     try {
       await axios.post(`${BASE_URL}/login`, values);
       alert(`Welcome, ${values.login}!`);
-      signIn && signIn(values.login);
+      dispatch(signIn(values.login));
+      login(values.login);
       handleClose();
     } catch (e) {
       console.error(e.message);
