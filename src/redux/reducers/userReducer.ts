@@ -1,6 +1,6 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { IUserState } from "../../types/storyTypes";
-import { getCurrentUser } from "../../services/auth.service";
+import { getCurrentUser, login, logout } from "../../services/auth.service";
 
 const currentUser = () => {
   if (getCurrentUser()) {
@@ -14,18 +14,25 @@ export const initialState: IUserState = {
   user: currentUser(),
 };
 
+export const writeUserToLocalStorage = createAsyncThunk("user/writeUserToStore", (userName: string) => {
+  login(userName);
+});
+
+export const deleteUserFromLocalStorage = createAsyncThunk("user/deleteUserFromStore", () => {
+  logout();
+});
+
 export const userSlice = createSlice({
   name: "user",
   initialState,
-  reducers: {
-    signIn(state, action) {
+  reducers: {},
+  extraReducers: (builder) => {
+    builder.addCase(writeUserToLocalStorage.fulfilled, (state) => {
       state.user = true;
-      state.signIn = action.payload;
-    },
-    signOut(state, action) {
+    });
+    builder.addCase(deleteUserFromLocalStorage.fulfilled, (state) => {
       state.user = false;
-      state.signOut = action.payload;
-    },
+    });
   },
 });
 

@@ -9,12 +9,10 @@ import navLink from "../../constants/navLink";
 import LoginForm from "../forms/login-form/LoginForm";
 import RegistrationForm from "../forms/registration-form/RegistrationForm";
 import { useAppSelector, useAppDispatch } from "../../hooks/redux";
-import { userSlice } from "../../redux/reducers/userReducer";
-import { logout } from "../../services/auth.service";
+import { deleteUserFromLocalStorage } from "../../redux/reducers/userReducer";
 
 const Navbar: FC = () => {
   const { user } = useAppSelector((state) => state.userReducer);
-  const { signOut } = userSlice.actions;
   const dispatch = useAppDispatch();
 
   const history = useHistory();
@@ -59,7 +57,7 @@ const Navbar: FC = () => {
                 {title}
               </NavLink>
             ))}
-            <button className={style.item} type="button" onClick={() => dispatch(signOut()) && logout()}>
+            <button className={style.item} type="button" onClick={() => dispatch(deleteUserFromLocalStorage())}>
               Logout
             </button>
           </>
