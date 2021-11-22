@@ -10,9 +10,10 @@ import LoginForm from "../forms/login-form/LoginForm";
 import RegistrationForm from "../forms/registration-form/RegistrationForm";
 import { useAppSelector, useAppDispatch } from "../../hooks/redux";
 import { deleteUserFromLocalStorage } from "../../redux/actions/userActions";
+import getUser from "../../redux/selectors/authSelectors";
 
 const Navbar: FC = () => {
-  const { user } = useAppSelector((state) => state.user);
+  const { user } = useAppSelector(getUser);
   const dispatch = useAppDispatch();
 
   const history = useHistory();
