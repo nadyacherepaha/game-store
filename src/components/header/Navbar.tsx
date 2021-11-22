@@ -8,12 +8,25 @@ import navbar from "../../constants/navbar";
 import navLink from "../../constants/navLink";
 import LoginForm from "../forms/login-form/LoginForm";
 import RegistrationForm from "../forms/registration-form/RegistrationForm";
-import AuthContext, { IAuthContext } from "../../contexts/AuthContext";
+import { useAppSelector, useAppDispatch } from "../../hooks/redux";
+import { deleteUserFromLocalStorage } from "../../redux/actions/userActions";
+import getUser from "../../redux/selectors/authSelectors";
+import { userSlice } from "../../redux/reducers/userReducer";
+import { getCurrentUser } from "../../services/auth.service";
 
 const Navbar: FC = () => {
-  const { user, signOut } = React.useContext<IAuthContext>(AuthContext);
+  const { user } = useAppSelector(getUser);
+  const { signInUserInLocalStorage } = userSlice.actions;
+  const dispatch = useAppDispatch();
+
   const history = useHistory();
   const handleClick = (e: string): void => history.push(e);
+
+  React.useEffect(() => {
+    if (getCurrentUser()) {
+      dispatch(signInUserInLocalStorage());
+    }
+  }, []);
 
   return (
     <nav>
@@ -54,7 +67,7 @@ const Navbar: FC = () => {
                 {title}
               </NavLink>
             ))}
-            <button className={style.item} type="button" onClick={() => signOut()}>
+            <button className={style.item} type="button" onClick={() => dispatch(deleteUserFromLocalStorage())}>
               Logout
             </button>
           </>
