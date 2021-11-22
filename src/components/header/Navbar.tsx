@@ -9,7 +9,7 @@ import navLink from "../../constants/navLink";
 import LoginForm from "../forms/login-form/LoginForm";
 import RegistrationForm from "../forms/registration-form/RegistrationForm";
 import { useAppSelector, useAppDispatch } from "../../hooks/redux";
-import { deleteUserFromLocalStorage } from "../../redux/reducers/userReducer";
+import { deleteUserFromLocalStorage } from "../../redux/actions/userActions";
 
 const Navbar: FC = () => {
   const { user } = useAppSelector((state) => state.userReducer);

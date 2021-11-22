@@ -10,7 +10,7 @@ import FormInput from "../../common/FormInput";
 import { validateLoginForm } from "../validateForms";
 import { BASE_URL } from "../../../utils";
 import { IAuthFormValues } from "../../../types/User";
-import { writeUserToLocalStorage } from "../../../redux/reducers/userReducer";
+import { writeUserToLocalStorage } from "../../../redux/actions/userActions";
 import { useAppDispatch } from "../../../hooks/redux";
 
 const LoginForm: FC = () => {
