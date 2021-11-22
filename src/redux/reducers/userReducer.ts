@@ -10,7 +10,11 @@ const user = "user";
 export const userSlice = createSlice({
   name: user,
   initialState,
-  reducers: {},
+  reducers: {
+    signInUserInLocalStorage(state) {
+      state.user = true;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(writeUserToLocalStorage.fulfilled, (state) => {
       state.user = true;

@@ -11,13 +11,22 @@ import RegistrationForm from "../forms/registration-form/RegistrationForm";
 import { useAppSelector, useAppDispatch } from "../../hooks/redux";
 import { deleteUserFromLocalStorage } from "../../redux/actions/userActions";
 import getUser from "../../redux/selectors/authSelectors";
+import { userSlice } from "../../redux/reducers/userReducer";
+import { getCurrentUser } from "../../services/auth.service";
 
 const Navbar: FC = () => {
   const { user } = useAppSelector(getUser);
+  const { signInUserInLocalStorage } = userSlice.actions;
   const dispatch = useAppDispatch();
 
   const history = useHistory();
   const handleClick = (e: string): void => history.push(e);
+
+  React.useEffect(() => {
+    if (getCurrentUser()) {
+      dispatch(signInUserInLocalStorage());
+    }
+  }, []);
 
   return (
     <nav>
