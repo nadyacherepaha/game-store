@@ -12,7 +12,7 @@ import { useAppSelector, useAppDispatch } from "../../hooks/redux";
 import { deleteUserFromLocalStorage } from "../../redux/actions/userActions";
 
 const Navbar: FC = () => {
-  const { user } = useAppSelector((state) => state.userReducer);
+  const { user } = useAppSelector((state) => state.user);
   const dispatch = useAppDispatch();
 
   const history = useHistory();
