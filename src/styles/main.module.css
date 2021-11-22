@@ -18,3 +18,19 @@ p {
     font-size: 20px;
   }
 }
+
+.btn {
+  background-color: #9933cc;
+  color: #fff;
+  border-radius: 4px;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: all 1s ease;
+
+  &:hover,
+  &:focus,
+  &:active {
+    background-color: #60257c;
+  }
+}

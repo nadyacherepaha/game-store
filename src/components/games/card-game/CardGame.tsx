@@ -3,6 +3,7 @@ import { Rating } from "react-simple-star-rating";
 import { faPlaystation, faWindows, faXbox } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import style from "./cardGame.module.scss";
+import btnStyle from "../../../styles/main.module.css";
 import { Card } from "../../../types/Card";
 
 export interface ICardGameProps extends Card {}
@@ -33,7 +34,7 @@ const CardGame: FC<ICardGameProps> = ({ alt, name, image, price, description, ag
         <div className={style.back}>
           <span className={style.desc}>{description}</span>
           <span className={style.age}>{ageLimit}+</span>
-          <button type="button" className={style.btn} onClick={onAlert}>
+          <button type="button" className={btnStyle.btn} onClick={onAlert}>
             Add to cart
           </button>
         </div>
