@@ -1,14 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { deleteUserFromLocalStorage, writeUserToLocalStorage } from "../actions/userActions";
 
-export const initialState = {
+export interface IUserState {
+  user: boolean;
+}
+
+const initialState: IUserState = {
   user: false,
 };
 
-const user = "user";
+const sliceUser = "user";
 
 export const userSlice = createSlice({
-  name: user,
+  name: sliceUser,
   initialState,
   reducers: {
     signInUserInLocalStorage(state) {
