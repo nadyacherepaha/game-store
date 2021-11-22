@@ -1,5 +1,5 @@
 import "./styles/main.module.scss";
-import React, { Component, StrictMode } from "react";
+import React, { FC, StrictMode } from "react";
 import ReactDom from "react-dom";
 import { Provider } from "react-redux";
 import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
@@ -10,29 +10,27 @@ import setupStore from "./redux/store/store";
 
 interface AppState {}
 
-class AppContainer extends Component<AppState> {
-  render() {
-    const store = setupStore();
+const AppContainer: FC<AppState> = () => {
+  const store = setupStore();
 
-    return (
-      <StrictMode>
-        <Provider store={store}>
-          <Router>
-            <Header />
-            <Switch>
-              <Route>
-                <Redirect to="/home" />
-                {routes.map(({ path, component, exact }) => (
-                  <Route key={path} exact={exact} path={path} component={component} />
-                ))}
-              </Route>
-            </Switch>
-            <Footer />
-          </Router>
-        </Provider>
-      </StrictMode>
-    );
-  }
-}
+  return (
+    <StrictMode>
+      <Provider store={store}>
+        <Router>
+          <Header />
+          <Switch>
+            <Route>
+              <Redirect to="/home" />
+              {routes.map(({ path, component, exact }) => (
+                <Route key={path} exact={exact} path={path} component={component} />
+              ))}
+            </Route>
+          </Switch>
+          <Footer />
+        </Router>
+      </Provider>
+    </StrictMode>
+  );
+};
 
 ReactDom.render(<AppContainer />, document.getElementById("app"));
