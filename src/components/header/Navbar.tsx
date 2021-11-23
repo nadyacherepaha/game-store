@@ -28,6 +28,11 @@ const Navbar: FC = () => {
     }
   }, []);
 
+  const onLogout = () => {
+    dispatch(deleteUserFromLocalStorage());
+    history.push("/home");
+  };
+
   return (
     <nav>
       <ul className={style.list}>
@@ -67,7 +72,7 @@ const Navbar: FC = () => {
                 {title}
               </NavLink>
             ))}
-            <button className={style.item} type="button" onClick={() => dispatch(deleteUserFromLocalStorage())}>
+            <button className={style.item} type="button" onClick={onLogout}>
               Logout
             </button>
           </>
