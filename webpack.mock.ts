@@ -95,10 +95,41 @@ export default webpackMockServer.add((app, helper) => {
       if (password !== user.password) {
         return res.status(400).json({ message: "Invalid password" });
       }
+
       return res.json({ login, password });
     } catch (e) {
       console.log(e);
       res.send({ message: "Server error" });
     }
   });
+  app.get("/profile", (_req, res) => {
+    const query = _req.query.user as string;
+    const user = allUsers.filter((result) => result.login === query);
+    console.log(user);
+
+    if (user) {
+      res.send(user);
+    }
+  });
+  app.post("/save-profile", (_req, res) => {
+    try {
+      const query = _req.query.user as string;
+      const user = allUsers.find((result) => result.login === query);
+      const { username, avatar, description } = _req.body;
+
+      if (username !== user?.username) {
+        user?.login.replace(username, _req.body);
+      }
+      if (avatar !== user?.avatar) {
+        user?.avatar.replace(avatar, _req.body);
+      }
+      if (description !== user?.description) {
+        user?.description.replace(description, _req.body);
+      }
+    } catch (e) {
+      console.error(e);
+      res.send({ message: "Server error" });
+    }
+  });
+  // app.post("/change-password", (_req, res) => {});
 });
