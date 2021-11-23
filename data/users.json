@@ -1,18 +1,33 @@
 [
   {
     "login": "qwerty",
-    "password": "a12345"
+    "password": "a12345",
+    "avatar": "https://img2.freepng.ru/20180920/yko/kisspng-computer-icons-portable-network-graphics-avatar-ic-5ba3c66df14d32.3051789815374598219884.jpg",
+    "username": "Alisa Dentail",
+    "description": "Lorem ipsum"
   },
+
   {
     "login": "asdf",
-    "password": "12345q"
+    "password": "12345q",
+    "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRK9WulSGHNs-OPpmZIJdPiR75-eA-AzH6HnrNQKtuna2UwhhQfqULURxRdmc_O28cIhYI&usqp=CAU",
+    "username": "Freddi",
+    "description": "Lorem ipsum"
   },
+
   {
     "login": "nadya",
-    "password": "nadya5"
+    "password": "nadya5",
+    "avatar": "https://w1.pngwing.com/pngs/726/597/png-transparent-graphic-design-icon-customer-service-avatar-icon-design-call-centre-yellow-smile-forehead.png",
+    "username": "Collin_Z",
+    "description": "Lorem ipsum"
   },
+
   {
     "login": "123",
-    "password": "11223q"
+    "password": "11223q",
+    "avatar": "https://www.clipartmax.com/png/middle/248-2487966_matthew-man-avatar-icon-png.png",
+    "username": "Crazy user",
+    "description": "Lorem ipsum"
   }
 ]

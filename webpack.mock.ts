@@ -34,6 +34,9 @@ export default webpackMockServer.add((app, helper) => {
   interface User {
     login: string;
     password: string;
+    avatar: string;
+    username: string;
+    description: string;
   }
 
   interface Platform {
