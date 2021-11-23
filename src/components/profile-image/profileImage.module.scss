@@ -4,3 +4,12 @@
   z-index: -1;
   overflow: hidden;
 }
+
+.image {
+  width: 150px;
+  height: 250px;
+  border-radius: 30px;
+  img {
+    max-width: 100%;
+  }
+}

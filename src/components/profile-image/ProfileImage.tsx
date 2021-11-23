@@ -1,14 +1,17 @@
 import React, { FC, useState } from "react";
 import btnStyle from "../../styles/main.module.css";
 import style from "./profileImage.module.scss";
+import { IUserProfile } from "../../types/UserProfile";
 
-const ProfileImage: FC = () => {
-  const [avatar, setAvatar] = useState();
+interface IProfileImage extends IUserProfile {}
+
+const ProfileImage: FC<IProfileImage> = ({ avatar }) => {
+  const [image, setImage] = useState([]);
 
   return (
     <>
-      <div className="image">
-        <img src="" alt="" />
+      <div className={style.image}>
+        <img src={avatar} alt="" />
       </div>
       <form>
         <input
