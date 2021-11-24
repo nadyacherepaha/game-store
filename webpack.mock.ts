@@ -19,7 +19,7 @@ export default webpackMockServer.add((app, helper) => {
     res.json({ body: req.body || null, success: true });
   });
 
-  interface Game {
+  interface IGame {
     platform: Platform;
     name: string;
     rating: number;
@@ -31,7 +31,7 @@ export default webpackMockServer.add((app, helper) => {
     alt: string;
   }
 
-  interface User {
+  interface IUser {
     login: string;
     password: string;
     avatar: string;
@@ -43,14 +43,14 @@ export default webpackMockServer.add((app, helper) => {
     platform: { xbox: boolean; playstation: boolean; pc: boolean };
   }
 
-  const allGames: Game[] = JSON.parse(fs.readFileSync(nodePath.join(__dirname, "./data/games.json"), "utf-8"));
-  const allUsers: User[] = JSON.parse(fs.readFileSync(nodePath.join(__dirname, "./data/users.json"), "utf-8"));
+  const allGames: IGame[] = JSON.parse(fs.readFileSync(nodePath.join(__dirname, "./data/games.json"), "utf-8"));
+  const allUsers: IUser[] = JSON.parse(fs.readFileSync(nodePath.join(__dirname, "./data/users.json"), "utf-8"));
   const platforms = ["xbox", "pc", "playstation"];
 
   app.get("/games", (_req, res) => {
     const category = _req.query.categories as string;
     const query = _req.query.search as string;
-    let matchedGames: Game[] = [];
+    let matchedGames: IGame[] = [];
     if (category && platforms.some((result) => result === category)) {
       const existingPlatform = platforms.find((result) => result === category) as string;
       matchedGames = allGames.filter((result) => result.platform[existingPlatform as keyof Platform]);
@@ -128,11 +128,18 @@ export default webpackMockServer.add((app, helper) => {
       console.error(e);
     }
   });
+  app.post("/change-password", (_req, res) => {
+    const query = _req.query.user as string;
+    const user = allUsers.find((result) => result.login === query);
+    const { password } = _req.body;
+
+    try {
+      if (password) {
+        user.password = password;
       }
+      res.send(_req.body);
     } catch (e) {
       console.error(e);
-      res.send({ message: "Server error" });
     }
   });
-  // app.post("/change-password", (_req, res) => {});
 });
