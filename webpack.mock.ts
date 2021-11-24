@@ -102,29 +102,32 @@ export default webpackMockServer.add((app, helper) => {
       res.send({ message: "Server error" });
     }
   });
-  app.get("/profile", (_req, res) => {
+  app.get("/get-profile", (_req, res) => {
     const query = _req.query.user as string;
     const user = allUsers.filter((result) => result.login === query);
-    console.log(user);
 
     if (user) {
       res.send(user);
     }
   });
   app.post("/save-profile", (_req, res) => {
-    try {
-      const query = _req.query.user as string;
-      const user = allUsers.find((result) => result.login === query);
-      const { username, avatar, description } = _req.body;
+    const query = _req.query.user as string;
+    const user = allUsers.find((result) => result.login === query);
+    const { username, description } = _req.body;
 
-      if (username !== user?.username) {
-        user?.login.replace(username, _req.body);
+    try {
+      if (username) {
+        user.username = username;
       }
-      if (avatar !== user?.avatar) {
-        user?.avatar.replace(avatar, _req.body);
+
+      if (description) {
+        user.description = description;
       }
-      if (description !== user?.description) {
-        user?.description.replace(description, _req.body);
+      res.send(_req.body);
+    } catch (e) {
+      console.error(e);
+    }
+  });
       }
     } catch (e) {
       console.error(e);

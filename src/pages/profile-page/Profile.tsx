@@ -13,7 +13,7 @@ const Profile: FC = () => {
   useEffect(() => {
     const fetchUserProfile = async () => {
       try {
-        const res = await fetch(`${BASE_URL}/profile?user=${currentUser}`);
+        const res = await fetch(`${BASE_URL}/get-profile?user=${currentUser}`);
         const resJson = await res.json();
         setProfile(resJson);
       } catch (e) {
@@ -21,7 +21,7 @@ const Profile: FC = () => {
       }
     };
     fetchUserProfile();
-  }, []);
+  }, [setProfile]);
 
   return (
     <div className={style.content}>
