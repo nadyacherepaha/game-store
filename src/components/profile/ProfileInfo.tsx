@@ -1,0 +1,139 @@
+import React, { FC, useState } from "react";
+import axios from "axios";
+import { Form, Field } from "react-final-form";
+import classNames from "classnames";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Modal from "@mui/material/Modal";
+import Typography from "@mui/material/Typography";
+import style from "./profileImage.module.scss";
+import mainStyle from "../../styles/main.module.css";
+import styleForm from "../forms/form.module.scss";
+import { BASE_URL } from "../../utils";
+import FormInput from "../common/FormInput";
+import TextAreaInput from "../common/TextAreaInput";
+import { IUserProfile } from "../../types/UserProfile";
+import { validateRegistrationForm } from "../forms/validateForms";
+import ProfileImage from "./ProfileImage";
+
+export interface IProfileFormValues extends IUserProfile {
+  username: string;
+  description: string;
+  password: string;
+}
+
+export const currentUser = localStorage.getItem("user");
+
+const ProfileInfo: FC<IUserProfile> = ({ username, description, avatar }) => {
+  const [info, setInfo] = useState(description);
+  const [name, setName] = useState(username);
+  const [open, setOpen] = useState(false);
+  const handleOpen = (): void => setOpen(true);
+  const handleClose = (): void => setOpen(false);
+
+  const onSubmitSaveProfile = async (values: IProfileFormValues) => {
+    try {
+      await axios.post(`${BASE_URL}/save-profile?user=${currentUser}`, values);
+      setInfo(values.description);
+      setName(values.username);
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  const onSubmitChangePassword = async (values: IProfileFormValues) => {
+    try {
+      await axios.post(`${BASE_URL}/change-password?user=${currentUser}`, values);
+      alert("Password has been changed!");
+      handleClose();
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  return (
+    <>
+      <div className={mainStyle.title}>
+        <p>{name}</p>
+      </div>
+      <div className={style.desc}>
+        <p>
+          <strong>Description:</strong> {info}
+        </p>
+      </div>
+      <div className={mainStyle.items}>
+        <ProfileImage {...avatar} />
+        <Form
+          onSubmit={onSubmitSaveProfile}
+          render={({ handleSubmit, submitting }) => (
+            <form className={classNames(style.form, styleForm.form)} onSubmit={handleSubmit}>
+              <div>
+                <Field
+                  label="Username"
+                  type="text"
+                  name="username"
+                  component={FormInput}
+                  placeholder="Enter your username"
+                />
+              </div>
+              <div>
+                <Field
+                  label="Profile description"
+                  name="description"
+                  component={TextAreaInput}
+                  placeholder="Enter name, default address delivery, phone number or smth else"
+                />
+              </div>
+              <div className={style.buttons}>
+                <button className={style.btn} type="submit" disabled={submitting}>
+                  Save profile
+                </button>
+                <Button className={style.btn} onClick={handleOpen}>
+                  Change password
+                </Button>
+                <Modal open={open} onClose={handleClose}>
+                  <Box className={styleForm.box}>
+                    <Typography className={styleForm.title}>Change your password</Typography>
+                    <Form
+                      onSubmit={onSubmitChangePassword}
+                      validate={validateRegistrationForm}
+                      render={({ handleSubmit, submitting }) => (
+                        <form className={styleForm.form} onSubmit={handleSubmit}>
+                          <div>
+                            <Field
+                              label="Password"
+                              type="password"
+                              name="password"
+                              component={FormInput}
+                              placeholder="Password"
+                            />
+                          </div>
+                          <div>
+                            <Field
+                              label="Repeat password"
+                              type="password"
+                              name="confirm"
+                              component={FormInput}
+                              placeholder="Repeat password"
+                            />
+                          </div>
+                          <div>
+                            <button className={mainStyle.btn} type="submit" disabled={submitting}>
+                              Submit
+                            </button>
+                          </div>
+                        </form>
+                      )}
+                    />
+                  </Box>
+                </Modal>
+              </div>
+            </form>
+          )}
+        />
+      </div>
+    </>
+  );
+};
+
+export default ProfileInfo;

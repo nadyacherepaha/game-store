@@ -1,14 +1,10 @@
 import React, { FC, Fragment, useState, useEffect } from "react";
 import style from "../../styles/main.module.css";
-// import ProfileImage from "../../components/profile-image/ProfileImage";
 import { BASE_URL } from "../../utils";
-// import { IUserProfile } from "../../types/UserProfile";
-import ProfileImage from "../../components/profile-image/ProfileImage";
+import ProfileInfo, { currentUser } from "../../components/profile/ProfileInfo";
 
 const Profile: FC = () => {
   const [profile, setProfile] = useState([]);
-
-  const currentUser = localStorage.getItem("user");
 
   useEffect(() => {
     const fetchUserProfile = async () => {
@@ -24,14 +20,16 @@ const Profile: FC = () => {
   }, [setProfile]);
 
   return (
-    <div className={style.content}>
-      <div>
-        {profile.length &&
-          profile.map((results, index) => (
-            <Fragment key={index}>
-              <ProfileImage {...results} />
-            </Fragment>
-          ))}
+    <div className={style.wrapper}>
+      <div className={style.content}>
+        <div className={style.shadowContainer}>
+          {profile.length &&
+            profile.map((results, index) => (
+              <Fragment key={index}>
+                <ProfileInfo {...results} />
+              </Fragment>
+            ))}
+        </div>
       </div>
     </div>
   );

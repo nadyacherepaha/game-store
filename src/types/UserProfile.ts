@@ -1,6 +1,6 @@
 export interface IUserProfile {
   username: string;
   password: string;
-  avatar: string | undefined;
+  avatar?: string;
   description: string;
 }
