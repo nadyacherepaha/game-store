@@ -10,8 +10,10 @@ const fetchSearchResults = async (query: string) => {
     const url = `${BASE_URL}/games?search=${query.trim()}`;
     const res = await fetch(url);
     const resJson = res.json();
+
     return resJson;
   }
+
   return [];
 };
 
@@ -20,6 +22,7 @@ const debouncedFetchData = debounce((query: string, cb: () => void) => {
     const res: string = await fetchSearchResults(query);
     cb(res);
   };
+
   return fetchData(query, cb);
 }, 300);
 

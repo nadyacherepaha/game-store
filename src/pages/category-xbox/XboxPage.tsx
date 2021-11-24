@@ -23,14 +23,16 @@ const XboxPage: FC = () => {
   }, []);
 
   return (
-    <div className={mainStyle.content}>
-      <div className={classNames(cardStyle.cards, categoryStyle.padding)}>
-        {category?.length &&
-          category.map((games, index) => (
-            <Fragment key={index}>
-              <CardGame {...games} />
-            </Fragment>
-          ))}
+    <div className={mainStyle.wrapperProducts}>
+      <div className={mainStyle.content}>
+        <div className={classNames(cardStyle.cards, categoryStyle.padding)}>
+          {category?.length &&
+            category.map((games, index) => (
+              <Fragment key={index}>
+                <CardGame {...games} />
+              </Fragment>
+            ))}
+        </div>
       </div>
     </div>
   );

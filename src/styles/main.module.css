@@ -7,6 +7,10 @@ p {
   background-size: cover;
 }
 
+.wrapperProducts {
+  background-color: rgba(10, 10, 10, 0.9);
+}
+
 .content {
   max-width: 800px;
   padding-bottom: 50px;
@@ -17,6 +21,35 @@ p {
   .title {
     font-size: 20px;
   }
+}
+
+.shadowContainer {
+  max-width: 800px;
+  padding: 20px 15px;
+  margin: 0;
+  background-color: rgba(16, 15, 16, 0.7);
+  border-radius: 30px;
+
+  .title {
+    padding-bottom: 22px;
+
+    p {
+      padding-left: 15px;
+      color: #fff;
+      text-align: left;
+      border-bottom: 2px solid #88888d;
+    }
+  }
+
+  .items {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
+}
+
+.padding {
+  padding: 30px 0;
 }
 
 .btn {
