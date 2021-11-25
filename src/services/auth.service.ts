@@ -7,5 +7,8 @@ export const logout = () => {
 export const login = (userName: string) => {
   localStorage.setItem(checkCurrentUserExistence, userName);
 };
+export const currentUser = localStorage.getItem(checkCurrentUserExistence);
 
-export const getCurrentUser = (): boolean => !!localStorage.getItem(checkCurrentUserExistence);
+export const getCurrentUserExists = (): boolean => !!currentUser;
+
+export const getCurrentUser = () => localStorage.getItem(checkCurrentUserExistence);
