@@ -103,43 +103,40 @@ export default webpackMockServer.add((app, helper) => {
     }
   });
   app.get("/get-profile", (_req, res) => {
-    const query = _req.query.user as string;
-    const user = allUsers.filter((result) => result.login === query);
+    const { user } = _req.query;
+    const userLogin = allUsers.find((result) => result.login === user);
 
-    if (user) {
-      res.send(user);
+    if (userLogin) {
+      res.send(userLogin);
     }
   });
   app.post("/save-profile", (_req, res) => {
-    const query = _req.query.user as string;
-    const user = allUsers.find((result) => result.login === query);
-    const { username, description } = _req.body;
+    const { username, description, login } = _req.body;
 
-    try {
-      if (username) {
+    const user = allUsers.find((result) => result.login === login);
+
+    if (user) {
+      if (username !== "") {
         user.username = username;
       }
 
-      if (description) {
+      if (description !== "") {
         user.description = description;
       }
-      res.send(_req.body);
-    } catch (e) {
-      console.error(e);
     }
+
+    res.send(user);
   });
   app.post("/change-password", (_req, res) => {
-    const query = _req.query.user as string;
-    const user = allUsers.find((result) => result.login === query);
-    const { password } = _req.body;
+    const { password, login } = _req.body;
+    const user = allUsers.find((result) => result.login === login);
 
-    try {
+    if (user) {
       if (password) {
         user.password = password;
       }
-      res.send(_req.body);
-    } catch (e) {
-      console.error(e);
     }
+
+    res.send(user);
   });
 });
