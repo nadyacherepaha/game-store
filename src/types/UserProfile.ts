@@ -1,6 +1,7 @@
 export interface IUserProfile {
-  username: string;
-  password: string;
+  username?: string;
+  password?: string;
   avatar?: string;
-  description: string;
+  description?: string;
+  login?: string;
 }
