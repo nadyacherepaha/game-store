@@ -7,6 +7,7 @@
   background-color: rgba(17, 18, 18, 0.9);
   color: "#fff";
   padding: 32px;
+
   .title {
     color: #fff;
   }
@@ -67,6 +68,7 @@
   }
 }
 
+// the "!important" property was added to overlap the inline styles of the MUI library
 .navButton {
   font-family: "Arial", sans-serif !important;
   color: #fff !important;

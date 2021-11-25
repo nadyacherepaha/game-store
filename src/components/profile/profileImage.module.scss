@@ -14,6 +14,7 @@
 
 .form {
   width: 560px;
+
   textarea,
   input {
     background-color: rgba(20, 20, 20, 0.85) !important;
@@ -29,6 +30,7 @@
   margin-bottom: 30px;
 }
 
+// the "!important" property was added to overlap the inline styles of the MUI library
 .btn {
   margin-top: 30px !important;
   font-size: 15px !important;
@@ -39,6 +41,7 @@
   padding: 3px 10px !important;
   transition: all 1s ease !important;
   text-transform: none !important;
+
   &:hover,
   &:focus,
   &:active {
