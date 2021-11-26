@@ -23,6 +23,7 @@ export default webpackMockServer.add((app, helper) => {
     platform: Platform;
     name: string;
     rating: number;
+    genre?: string;
     id: number;
     image: string;
     price: number;
@@ -50,11 +51,30 @@ export default webpackMockServer.add((app, helper) => {
   app.get("/games", (_req, res) => {
     const category = _req.query.categories as string;
     const query = _req.query.search as string;
+    const { type, criteria, genre, age } = _req.query;
+
     let matchedGames: IGame[] = [];
     if (category && platforms.some((result) => result === category)) {
       const existingPlatform = platforms.find((result) => result === category) as string;
       matchedGames = allGames.filter((result) => result.platform[existingPlatform as keyof Platform]);
     }
+
+    if (genre === "all") {
+      return matchedGames;
+    }
+
+    if (genre) {
+      matchedGames = matchedGames.filter((result) => result.genre === genre);
+    }
+
+    if (age === "all") {
+      return matchedGames;
+    }
+
+    if (age) {
+      matchedGames = matchedGames.filter((result) => result.ageLimit === +age);
+    }
+
     if (query) {
       matchedGames = allGames.filter((result) => result.name.toLowerCase().includes(query.toLowerCase()));
     }
