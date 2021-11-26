@@ -9,7 +9,7 @@ interface IProfileImage extends IUserProfile {}
 const ProfileImage: FC<IProfileImage> = ({ avatar }) => {
   const defaultAvatarUrl = "https://winnote.ru/wp-content/uploads/2016/01/1454222417_del_recent_avatar1.png";
   const isImg = avatar || defaultAvatarUrl;
-  const [image, setImage] = useState(isImg);
+  const [image, setImage] = useState<string>(isImg);
 
   const handleFiles = (files) => {
     setImage(files.base64);

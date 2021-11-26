@@ -2,7 +2,7 @@ import React from "react";
 import Button from "@mui/material/Button";
 
 export interface BuggyButtonState {
-  releaseBugs: unknown;
+  releaseBugs: boolean;
 }
 
 class BuggyButton extends React.Component<BuggyButtonState> {
@@ -23,6 +23,7 @@ class BuggyButton extends React.Component<BuggyButtonState> {
     if (this.state.releaseBugs) {
       throw new Error("I crashed!");
     }
+
     return (
       <Button variant="outlined" onClick={this.handleClick} color="error">
         Scary Button!
