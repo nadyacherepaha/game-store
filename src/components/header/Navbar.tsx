@@ -12,7 +12,7 @@ import { useAppSelector, useAppDispatch } from "../../hooks/redux";
 import { deleteUserFromLocalStorage } from "../../redux/actions/userActions";
 import getUser from "../../redux/selectors/authSelectors";
 import { userSlice } from "../../redux/reducers/userReducer";
-import { getCurrentUserExists } from "../../services/auth.service";
+import { currentUserExists } from "../../services/auth.service";
 
 const Navbar: FC = () => {
   const { user } = useAppSelector(getUser);
@@ -23,7 +23,7 @@ const Navbar: FC = () => {
   const handleClick = (e: string): void => history.push(e);
 
   React.useEffect(() => {
-    if (getCurrentUserExists()) {
+    if (currentUserExists()) {
       dispatch(signInUserInLocalStorage());
     }
   }, []);

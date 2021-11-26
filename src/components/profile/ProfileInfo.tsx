@@ -10,8 +10,8 @@ import FormInput from "../common/FormInput";
 import TextAreaInput from "../common/TextAreaInput";
 import { IUserProfile } from "../../types/UserProfile";
 import ProfileImage from "./ProfileImage";
-import { currentUser } from "../../services/auth.service";
 import ChangePasswordModalForm from "../forms/change-password-form/ChangePasswordModalForm";
+import { getCurrentUser } from "../../services/auth.service";
 
 export interface IProfileFormValues extends IUserProfile {}
 
@@ -24,7 +24,7 @@ const ProfileInfo: FC<IUserProfile> = ({ username, description, avatar }) => {
       await axios.post(`${BASE_URL}/save-profile`, {
         username: values.username,
         description: values.description,
-        login: currentUser,
+        login: getCurrentUser(),
       });
       setInfo(values.description);
       setName(values.username);
