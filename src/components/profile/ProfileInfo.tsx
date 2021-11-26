@@ -10,8 +10,8 @@ import FormInput from "../common/FormInput";
 import TextAreaInput from "../common/TextAreaInput";
 import { IUserProfile } from "../../types/UserProfile";
 import ProfileImage from "./ProfileImage";
-import ChangePasswordForm from "../forms/change-password-form/ChangePasswordForm";
 import { currentUser } from "../../services/auth.service";
+import ChangePasswordModalForm from "../forms/change-password-form/ChangePasswordModalForm";
 
 export interface IProfileFormValues extends IUserProfile {}
 
@@ -70,7 +70,7 @@ const ProfileInfo: FC<IUserProfile> = ({ username, description, avatar }) => {
                 <button className={style.btn} type="submit" disabled={submitting}>
                   Save profile
                 </button>
-                <ChangePasswordForm />
+                <ChangePasswordModalForm />
               </div>
             </form>
           )}

@@ -12,11 +12,11 @@ import { BASE_URL } from "../../../utils";
 import FormInput from "../../common/FormInput";
 import { IUserProfile } from "../../../types/UserProfile";
 import { validateRegistrationForm } from "../validateForms";
-import { currentUser } from "../../../services/auth.service";
+import { getCurrentUser } from "../../../services/auth.service";
 
 export interface IChangePassword extends IUserProfile {}
 
-const ChangePasswordForm: FC<IChangePassword> = () => {
+const ChangePasswordModalForm: FC<IChangePassword> = () => {
   const [open, setOpen] = useState(false);
   const handleOpen = (): void => setOpen(true);
   const handleClose = (): void => setOpen(false);
@@ -25,7 +25,7 @@ const ChangePasswordForm: FC<IChangePassword> = () => {
     try {
       await axios.post(`${BASE_URL}/change-password`, {
         password: values.password,
-        login: currentUser,
+        login: getCurrentUser(),
       });
       alert("Password has been changed!");
       handleClose();
@@ -79,4 +79,4 @@ const ChangePasswordForm: FC<IChangePassword> = () => {
   );
 };
 
-export default ChangePasswordForm;
+export default ChangePasswordModalForm;
