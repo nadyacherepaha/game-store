@@ -106,6 +106,10 @@ export default webpackMockServer.add((app, helper) => {
     const { user } = _req.query;
     const userLogin = allUsers.find((result) => result.login === user);
 
+    if (!userLogin) {
+      res.status(404).json({ message: "User not found" });
+    }
+
     if (userLogin) {
       res.send(userLogin);
     }
@@ -116,11 +120,11 @@ export default webpackMockServer.add((app, helper) => {
     const user = allUsers.find((result) => result.login === login);
 
     if (user) {
-      if (username !== "") {
+      if (user?.username) {
         user.username = username;
       }
 
-      if (description !== "") {
+      if (user?.description) {
         user.description = description;
       }
     }
@@ -137,6 +141,6 @@ export default webpackMockServer.add((app, helper) => {
       }
     }
 
-    res.send(user);
+    res.status(200).json({ message: "Password has been updated" });
   });
 });
