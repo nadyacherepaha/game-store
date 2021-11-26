@@ -68,6 +68,76 @@
   }
 }
 
+.filterForm {
+  width: 150px;
+  text-align: left;
+  .block {
+    display: block;
+  }
+  .select > select {
+    margin: 0;
+    color: #fff;
+    background-color: #121212;
+  }
+}
+
+.formControl {
+  text-align: left;
+  & > label {
+    color: #fff;
+    font-size: 16px;
+    line-height: 1.3;
+    display: grid;
+    grid-template-columns: 12px auto;
+    gap: 5px;
+    transition: color ease 0.5s;
+    &:hover,
+    &:active,
+    &:focus {
+      color: rebeccapurple;
+    }
+  }
+
+  .form-control:focus-within {
+    color: rebeccapurple;
+  }
+
+  input[type="radio"] {
+    appearance: none;
+    background-color: #fff;
+    margin: 0;
+    font: inherit;
+    color: rebeccapurple;
+    width: 12px;
+    height: 12px;
+    border: 1px solid rebeccapurple;
+    border-radius: 50%;
+    transform: translateY(4px);
+    display: grid;
+    place-content: center;
+  }
+
+  input[type="radio"]::before {
+    content: "";
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    transform: scale(0);
+    transition: 200ms transform ease-in-out;
+    box-shadow: inset 2px 2px rebeccapurple;
+    background-color: rebeccapurple;
+  }
+
+  input[type="radio"]:checked::before {
+    transform: scale(1);
+  }
+
+  input[type="radio"]:focus {
+    outline: max(2px, 2px) solid rebeccapurple;
+    outline-offset: max(2px, 2px);
+  }
+}
+
 // the "!important" property was added to overlap the inline styles of the MUI library
 .navButton {
   font-family: "Arial", sans-serif !important;

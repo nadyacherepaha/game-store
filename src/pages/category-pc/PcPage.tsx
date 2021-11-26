@@ -5,6 +5,8 @@ import { BASE_URL } from "../../utils";
 import cardStyle from "../../components/games/card-game/cardGame.module.scss";
 import mainStyle from "../../styles/main.module.css";
 import categoryStyle from "../../components/categories/categories.module.scss";
+import FilterForm from "../../components/forms/filter-form/FilterForm";
+import SearchResult from "../../components/search/SearchResult";
 
 const PcPage: FC = () => {
   const [category, setCategory] = React.useState([]);
@@ -24,7 +26,9 @@ const PcPage: FC = () => {
 
   return (
     <div className={mainStyle.wrapperProducts}>
-      <div className={mainStyle.content}>
+      <SearchResult />
+      <div className={classNames(mainStyle.content, mainStyle.grid)}>
+        <FilterForm />
         <div className={classNames(cardStyle.cards, categoryStyle.padding)}>
           {category?.length &&
             category.map((games, index) => (

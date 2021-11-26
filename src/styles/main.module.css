@@ -9,6 +9,12 @@ p {
 
 .wrapperProducts {
   background-color: rgba(10, 10, 10, 0.9);
+  text-align: center;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 2fr);
 }
 
 .content {
