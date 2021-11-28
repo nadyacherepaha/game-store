@@ -64,7 +64,7 @@ export default webpackMockServer.add((app, helper) => {
     }
 
     if (genre) {
-      matchedGames = allGames.filter((result) => result.genre.toLowerCase() === genre);
+      matchedGames = matchedGames.filter((result) => result.genre.toLowerCase() === genre);
     }
 
     if (age === "all") {
