@@ -4,44 +4,26 @@ import classNames from "classnames";
 import RadioInput from "../../common/RadioInput";
 import SelectInput from "../../common/SelectInput";
 import style from "../form.module.scss";
-import { BASE_URL } from "../../../utils";
 
-const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
-
-type Genres = "all" | "shooter" | "sandbox" | "rpg" | "action" | "simulator";
+type Genres = "all" | "Shooter" | "Sandbox" | "RPG" | "Action-adventure" | "Simulator";
 type Age = "all" | "3" | "6" | "12" | "16" | "18";
 interface IFilterFormValues {
-  criteria?: string;
+  criteria?: string[];
   type?: string;
   genres: Genres;
   age: Age;
 }
 
-const onSubmit = async (values: IFilterFormValues) => {
-  await sleep(300);
-  window.alert(JSON.stringify(values, undefined, 2));
-};
-
-const onChange = async (values: IFilterFormValues) => {
-  try {
-    await fetch(
-      `${BASE_URL}/games?criteria=${values.criteria}&type=${values.type}&genre=${values.genres}&age=${values.age}`
-    );
-  } catch (e) {
-    console.error(e);
-  }
+const onFormChange = (values: IFilterFormValues) => {
+  console.log(values);
 };
 
 const FilterForm: React.FC = () => (
   <Form
-    onSubmit={onSubmit}
+    onSubmit={onFormChange}
     initialValues={{ genres: "all", age: "all", criteria: "name", type: "ascending" }}
     render={({ handleSubmit, values }) => (
-      <form
-        onChange={() => onChange(values)}
-        className={classNames(style.form, style.filterForm)}
-        onSubmit={handleSubmit}
-      >
+      <form onChange={handleSubmit} className={classNames(style.form, style.filterForm)} onSubmit={handleSubmit}>
         <div className={style.select}>
           <Field label="Criteria" name="criteria" component={SelectInput}>
             <option value="name">Name</option>
@@ -62,19 +44,19 @@ const FilterForm: React.FC = () => (
               <Field name="genres" component={RadioInput} type="radio" value="all" /> All games
             </label>
             <label>
-              <Field name="genres" component={RadioInput} type="radio" value="shooter" /> Shooter
+              <Field name="genres" component={RadioInput} type="radio" value="Shooter" /> Shooter
             </label>
             <label>
-              <Field name="genres" component={RadioInput} type="radio" value="sandbox" /> Sandbox
+              <Field name="genres" component={RadioInput} type="radio" value="Sandbox" /> Sandbox
             </label>
             <label>
-              <Field name="genres" component={RadioInput} type="radio" value="rpg" /> RPG
+              <Field name="genres" component={RadioInput} type="radio" value="RPG" /> RPG
             </label>
             <label>
-              <Field name="genres" component={RadioInput} type="radio" value="action" /> Action-adventures
+              <Field name="genres" component={RadioInput} type="radio" value="Action-adventure" /> Action-adventures
             </label>
             <label>
-              <Field name="genres" component={RadioInput} type="radio" value="simulator" /> Simulator
+              <Field name="genres" component={RadioInput} type="radio" value="Simulator" /> Simulator
             </label>
           </div>
         </div>
