@@ -5,7 +5,7 @@ p {
 .wrapper {
   background: url("https://gameguru.ru/media/f/wallpapers/3/1/16/47/1680.jpg") no-repeat;
   background-size: cover;
-  padding: 30px 0;
+  padding-bottom: 30px;
 }
 
 .wrapperProducts {
@@ -31,6 +31,7 @@ p {
   }
 
   .grid {
+    margin-top: 20px;
     max-width: 100%;
     display: grid;
     grid-template-columns: repeat(3, 2fr);

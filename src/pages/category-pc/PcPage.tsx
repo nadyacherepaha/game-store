@@ -25,7 +25,7 @@ const PcPage: FC = () => {
   }, []);
 
   return (
-    <div className={mainStyle.wrapperProducts}>
+    <div className={classNames(mainStyle.wrapperProducts)}>
       <SearchResult />
       <div className={classNames(mainStyle.content, mainStyle.grid)}>
         <FilterForm />
