@@ -20,10 +20,10 @@ export default webpackMockServer.add((app, helper) => {
   });
 
   interface IGame {
-    platform: Platform;
+    platform: IPlatform;
     name: string;
     rating: number;
-    genre?: string;
+    genre: string;
     id: number;
     image: string;
     price: number;
@@ -40,7 +40,7 @@ export default webpackMockServer.add((app, helper) => {
     description: string;
   }
 
-  interface Platform {
+  interface IPlatform {
     platform: { xbox: boolean; playstation: boolean; pc: boolean };
   }
 
@@ -56,7 +56,7 @@ export default webpackMockServer.add((app, helper) => {
     let matchedGames: IGame[] = [];
     if (category && platforms.some((result) => result === category)) {
       const existingPlatform = platforms.find((result) => result === category) as string;
-      matchedGames = allGames.filter((result) => result.platform[existingPlatform as keyof Platform]);
+      matchedGames = allGames.filter((result) => result.platform[existingPlatform as keyof IPlatform]);
     }
 
     if (genre === "all") {
@@ -64,7 +64,7 @@ export default webpackMockServer.add((app, helper) => {
     }
 
     if (genre) {
-      matchedGames = matchedGames.filter((result) => result.genre === genre);
+      matchedGames = allGames.filter((result) => result.genre.toLowerCase() === genre);
     }
 
     if (age === "all") {
@@ -77,6 +77,16 @@ export default webpackMockServer.add((app, helper) => {
 
     if (query) {
       matchedGames = allGames.filter((result) => result.name.toLowerCase().includes(query.toLowerCase()));
+    }
+
+    if (type === "ascending") {
+      matchedGames = matchedGames.sort((game1, game2) =>
+        game1[criteria as keyof IGame] < game2[criteria as keyof IGame] ? -1 : 1
+      );
+    } else {
+      matchedGames = matchedGames.sort((game1, game2) =>
+        game2[criteria as keyof IGame] < game1[criteria as keyof IGame] ? -1 : 1
+      );
     }
 
     res.send(matchedGames);
