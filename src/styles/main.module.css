@@ -10,11 +10,33 @@ p {
 .wrapperProducts {
   background-color: rgba(10, 10, 10, 0.9);
   text-align: center;
-}
+  position: relative;
+  overflow: hidden;
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(2, 2fr);
+  &:before {
+    content: " ";
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    opacity: 0.6;
+    background-image: url("https://i.playground.ru/p/JMFyJFYzyIN-RdKastTQEQ.jpeg");
+    background-repeat: no-repeat;
+    background-position: 50% 0;
+    background-size: cover;
+  }
+
+  .grid {
+    max-width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 2fr);
+    column-gap: 50px;
+    z-index: 2;
+    position: relative;
+  }
 }
 
 .content {
