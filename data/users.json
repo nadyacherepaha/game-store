@@ -1,18 +1,33 @@
 [
   {
     "login": "qwerty",
-    "password": "a12345"
+    "password": "a12345",
+    "avatar": "https://cdn-icons-png.flaticon.com/512/194/194938.png",
+    "username": "Alisa Dentail",
+    "description": "1075 W. Branch St., Arroyo Grande, CA 93420. Phone number: 5638205746"
   },
+
   {
     "login": "asdf",
-    "password": "12345q"
+    "password": "12345q",
+    "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4rfYZrV_rjkntwpCNeRkSEWeR01C7bRaQLZwoUzySkuNpyD_xlIMIEhrOXY7ZCkv8gUY&usqp=CAU",
+    "username": "Freddi",
+    "description": "5646 E. La Palma, Anaheim Hills, CA 92807. Phone number: 6914694589"
   },
+
   {
     "login": "nadya",
-    "password": "nadya5"
+    "password": "nadya5",
+    "avatar": "https://cdn.pixabay.com/photo/2021/01/04/10/41/icon-5887126_1280.png",
+    "username": "Collin_Z",
+    "description": "190 E. Stacy Rd., Allen, TX 75002 Phone number: 3259745264"
   },
+
   {
     "login": "123",
-    "password": "11223q"
+    "password": "11223q",
+    "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcToxtcl-1iO_yF8nszUob_EssatZo8c_aZbuwiH_IxKpHXL3iUI03IRkfkUfX0GPwpzsHg&usqp=CAU",
+    "username": "Crazy user",
+    "description": "190 E. Stacy Rd., Allen, TX 75002 Phone number: 5214635984"
   }
 ]

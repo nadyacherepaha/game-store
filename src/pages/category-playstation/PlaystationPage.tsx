@@ -23,8 +23,8 @@ const PlaystationPage: FC = () => {
   }, []);
 
   return (
-    <div className={mainStyle.content}>
-      <div className={classNames(cardStyle.cards, categoryStyle.padding)}>
+    <div className={mainStyle.wrapperProducts}>
+      <div className={classNames(cardStyle.cards, categoryStyle.padding, mainStyle.content)}>
         {category?.length &&
           category.map((games, index) => (
             <Fragment key={index}>

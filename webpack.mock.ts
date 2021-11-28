@@ -19,7 +19,7 @@ export default webpackMockServer.add((app, helper) => {
     res.json({ body: req.body || null, success: true });
   });
 
-  interface Game {
+  interface IGame {
     platform: Platform;
     name: string;
     rating: number;
@@ -31,23 +31,26 @@ export default webpackMockServer.add((app, helper) => {
     alt: string;
   }
 
-  interface User {
+  interface IUser {
     login: string;
     password: string;
+    avatar: string;
+    username: string;
+    description: string;
   }
 
   interface Platform {
     platform: { xbox: boolean; playstation: boolean; pc: boolean };
   }
 
-  const allGames: Game[] = JSON.parse(fs.readFileSync(nodePath.join(__dirname, "./data/games.json"), "utf-8"));
-  const allUsers: User[] = JSON.parse(fs.readFileSync(nodePath.join(__dirname, "./data/users.json"), "utf-8"));
+  const allGames: IGame[] = JSON.parse(fs.readFileSync(nodePath.join(__dirname, "./data/games.json"), "utf-8"));
+  const allUsers: IUser[] = JSON.parse(fs.readFileSync(nodePath.join(__dirname, "./data/users.json"), "utf-8"));
   const platforms = ["xbox", "pc", "playstation"];
 
   app.get("/games", (_req, res) => {
     const category = _req.query.categories as string;
     const query = _req.query.search as string;
-    let matchedGames: Game[] = [];
+    let matchedGames: IGame[] = [];
     if (category && platforms.some((result) => result === category)) {
       const existingPlatform = platforms.find((result) => result === category) as string;
       matchedGames = allGames.filter((result) => result.platform[existingPlatform as keyof Platform]);
@@ -92,10 +95,56 @@ export default webpackMockServer.add((app, helper) => {
       if (password !== user.password) {
         return res.status(400).json({ message: "Invalid password" });
       }
+
       return res.json({ login, password });
     } catch (e) {
       console.log(e);
       res.send({ message: "Server error" });
     }
+  });
+  app.get("/get-profile", (_req, res) => {
+    const { user } = _req.query;
+    const userLogin = allUsers.find((result) => result.login === user);
+
+    if (!userLogin) {
+      res.status(404).json({ message: "User not found" });
+    }
+
+    if (userLogin) {
+      res.send(userLogin);
+    }
+  });
+  app.post("/save-profile", (_req, res) => {
+    const { username, description, login } = _req.body;
+
+    const user = allUsers.find((result) => result.login === login);
+
+    if (!user) {
+      res.status(404).json({ message: "User not found" });
+    }
+
+    if (user?.username) {
+      user.username = username;
+    }
+
+    if (user?.description) {
+      user.description = description;
+    }
+
+    res.send(user);
+  });
+  app.post("/change-password", (_req, res) => {
+    const { password, login } = _req.body;
+    const user = allUsers.find((result) => result.login === login);
+
+    if (!user) {
+      res.status(404).json({ message: "User not found" });
+    }
+
+    if (user?.password) {
+      user.password = password;
+    }
+
+    res.status(200).json({ message: "Password has been updated" });
   });
 });

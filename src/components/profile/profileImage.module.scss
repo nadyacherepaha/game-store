@@ -1,0 +1,50 @@
+.desc {
+  text-align: left;
+  color: #fff;
+  font-size: 16px;
+  padding-bottom: 30px;
+}
+
+.input {
+  opacity: 0;
+  position: absolute;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.form {
+  width: 560px;
+
+  textarea,
+  input {
+    background-color: rgba(20, 20, 20, 0.85) !important;
+  }
+}
+
+.image {
+  vertical-align: middle;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 30px;
+}
+
+// the "!important" property was added to overlap the inline styles of the MUI library
+.btn {
+  margin-top: 30px !important;
+  font-size: 15px !important;
+  font-family: "Arial", sans-serif !important;
+  background-color: #9933cc !important;
+  color: #fff !important;
+  border-radius: 4px !important;
+  padding: 3px 10px !important;
+  transition: all 1s ease !important;
+  text-transform: none !important;
+
+  &:hover,
+  &:focus,
+  &:active {
+    background-color: #60257c !important;
+  }
+}

@@ -8,4 +8,5 @@ export const login = (userName: string) => {
   localStorage.setItem(checkCurrentUserExistence, userName);
 };
 
-export const getCurrentUser = (): boolean => !!localStorage.getItem(checkCurrentUserExistence);
+export const currentUserExists = (): boolean => !!localStorage.getItem(checkCurrentUserExistence);
+export const getCurrentUser = () => localStorage.getItem(checkCurrentUserExistence);
