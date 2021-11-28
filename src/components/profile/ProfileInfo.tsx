@@ -16,8 +16,8 @@ import { getCurrentUser } from "../../services/auth.service";
 export interface IProfileFormValues extends IUserProfile {}
 
 const ProfileInfo: FC<IUserProfile> = ({ username, description, avatar }) => {
-  const [info, setInfo] = useState(description);
-  const [name, setName] = useState(username);
+  const [info, setInfo] = useState<string | undefined>(description);
+  const [name, setName] = useState<string | undefined>(username);
 
   const onSubmitSaveProfile = async (values: IProfileFormValues) => {
     try {
@@ -35,6 +35,7 @@ const ProfileInfo: FC<IUserProfile> = ({ username, description, avatar }) => {
 
   return (
     <>
+      <ChangePasswordModalForm />
       <div className={mainStyle.title}>
         <p>{name}</p>
       </div>
@@ -70,7 +71,6 @@ const ProfileInfo: FC<IUserProfile> = ({ username, description, avatar }) => {
                 <button className={style.btn} type="submit" disabled={submitting}>
                   Save profile
                 </button>
-                <ChangePasswordModalForm />
               </div>
             </form>
           )}

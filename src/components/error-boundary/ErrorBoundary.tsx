@@ -26,6 +26,7 @@ class ErrorBoundary extends React.Component<ErrorBoundaryState> {
     if (this.state.error) {
       return <Redirect to="/error" />;
     }
+
     return this.props.children;
   }
 }

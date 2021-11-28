@@ -5,6 +5,7 @@ p {
 .wrapper {
   background: url("https://gameguru.ru/media/f/wallpapers/3/1/16/47/1680.jpg") no-repeat;
   background-size: cover;
+  padding: 30px 0;
 }
 
 .wrapperProducts {
@@ -41,10 +42,9 @@ p {
 
 .content {
   max-width: 800px;
-  padding-bottom: 50px;
   margin: 0 auto;
   text-align: center;
-  min-height: calc(100vh - 80px);
+  min-height: calc(100vh - 141px);
 
   .title {
     font-size: 20px;
@@ -54,7 +54,7 @@ p {
 .shadowContainer {
   max-width: 800px;
   padding: 20px 15px;
-  margin: 0;
+  margin: 0 auto;
   background-color: rgba(16, 15, 16, 0.7);
   border-radius: 30px;
 

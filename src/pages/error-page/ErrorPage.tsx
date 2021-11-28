@@ -1,12 +1,14 @@
 import React, { FC } from "react";
 import { AlertTitle, Alert, Button } from "@mui/material";
+import classNames from "classnames";
 import style from "./errorPage.module.scss";
+import mainStyle from "../../styles/main.module.css";
 
 const ErrorPage: FC = () => {
   const onReloadPage = () => window.location.reload();
 
   return (
-    <div className={style.errorMessage}>
+    <div className={classNames(mainStyle.content, style.errorMessage)}>
       <Alert className={style.title} severity="error">
         <AlertTitle>
           <strong>Oh-no! Something went wrong</strong>

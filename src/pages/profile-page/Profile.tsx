@@ -1,4 +1,5 @@
 import React, { FC, useState, useEffect } from "react";
+import classNames from "classnames";
 import style from "../../styles/main.module.css";
 import { BASE_URL } from "../../utils";
 import ProfileInfo from "../../components/profile/ProfileInfo";
@@ -29,10 +30,8 @@ const Profile: FC = () => {
 
   return (
     <div className={style.wrapper}>
-      <div className={style.content}>
-        <div className={style.shadowContainer}>
-          <ProfileInfo description={profile.description} username={profile.username} avatar={profile.avatar} />
-        </div>
+      <div className={classNames(style.shadowContainer, style.content)}>
+        <ProfileInfo description={profile.description} username={profile.username} avatar={profile.avatar} />
       </div>
     </div>
   );
