@@ -69,8 +69,11 @@
 }
 
 .filterForm {
-  width: 150px;
+  width: 170px;
+  height: 520px;
   text-align: left;
+  background-color: rgba(20, 20, 20, 0.9);
+  padding: 20px;
   .block {
     display: block;
   }
