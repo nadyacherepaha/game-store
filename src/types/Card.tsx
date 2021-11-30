@@ -12,4 +12,4 @@ export interface Card {
     playstation: boolean;
     xbox: boolean;
   };
-};
+}

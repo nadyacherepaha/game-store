@@ -4,25 +4,15 @@ import classNames from "classnames";
 import RadioInput from "../../common/RadioInput";
 import SelectInput from "../../common/SelectInput";
 import style from "../form.module.scss";
+import { IFilterFormValues, Genres, Type, Criteria, Age } from "../../../types/FilterForm";
 
-type Genres = "all" | "Shooter" | "Sandbox" | "RPG" | "Action-adventure" | "Simulator";
-type Age = "all" | "3" | "6" | "12" | "16" | "18";
-interface IFilterFormValues {
-  criteria?: string[];
-  type?: string;
-  genres: Genres;
-  age: Age;
-}
-
-const onFormChange = (values: IFilterFormValues) => {
-  console.log(values);
-};
-
-const FilterForm: React.FC = () => (
+const FilterForm: React.FC<{ getFilteredResult: (values: IFilterFormValues) => Promise<void> }> = ({
+  getFilteredResult,
+}) => (
   <Form
-    onSubmit={onFormChange}
-    initialValues={{ genres: "all", age: "all", criteria: "name", type: "ascending" }}
-    render={({ handleSubmit, values }) => (
+    onSubmit={getFilteredResult}
+    initialValues={{ genres: Genres.all, age: Age.all, criteria: Criteria.name, type: Type.ascending }}
+    render={({ handleSubmit }) => (
       <form onChange={handleSubmit} className={classNames(style.form, style.filterForm)} onSubmit={handleSubmit}>
         <div className={style.select}>
           <Field label="Criteria" name="criteria" component={SelectInput}>
@@ -32,7 +22,7 @@ const FilterForm: React.FC = () => (
           </Field>
         </div>
         <div className={style.select}>
-          <Field label="Type" name="favoriteColor" component={SelectInput}>
+          <Field label="Type" name="type" component={SelectInput}>
             <option value="ascending">Ascending</option>
             <option value="descending">Descending</option>
           </Field>
@@ -41,7 +31,7 @@ const FilterForm: React.FC = () => (
           <label>Genres</label>
           <div className={style.formControl}>
             <label>
-              <Field name="genres" component={RadioInput} type="radio" value="all" /> All games
+              <Field name="genres" component={RadioInput} type="radio" value="" /> All games
             </label>
             <label>
               <Field name="genres" component={RadioInput} type="radio" value="Shooter" /> Shooter
@@ -64,7 +54,7 @@ const FilterForm: React.FC = () => (
           <label>Age</label>
           <div className={style.formControl}>
             <label>
-              <Field name="age" component={RadioInput} type="radio" value="all" /> All ages
+              <Field name="age" component={RadioInput} type="radio" value="" /> All ages
             </label>
             <label>
               <Field name="age" component={RadioInput} type="radio" value="3" /> 3+
