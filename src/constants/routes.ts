@@ -2,9 +2,6 @@ import HomePage from "../pages/home-page/HomePage";
 import ProductsPage from "../pages/products-page/ProductsPage";
 import AboutPage from "../pages/about-page/AboutPage";
 import ErrorPage from "../pages/error-page/ErrorPage";
-import PcPage from "../pages/category-pc/PcPage";
-import PlaystationPage from "../pages/category-playstation/PlaystationPage";
-import XboxPage from "../pages/category-xbox/XboxPage";
 import Profile from "../pages/profile-page/Profile";
 import Cart from "../pages/cart-page/Cart";
 import { pcRoute, playstationRoute, xboxRoute } from "./category";
@@ -14,11 +11,6 @@ const routes = [
     path: "/home",
     component: HomePage,
     exact: false,
-  },
-  {
-    path: "/products",
-    component: ProductsPage,
-    exact: true,
   },
   {
     path: "/about",
@@ -32,17 +24,17 @@ const routes = [
   },
   {
     path: pcRoute,
-    component: PcPage,
+    component: ProductsPage,
     exact: true,
   },
   {
     path: playstationRoute,
-    component: PlaystationPage,
+    component: ProductsPage,
     exact: true,
   },
   {
     path: xboxRoute,
-    component: XboxPage,
+    component: ProductsPage,
     exact: true,
   },
   {

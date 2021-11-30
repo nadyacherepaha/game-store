@@ -1,8 +1,8 @@
 import { faXbox, faWindows, faPlaystation } from "@fortawesome/free-brands-svg-icons";
 
-export const pcRoute: string = "/category/pc";
-export const playstationRoute: string = "/category/playstation";
-export const xboxRoute: string = "/category/xbox";
+export const pcRoute = "/category/pc";
+export const playstationRoute = "/category/playstation";
+export const xboxRoute = "/category/xbox";
 
 const category = [
   {

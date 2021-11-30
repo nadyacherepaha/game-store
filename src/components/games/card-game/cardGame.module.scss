@@ -5,6 +5,7 @@
   position: relative;
   perspective: 1000px;
   color: #fff;
+  z-index: 2;
   .front,
   .back {
     flex-direction: column;
@@ -95,4 +96,14 @@
   grid-template-columns: repeat(3, 1fr);
   row-gap: 30px;
   column-gap: 40px;
+  .spinner,
+  h3 {
+    position: absolute;
+    top: 70px;
+  }
+  h3 {
+    top: 30px;
+    color: #fff;
+    background-color: rgba(20, 20, 27, 0.7);
+  }
 }
