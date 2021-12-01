@@ -4,11 +4,9 @@ import classNames from "classnames";
 import RadioInput from "../../common/RadioInput";
 import SelectInput from "../../common/SelectInput";
 import style from "../form.module.scss";
-import { IFilterFormValues, Genres, Type, Criteria, Age } from "../../../types/FilterForm";
+import { Genres, Types, Criteria, Ages, IFilterFormProps } from "../../../types/FilterForm";
 
-const FilterForm: React.FC<{ getFilteredResult: (values: IFilterFormValues) => Promise<void> }> = ({
-  getFilteredResult,
-}) => (
+const FilterForm: React.FC<IFilterFormProps> = ({ getFilteredResult }) => (
   <Form
     onSubmit={getFilteredResult}
     initialValues={{ genres: Genres.all, age: Age.all, criteria: Criteria.name, type: Type.ascending }}

@@ -1,5 +1,5 @@
 export const enum Genres {
-  all = "",
+  All = "",
   Shooter = "Shooter",
   Sandbox = "Sandbox",
   RPG = "RPG",
@@ -7,29 +7,33 @@ export const enum Genres {
   Simulator = "Simulator",
 }
 
-export const enum Age {
-  all = "",
-  three = 3,
-  six = 6,
-  twelve = 12,
-  sixteen = 16,
-  eighteen = 18,
+export const enum Ages {
+  All = "",
+  Three = "3",
+  Six = "6",
+  Twelve = "12",
+  Sixteen = "16",
+  Eighteen = "18",
 }
 
 export const enum Criteria {
-  name = "name",
-  rating = "rating",
-  price = "price",
+  Name = "name",
+  Rating = "rating",
+  Price = "price",
 }
 
-export const enum Type {
-  ascending = "ascending",
-  descending = "descending",
+export const enum Types {
+  Ascending = "ascending",
+  Descending = "descending",
 }
 
 export interface IFilterFormValues {
   criteria?: Criteria;
-  type?: Type;
-  genres: Genres;
-  age: Age;
+  type?: Types;
+  genres?: Genres;
+  age?: Ages;
+}
+
+export interface IFilterFormProps extends IFilterFormValues {
+  getFilteredResult: (values: IFilterFormValues) => Promise<void>;
 }
