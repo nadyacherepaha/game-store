@@ -15,16 +15,9 @@ const ProductsPage: FC = () => {
   const [category, setCategory] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  const delay = (ms: number) =>
-    new Promise((resolve) => {
-      setTimeout(() => {
-        resolve();
-      }, ms);
-    });
 
   const getFilteredResult = async (values: IFilterFormValues) => {
     setIsLoading(true);
-    await delay(500);
     try {
       const response = await fetch(
         `${BASE_URL}/games?categories=${getCategories()}&criteria=${values.criteria}&type=${values.type}&genre=${
