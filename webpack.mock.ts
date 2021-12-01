@@ -49,13 +49,13 @@ export default webpackMockServer.add((app, helper) => {
   const platforms = ["xbox", "pc", "playstation"];
 
   app.get("/games", (_req, res) => {
-    const category = _req.query.categories as string;
     const query = _req.query.search as string;
-    const { type, criteria, genre, age } = _req.query;
+    const { type, criteria, genre, age, categories } = _req.query;
+    const ascending = "ascending";
 
     let matchedGames: IGame[] = [];
-    if (category && platforms.some((result) => result === category)) {
-      const existingPlatform = platforms.find((result) => result === category) as string;
+    if (categories && platforms.some((result) => result === categories)) {
+      const existingPlatform = platforms.find((result) => result === categories) as string;
       matchedGames = allGames.filter((result) => result.platform[existingPlatform as keyof IPlatform]);
     }
 
@@ -71,13 +71,13 @@ export default webpackMockServer.add((app, helper) => {
       matchedGames = allGames.filter((result) => result.name.toLowerCase().includes(query.toLowerCase()));
     }
 
-    if (type === "ascending") {
-      matchedGames = matchedGames.sort((game1, game2) =>
-        game1[criteria as keyof IGame] < game2[criteria as keyof IGame] ? -1 : 1
+    if (type === ascending) {
+      matchedGames = matchedGames.sort((prevGame, nextGame) =>
+        prevGame[criteria as keyof IGame] < nextGame[criteria as keyof IGame] ? -1 : 1
       );
     } else {
-      matchedGames = matchedGames.sort((game1, game2) =>
-        game2[criteria as keyof IGame] < game1[criteria as keyof IGame] ? -1 : 1
+      matchedGames = matchedGames.sort((prevGame, nextGame) =>
+        nextGame[criteria as keyof IGame] < prevGame[criteria as keyof IGame] ? -1 : 1
       );
     }
 
