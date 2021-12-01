@@ -9,12 +9,11 @@ import SearchResult from "../../components/search/SearchResult";
 import { getCategories } from "../../services/category.service";
 import { IFilterFormValues, Type, Criteria, Age, Genres } from "../../types/FilterForm";
 import { BASE_URL } from "../../utils";
-import CardGame from "../../components/games/card-game/CardGame";
+import CardGame, { ICardGameProps } from "../../components/games/card-game/CardGame";
 
 const ProductsPage: FC = () => {
-  const [category, setCategory] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-
+  const [category, setCategory] = useState<ICardGameProps[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const getFilteredResult = async (values: IFilterFormValues) => {
     setIsLoading(true);
