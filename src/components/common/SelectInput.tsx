@@ -2,12 +2,12 @@ import React from "react";
 import { FieldRenderProps } from "react-final-form";
 
 interface ISelectInput extends FieldRenderProps<string> {
-  label: string;
+  span: string;
 }
 
-const SelectInput: React.FC<ISelectInput> = ({ label, input, ...rest }: ISelectInput) => (
+const SelectInput: React.FC<ISelectInput> = ({ span, input, ...rest }: ISelectInput) => (
   <>
-    <label>{label}</label>
+    <span>{span}</span>
     <select {...input} {...rest} />
   </>
 );

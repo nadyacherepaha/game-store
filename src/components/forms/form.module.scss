@@ -77,16 +77,21 @@
   .block {
     display: block;
   }
-  .select > select {
-    margin: 0;
-    color: #fff;
-    background-color: #121212;
+  .select {
+    justify-content: flex-start;
+    & > select,
+    span {
+      text-align: left;
+      margin: 0;
+      color: #fff;
+      background-color: #121212;
+    }
   }
 }
 
 .formControl {
   text-align: left;
-  & > label {
+  .radioInput {
     color: #fff;
     font-size: 16px;
     line-height: 1.3;
