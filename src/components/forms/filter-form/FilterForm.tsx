@@ -6,10 +6,16 @@ import SelectInput from "../../common/SelectInput";
 import style from "../form.module.scss";
 import { Genres, Types, Criteria, Ages, IFilterFormProps } from "../../../types/FilterForm";
 
+export const initialFilterValues = {
+  genres: Genres.All,
+  age: Ages.All,
+  criteria: Criteria.Name,
+  type: Types.Ascending,
+};
 const FilterForm: React.FC<IFilterFormProps> = ({ getFilteredResult }) => (
   <Form
     onSubmit={getFilteredResult}
-    initialValues={{ genres: Genres.all, age: Age.all, criteria: Criteria.name, type: Type.ascending }}
+    initialValues={initialFilterValues}
     render={({ handleSubmit }) => (
       <form onChange={handleSubmit} className={classNames(style.form, style.filterForm)} onSubmit={handleSubmit}>
         <div className={style.select}>

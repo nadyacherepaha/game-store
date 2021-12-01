@@ -4,10 +4,10 @@ import { CircularProgress } from "@mui/material";
 import cardStyle from "../../components/games/card-game/cardGame.module.scss";
 import mainStyle from "../../styles/main.module.css";
 import categoryStyle from "../../components/categories/categories.module.scss";
-import FilterForm from "../../components/forms/filter-form/FilterForm";
+import FilterForm, { initialFilterValues } from "../../components/forms/filter-form/FilterForm";
 import SearchResult from "../../components/search/SearchResult";
 import { getCategories } from "../../services/category.service";
-import { IFilterFormValues, Type, Criteria, Age, Genres } from "../../types/FilterForm";
+import { IFilterFormValues } from "../../types/FilterForm";
 import { BASE_URL } from "../../utils";
 import CardGame, { ICardGameProps } from "../../components/games/card-game/CardGame";
 
@@ -35,7 +35,7 @@ const ProductsPage: FC = () => {
   };
 
   useEffect(() => {
-    getFilteredResult({ genres: Genres.all, age: Age.all, criteria: Criteria.name, type: Type.ascending });
+    getFilteredResult(initialFilterValues);
   }, []);
 
   return (
