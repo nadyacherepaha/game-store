@@ -1,19 +1,36 @@
 import React, { FC, Fragment, useState, useEffect } from "react";
 import classNames from "classnames";
 import { CircularProgress } from "@mui/material";
+import { useParams } from "react-router";
 import cardStyle from "../../components/games/card-game/cardGame.module.scss";
 import mainStyle from "../../styles/main.module.css";
 import categoryStyle from "../../components/categories/categories.module.scss";
 import FilterForm, { initialFilterValues } from "../../components/forms/filter-form/FilterForm";
 import SearchResult from "../../components/search/SearchResult";
-import { getCategories } from "../../services/category.service";
 import { IFilterFormValues } from "../../types/FilterForm";
 import { BASE_URL } from "../../utils";
 import CardGame, { ICardGameProps } from "../../components/games/card-game/CardGame";
 
+interface ParamTypes {
+  platforms: string;
+}
+
 const ProductsPage: FC = () => {
   const [category, setCategory] = useState<ICardGameProps[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const { platforms } = useParams<ParamTypes>();
+
+  const getCategories = () => {
+    const playstation = "playstation";
+    const xbox = "xbox";
+    const pc = "pc";
+
+    const category = [playstation, xbox, pc];
+
+    if (platforms) {
+      return category.find((x) => x === platforms);
+    }
+  };
 
   const getFilteredResult = async (values: IFilterFormValues) => {
     setIsLoading(true);
@@ -36,7 +53,7 @@ const ProductsPage: FC = () => {
 
   useEffect(() => {
     getFilteredResult(initialFilterValues);
-  }, []);
+  }, [platforms]);
 
   return (
     <div className={mainStyle.wrapperProducts}>
