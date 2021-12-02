@@ -21,9 +21,9 @@ const FilterForm: React.FC<IFilterFormProps> = ({ getFilteredResult }) => (
       <form onChange={handleSubmit} className={classNames(style.form, style.filterForm)} onSubmit={handleSubmit}>
         <div className={style.select}>
           <Field span="Criteria" name="criteria" component={SelectInput}>
-            <option value="name">Name</option>
-            <option value="rating">Rating</option>
-            <option value="price">Price</option>
+            <option value={Criteria.Name}>Name</option>
+            <option value={Criteria.Rating}>Rating</option>
+            <option value={Criteria.Price}>Price</option>
           </Field>
         </div>
         <div className={style.select}>
@@ -42,17 +42,29 @@ const FilterForm: React.FC<IFilterFormProps> = ({ getFilteredResult }) => (
                 name="genres"
                 component={RadioInput}
                 type="radio"
-                value={Genres.All}
+                value={Genres.All as string}
               />
             </div>
             <div className={style.radioInput}>
-              <Field label="Shooter" name="genres" component={RadioInput} type="radio" value={Genres.Shooter} />
+              <Field
+                label="Shooter"
+                name="genres"
+                component={RadioInput}
+                type="radio"
+                value={Genres.Shooter as string}
+              />
             </div>
             <div className={style.radioInput}>
-              <Field label="Sandbox" name="genres" component={RadioInput} type="radio" value={Genres.Sandbox} />
+              <Field
+                label="Sandbox"
+                name="genres"
+                component={RadioInput}
+                type="radio"
+                value={Genres.Sandbox as string}
+              />
             </div>
             <div className={style.radioInput}>
-              <Field label="RPG" name="genres" component={RadioInput} type="radio" value={Genres.RPG} />
+              <Field label="RPG" name="genres" component={RadioInput} type="radio" value={Genres.RPG as string} />
             </div>
             <div className={style.radioInput}>
               <Field
@@ -60,11 +72,17 @@ const FilterForm: React.FC<IFilterFormProps> = ({ getFilteredResult }) => (
                 name="genres"
                 component={RadioInput}
                 type="radio"
-                value={Genres.Action}
+                value={Genres.Action as string}
               />
             </div>
             <div className={style.radioInput}>
-              <Field label="Simulator" name="genres" component={RadioInput} type="radio" value={Genres.Simulator} />
+              <Field
+                label="Simulator"
+                name="genres"
+                component={RadioInput}
+                type="radio"
+                value={Genres.Simulator as string}
+              />
             </div>
           </div>
         </div>
@@ -72,22 +90,22 @@ const FilterForm: React.FC<IFilterFormProps> = ({ getFilteredResult }) => (
           <label>Age</label>
           <div className={style.formControl}>
             <div className={style.radioInput}>
-              <Field label="All ages" name="age" component={RadioInput} type="radio" value={Ages.All} />
+              <Field label="All ages" name="age" component={RadioInput} type="radio" value={Ages.All as string} />
             </div>
             <div className={style.radioInput}>
-              <Field label="3+" name="age" component={RadioInput} type="radio" value={Ages.Three} />
+              <Field label="3+" name="age" component={RadioInput} type="radio" value={Ages.Three as string} />
             </div>
             <div className={style.radioInput}>
-              <Field label="6+" name="age" component={RadioInput} type="radio" value={Ages.Six} />
+              <Field label="6+" name="age" component={RadioInput} type="radio" value={Ages.Six as string} />
             </div>
             <div className={style.radioInput}>
-              <Field label="12+" name="age" component={RadioInput} type="radio" value={Ages.Twelve} />
+              <Field label="12+" name="age" component={RadioInput} type="radio" value={Ages.Twelve as string} />
             </div>
             <div className={style.radioInput}>
-              <Field label="16+" name="age" component={RadioInput} type="radio" value={Ages.Sixteen} />
+              <Field label="16+" name="age" component={RadioInput} type="radio" value={Ages.Sixteen as string} />
             </div>
             <div className={style.radioInput}>
-              <Field label="18+" name="age" component={RadioInput} type="radio" value={Ages.Eighteen} />
+              <Field label="18+" name="age" component={RadioInput} type="radio" value={Ages.Eighteen as string} />
             </div>
           </div>
         </div>
