@@ -10,6 +10,7 @@ import SearchResult from "../../components/search/SearchResult";
 import { IFilterFormValues } from "../../types/FilterForm";
 import { BASE_URL } from "../../utils";
 import CardGame, { ICardGameProps } from "../../components/games/card-game/CardGame";
+import { playstation, xbox, pc } from "../../constants/category";
 
 interface ParamTypes {
   platforms: string;
@@ -21,15 +22,9 @@ const ProductsPage: FC = () => {
   const { platforms } = useParams<ParamTypes>();
 
   const getCategories = () => {
-    const playstation = "playstation";
-    const xbox = "xbox";
-    const pc = "pc";
-
     const category = [playstation, xbox, pc];
 
-    if (platforms) {
-      return category.find((x) => x === platforms);
-    }
+    return category.find((x) => x === platforms);
   };
 
   const getFilteredResult = async (values: IFilterFormValues) => {
@@ -62,6 +57,7 @@ const ProductsPage: FC = () => {
         <FilterForm getFilteredResult={getFilteredResult} />
         <div className={classNames(cardStyle.cards, categoryStyle.padding)}>
           {isLoading && <CircularProgress className={cardStyle.spinner} color="secondary" />}
+
           {category.length ? (
             category.map((games, index) => (
               <Fragment key={index}>
