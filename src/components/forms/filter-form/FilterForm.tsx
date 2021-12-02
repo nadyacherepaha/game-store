@@ -1,10 +1,13 @@
 import React from "react";
-import { Form, Field } from "react-final-form";
+import { Form } from "react-final-form";
 import classNames from "classnames";
-import RadioInput from "../../common/RadioInput";
-import SelectInput from "../../common/SelectInput";
 import style from "../form.module.scss";
-import { Genres, Types, Criteria, Ages, IFilterFormProps } from "../../../types/FilterForm";
+import { Genres, Ages, Types, Criteria } from "../../../constants/filterFormEnum";
+import { IFilterFormProps } from "../../../types/FilterForm";
+import CriteriaForm from "./CriteriaField";
+import TypesField from "./TypesField";
+import GenresField from "./GenresField";
+import AgesField from "./AgesField";
 
 export const initialFilterValues = {
   genres: Genres.All,
@@ -19,96 +22,10 @@ const FilterForm: React.FC<IFilterFormProps> = ({ getFilteredResult }) => (
     initialValues={initialFilterValues}
     render={({ handleSubmit }) => (
       <form onChange={handleSubmit} className={classNames(style.form, style.filterForm)} onSubmit={handleSubmit}>
-        <div className={style.select}>
-          <Field span="Criteria" name="criteria" component={SelectInput}>
-            <option value={Criteria.Name}>Name</option>
-            <option value={Criteria.Rating}>Rating</option>
-            <option value={Criteria.Price}>Price</option>
-          </Field>
-        </div>
-        <div className={style.select}>
-          <Field span="Type" name="type" component={SelectInput}>
-            <option value={Types.Ascending}>Ascending</option>
-            <option value={Types.Descending}>Descending</option>
-          </Field>
-        </div>
-        <div className={style.block}>
-          <label>Genres</label>
-          <div className={style.formControl}>
-            <div className={style.radioInput}>
-              <Field
-                className={{ display: "flex" }}
-                label="All games"
-                name="genres"
-                component={RadioInput}
-                type="radio"
-                value={Genres.All as string}
-              />
-            </div>
-            <div className={style.radioInput}>
-              <Field
-                label="Shooter"
-                name="genres"
-                component={RadioInput}
-                type="radio"
-                value={Genres.Shooter as string}
-              />
-            </div>
-            <div className={style.radioInput}>
-              <Field
-                label="Sandbox"
-                name="genres"
-                component={RadioInput}
-                type="radio"
-                value={Genres.Sandbox as string}
-              />
-            </div>
-            <div className={style.radioInput}>
-              <Field label="RPG" name="genres" component={RadioInput} type="radio" value={Genres.RPG as string} />
-            </div>
-            <div className={style.radioInput}>
-              <Field
-                label="Action-adventures"
-                name="genres"
-                component={RadioInput}
-                type="radio"
-                value={Genres.Action as string}
-              />
-            </div>
-            <div className={style.radioInput}>
-              <Field
-                label="Simulator"
-                name="genres"
-                component={RadioInput}
-                type="radio"
-                value={Genres.Simulator as string}
-              />
-            </div>
-          </div>
-        </div>
-        <div className={style.block}>
-          <label>Age</label>
-          <div className={style.formControl}>
-            <div className={style.radioInput}>
-              <Field label="All ages" name="age" component={RadioInput} type="radio" value={Ages.All as string} />
-            </div>
-            <div className={style.radioInput}>
-              <Field label="3+" name="age" component={RadioInput} type="radio" value={Ages.Three as string} />
-            </div>
-            <div className={style.radioInput}>
-              <Field label="6+" name="age" component={RadioInput} type="radio" value={Ages.Six as string} />
-            </div>
-            <div className={style.radioInput}>
-              <Field label="12+" name="age" component={RadioInput} type="radio" value={Ages.Twelve as string} />
-            </div>
-            <div className={style.radioInput}>
-              <Field label="16+" name="age" component={RadioInput} type="radio" value={Ages.Sixteen as string} />
-            </div>
-            <div className={style.radioInput}>
-              <Field label="18+" name="age" component={RadioInput} type="radio" value={Ages.Eighteen as string} />
-            </div>
-          </div>
-        </div>
+        <CriteriaForm />
+        <TypesField />
+        <GenresField />
+        <AgesField />
       </form>
     )}
   />
