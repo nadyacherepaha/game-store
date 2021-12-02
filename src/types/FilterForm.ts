@@ -7,7 +7,7 @@ export const enum Genres {
   Simulator = "Simulator",
 }
 
-export const enum Ages {
+export enum Ages {
   All = "",
   Three = "3",
   Six = "6",
