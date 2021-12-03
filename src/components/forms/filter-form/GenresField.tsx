@@ -4,7 +4,7 @@ import RadioInput from "../../common/RadioInput";
 import style from "../form.module.scss";
 import { Genres } from "../../../constants/filterFormEnum";
 
-const genres = "genres";
+const genresFieldName = "genres";
 
 const GenresField: React.FC = () => (
   <div className={style.block}>
@@ -14,32 +14,50 @@ const GenresField: React.FC = () => (
         <Field
           className={{ display: "flex" }}
           label="All games"
-          name={genres}
+          name={genresFieldName}
           component={RadioInput}
           type="radio"
           value={Genres.All as string}
         />
       </div>
       <div className={style.radioInput}>
-        <Field label="Shooter" name={genres} component={RadioInput} type="radio" value={Genres.Shooter as string} />
+        <Field
+          label="Shooter"
+          name={genresFieldName}
+          component={RadioInput}
+          type="radio"
+          value={Genres.Shooter as string}
+        />
       </div>
       <div className={style.radioInput}>
-        <Field label="Sandbox" name={genres} component={RadioInput} type="radio" value={Genres.Sandbox as string} />
+        <Field
+          label="Sandbox"
+          name={genresFieldName}
+          component={RadioInput}
+          type="radio"
+          value={Genres.Sandbox as string}
+        />
       </div>
       <div className={style.radioInput}>
-        <Field label="RPG" name={genres} component={RadioInput} type="radio" value={Genres.RPG as string} />
+        <Field label="RPG" name={genresFieldName} component={RadioInput} type="radio" value={Genres.RPG as string} />
       </div>
       <div className={style.radioInput}>
         <Field
           label="Action-adventures"
-          name={genres}
+          name={genresFieldName}
           component={RadioInput}
           type="radio"
           value={Genres.Action as string}
         />
       </div>
       <div className={style.radioInput}>
-        <Field label="Simulator" name={genres} component={RadioInput} type="radio" value={Genres.Simulator as string} />
+        <Field
+          label="Simulator"
+          name={genresFieldName}
+          component={RadioInput}
+          type="radio"
+          value={Genres.Simulator as string}
+        />
       </div>
     </div>
   </div>
