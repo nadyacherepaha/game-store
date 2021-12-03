@@ -3,19 +3,22 @@ import { NavLink, useHistory } from "react-router-dom";
 import { Dropdown, NavItem } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import style from "./navbar.module.scss";
 import navbar from "../../constants/navbar";
-import navLink from "../../constants/navLink";
 import LoginForm from "../forms/login-form/LoginForm";
 import RegistrationForm from "../forms/registration-form/RegistrationForm";
 import { useAppSelector, useAppDispatch } from "../../hooks/redux";
 import { deleteUserFromLocalStorage } from "../../redux/actions/userActions";
 import getUser from "../../redux/selectors/authSelectors";
+import getQuantity from "../../redux/selectors/cartSelectors";
 import { userSlice } from "../../redux/reducers/userReducer";
 import { currentUserExists } from "../../services/auth.service";
 
 const Navbar: FC = () => {
   const { user } = useAppSelector(getUser);
+  const { itemInCart } = useAppSelector(getQuantity);
+  const quantity = itemInCart.length;
   const { signInUserInLocalStorage } = userSlice.actions;
   const dispatch = useAppDispatch();
 
@@ -66,12 +69,14 @@ const Navbar: FC = () => {
 
         {user ? (
           <>
-            {navLink.map(({ path, title, icon }) => (
-              <NavLink key={path} className={style.item} to={path}>
-                <FontAwesomeIcon className={style.icon} icon={icon} />
-                {title}
-              </NavLink>
-            ))}
+            <NavLink className={style.item} to="/profile">
+              <FontAwesomeIcon className={style.icon} icon={faUser} />
+              User
+            </NavLink>
+            <NavLink className={style.item} to="/cart">
+              <FontAwesomeIcon className={style.icon} icon={faShoppingCart} />
+              <span>{quantity || "Cart"}</span>
+            </NavLink>
             <button className={style.item} type="button" onClick={onLogout}>
               Logout
             </button>
