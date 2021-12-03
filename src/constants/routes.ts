@@ -4,7 +4,6 @@ import AboutPage from "../pages/about-page/AboutPage";
 import ErrorPage from "../pages/error-page/ErrorPage";
 import Profile from "../pages/profile-page/Profile";
 import Cart from "../pages/cart-page/Cart";
-import { pcRoute, playstationRoute, xboxRoute } from "./category";
 
 const routes = [
   {
@@ -23,17 +22,7 @@ const routes = [
     exact: true,
   },
   {
-    path: pcRoute,
-    component: ProductsPage,
-    exact: true,
-  },
-  {
-    path: playstationRoute,
-    component: ProductsPage,
-    exact: true,
-  },
-  {
-    path: xboxRoute,
+    path: "/category/:platforms",
     component: ProductsPage,
     exact: true,
   },

@@ -1,19 +1,31 @@
 import React, { FC, Fragment, useState, useEffect } from "react";
 import classNames from "classnames";
 import { CircularProgress } from "@mui/material";
+import { useParams } from "react-router";
 import cardStyle from "../../components/games/card-game/cardGame.module.scss";
 import mainStyle from "../../styles/main.module.css";
 import categoryStyle from "../../components/categories/categories.module.scss";
-import FilterForm, { initialFilterValues } from "../../components/forms/filter-form/FilterForm";
+import FilterForm from "../../components/forms/filter-form/FilterForm";
 import SearchResult from "../../components/search/SearchResult";
-import { getCategories } from "../../services/category.service";
-import { IFilterFormValues } from "../../types/FilterForm";
+import { IFilterFormValues, initialSearchPanelFilterValues } from "../../types/FilterForm";
 import { BASE_URL } from "../../utils";
 import CardGame, { ICardGameProps } from "../../components/games/card-game/CardGame";
+import { playstation, xbox, pc } from "../../constants/category";
+
+interface ParamTypes {
+  platforms: string;
+}
 
 const ProductsPage: FC = () => {
   const [category, setCategory] = useState<ICardGameProps[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const { platforms } = useParams<ParamTypes>();
+
+  const getCategories = () => {
+    const category = [playstation, xbox, pc];
+
+    return category.find((x) => x === platforms);
+  };
 
   const getFilteredResult = async (values: IFilterFormValues) => {
     setIsLoading(true);
@@ -35,8 +47,8 @@ const ProductsPage: FC = () => {
   };
 
   useEffect(() => {
-    getFilteredResult(initialFilterValues);
-  }, []);
+    getFilteredResult(initialSearchPanelFilterValues);
+  }, [platforms]);
 
   return (
     <div className={mainStyle.wrapperProducts}>
@@ -45,6 +57,7 @@ const ProductsPage: FC = () => {
         <FilterForm getFilteredResult={getFilteredResult} />
         <div className={classNames(cardStyle.cards, categoryStyle.padding)}>
           {isLoading && <CircularProgress className={cardStyle.spinner} color="secondary" />}
+
           {category.length ? (
             category.map((games, index) => (
               <Fragment key={index}>

@@ -4,6 +4,10 @@ export const pcRoute = "/category/pc";
 export const playstationRoute = "/category/playstation";
 export const xboxRoute = "/category/xbox";
 
+export const playstation = "playstation";
+export const xbox = "xbox";
+export const pc = "pc";
+
 const category = [
   {
     icon: faWindows,
