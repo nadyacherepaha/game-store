@@ -7,6 +7,13 @@ export interface IFilterFormValues {
   age?: Ages;
 }
 
+export const initialSearchPanelFilterValues = {
+  genres: Genres.All,
+  age: Ages.All,
+  criteria: Criteria.Name,
+  type: Types.Ascending,
+};
+
 export interface IFilterFormProps extends IFilterFormValues {
   getFilteredResult: (values: IFilterFormValues) => Promise<void>;
 }

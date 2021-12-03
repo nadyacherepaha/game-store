@@ -5,9 +5,9 @@ import { useParams } from "react-router";
 import cardStyle from "../../components/games/card-game/cardGame.module.scss";
 import mainStyle from "../../styles/main.module.css";
 import categoryStyle from "../../components/categories/categories.module.scss";
-import FilterForm, { initialFilterValues } from "../../components/forms/filter-form/FilterForm";
+import FilterForm from "../../components/forms/filter-form/FilterForm";
 import SearchResult from "../../components/search/SearchResult";
-import { IFilterFormValues } from "../../types/FilterForm";
+import { IFilterFormValues, initialSearchPanelFilterValues } from "../../types/FilterForm";
 import { BASE_URL } from "../../utils";
 import CardGame, { ICardGameProps } from "../../components/games/card-game/CardGame";
 import { playstation, xbox, pc } from "../../constants/category";
@@ -47,7 +47,7 @@ const ProductsPage: FC = () => {
   };
 
   useEffect(() => {
-    getFilteredResult(initialFilterValues);
+    getFilteredResult(initialSearchPanelFilterValues);
   }, [platforms]);
 
   return (
