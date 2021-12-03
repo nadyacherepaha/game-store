@@ -5,11 +5,40 @@ p {
 .wrapper {
   background: url("https://gameguru.ru/media/f/wallpapers/3/1/16/47/1680.jpg") no-repeat;
   background-size: cover;
-  padding: 30px 0;
+  padding-bottom: 30px;
 }
 
 .wrapperProducts {
   background-color: rgba(10, 10, 10, 0.9);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+
+  &:before {
+    content: " ";
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    opacity: 0.6;
+    background-image: url("https://i.playground.ru/p/JMFyJFYzyIN-RdKastTQEQ.jpeg");
+    background-repeat: no-repeat;
+    background-position: 50% 0;
+    background-size: cover;
+  }
+
+  .grid {
+    margin-top: 20px;
+    max-width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 2fr);
+    column-gap: 50px;
+    z-index: 2;
+    position: relative;
+  }
 }
 
 .content {
