@@ -1,26 +1,28 @@
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
 import classNames from "classnames";
 import style from "../../styles/main.module.css";
 import cartStyle from "./cart.module.scss";
+import titleStyle from "../../components/categories/categories.module.scss";
 import { Card } from "../../types/Card";
 import { useAppSelector, useAppDispatch } from "../../hooks/redux";
 import getQuantity from "../../redux/selectors/cartSelectors";
-import CartTable from "./CartTable";
-import { clearCart } from "@/redux/reducers/cartReducer";
+import CartItem from "./CartItem";
+import { clearCart, getTotals } from "../../redux/reducers/cartReducer";
 
 export interface ICartProps extends Card {}
 
 const Cart: FC<ICartProps> = () => {
-  const { itemInCart } = useAppSelector(getQuantity);
+  const { itemInCart, cartTotalAmount, cartTotalQuantity } = useAppSelector(getQuantity);
+  const cart = useAppSelector(getQuantity);
   const dispatch = useAppDispatch();
   const date = new Date();
   const dateToString = date.toDateString();
 
-  const calcTotalPrice = (price: Card[]) => {
-    const totalPrice = price.reduce((acc, item) => (acc += item.price), 0);
+  useEffect(() => {
+    dispatch(getTotals());
+  }, [cart, dispatch]);
 
-    return totalPrice.toFixed(2);
-  };
+  const totalItemPrice = (price: number, amount: number) => Number(price * amount).toFixed(2);
 
   const buyProducts = () => {
     if (window.confirm("Are you sure you want to buy?")) {
@@ -33,25 +35,32 @@ const Cart: FC<ICartProps> = () => {
       <div className={classNames(cartStyle.content, style.content, style.shadowContainer)}>
         {itemInCart.length > 0 ? (
           <>
+            <div className={titleStyle.title}>
+              <p>Cart page</p>
+            </div>
             <table className={cartStyle.table}>
               <thead className={style.header}>
                 <tr>
                   <th>Name</th>
                   <th>Price</th>
                   <th>Amount</th>
+                  <th>Qauntity</th>
                   <th>Date</th>
                   <th>Platform</th>
                 </tr>
               </thead>
 
               {itemInCart.map(({ ...result }) => (
-                <CartTable key={result.id} dateToString={dateToString} {...result} />
+                <CartItem key={result.id} dateToString={dateToString} totalItemPrice={totalItemPrice} {...result} />
               ))}
             </table>
-            <p>Total price: {calcTotalPrice(itemInCart)}</p>
-            <button className={style.btn} type="button" onClick={buyProducts}>
-              Buy
-            </button>
+            <div className={cartStyle.totals}>
+              <span>Total amount: {cartTotalAmount}$</span>
+              <span>Total number of products: {cartTotalQuantity}</span>
+              <button className={style.btn} type="button" onClick={buyProducts}>
+                Buy
+              </button>
+            </div>
           </>
         ) : (
           <>
@@ -59,7 +68,7 @@ const Cart: FC<ICartProps> = () => {
             <img
               className={cartStyle.img}
               src="https://olsi-trade.ru/local/templates/olsi/img/icon/empty-basket.svg"
-              alt=""
+              alt="empty basket"
             />
           </>
         )}
