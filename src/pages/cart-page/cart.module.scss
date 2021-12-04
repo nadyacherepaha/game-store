@@ -8,8 +8,31 @@
 .cart {
   color: #fff;
 
+  .totals {
+    display: flex;
+    justify-content: center;
+
+    span,
+    button {
+      margin: 20px;
+    }
+  }
+
   .table {
     width: 100%;
+
+    .icon {
+      margin-left: 10px;
+      font-size: 18px;
+      transform: rotate(0);
+      transition: 1s all ease;
+
+      &:hover,
+      &:active,
+      &:focus {
+        transform: rotate(360deg);
+      }
+    }
 
     .header,
     .body {
@@ -26,6 +49,10 @@
       margin-left: 15px;
       background-color: transparent;
       border: 1px solid #ccc;
+
+      .option {
+        color: #000;
+      }
     }
   }
 
