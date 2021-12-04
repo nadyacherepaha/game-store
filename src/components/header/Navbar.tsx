@@ -18,7 +18,7 @@ import { currentUserExists } from "../../services/auth.service";
 const Navbar: FC = () => {
   const { user } = useAppSelector(getUser);
   const { itemInCart } = useAppSelector(getQuantity);
-  const quantity = itemInCart.length;
+  const itemsQuantity = itemInCart.length;
   const { signInUserInLocalStorage } = userSlice.actions;
   const dispatch = useAppDispatch();
 
@@ -75,7 +75,7 @@ const Navbar: FC = () => {
             </NavLink>
             <NavLink className={style.item} to="/cart">
               <FontAwesomeIcon className={style.icon} icon={faShoppingCart} />
-              <span>{quantity || "Cart"}</span>
+              <span>{itemsQuantity || "Cart"}</span>
             </NavLink>
             <button className={style.item} type="button" onClick={onLogout}>
               Logout
