@@ -7,13 +7,14 @@ import { ICard } from "../../types/Card";
 import { useAppSelector, useAppDispatch } from "../../hooks/redux";
 import getQuantity from "../../redux/selectors/cartSelectors";
 import CartItem from "./CartItem";
-import { clearCart, getTotals } from "../../redux/reducers/cartReducer";
+import { cartSlice } from "../../redux/reducers/cartReducer";
 
 export interface ICartProps extends ICard {}
 
 const Cart: FC<ICartProps> = () => {
   const { itemInCart, cartTotalAmount, cartTotalQuantity } = useAppSelector(getQuantity);
   const cart = useAppSelector(getQuantity);
+  const { clearCart, getTotals } = cartSlice.actions;
   const dispatch = useAppDispatch();
   const currentDate = new Date().toDateString();
 

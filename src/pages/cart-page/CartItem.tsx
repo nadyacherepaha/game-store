@@ -6,7 +6,7 @@ import { ICard } from "../../types/Card";
 import style from "./cart.module.scss";
 import mainStyle from "../../styles/main.module.css";
 import { useAppDispatch } from "../../hooks/redux";
-import { removeFromCart, decreaseQuantity, addToCart } from "../../redux/reducers/cartReducer";
+import { cartSlice } from "../../redux/reducers/cartReducer";
 import { playstation, xbox, pc } from "../../constants/category";
 
 export interface ICartProps extends ICard {
@@ -16,6 +16,7 @@ export interface ICartProps extends ICard {
 
 const CartItem: FC<ICartProps> = ({ id, name, price, amount, currentDate, platform, totalItemPrice }) => {
   const dispatch = useAppDispatch();
+  const { removeFromCart, decreaseStuffQuantity, addToCart } = cartSlice.actions;
 
   const onInsreaseQuantity = () => {
     dispatch(addToCart({ id, amount, name, platform, price }));
@@ -23,7 +24,7 @@ const CartItem: FC<ICartProps> = ({ id, name, price, amount, currentDate, platfo
 
   const onDecreaseQuantity = () => {
     if (amount > 1) {
-      dispatch(decreaseQuantity({ id, amount, name, platform, price }));
+      dispatch(decreaseStuffQuantity({ id, amount, name, platform, price }));
     } else {
       dispatch(removeFromCart(id));
     }
@@ -54,7 +55,7 @@ const CartItem: FC<ICartProps> = ({ id, name, price, amount, currentDate, platfo
 
         <td>{currentDate}</td>
         <td>
-          <select className={style.select} name="platform" id="">
+          <select className={style.select} name="platform">
             <option value="all" defaultValue="Select platform" disabled>
               Select platform
             </option>

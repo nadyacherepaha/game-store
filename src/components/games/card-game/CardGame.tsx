@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import style from "./cardGame.module.scss";
 import btnStyle from "../../../styles/main.module.css";
 import { ICard } from "../../../types/Card";
-import { addToCart } from "../../../redux/reducers/cartReducer";
+import { cartSlice } from "../../../redux/reducers/cartReducer";
 
 export interface ICardGameProps extends ICard {
   rating: number;
@@ -25,6 +25,7 @@ const CardGame: FC<ICardGameProps> = ({
   platform,
 }) => {
   const dispatch = useDispatch();
+  const { addToCart } = cartSlice.actions;
 
   const handleClick = (e: Event) => {
     e.stopPropagation();
