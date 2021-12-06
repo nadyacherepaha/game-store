@@ -10,11 +10,11 @@ import { removeFromCart, decreaseQuantity, addToCart } from "../../redux/reducer
 import { playstation, xbox, pc } from "../../constants/category";
 
 export interface ICartProps extends ICard {
-  dateToString: string;
+  currentDate: string;
   totalItemPrice: (price: number, amount: number) => string;
 }
 
-const CartItem: FC<ICartProps> = ({ id, name, price, amount, dateToString, platform, totalItemPrice }) => {
+const CartItem: FC<ICartProps> = ({ id, name, price, amount, currentDate, platform, totalItemPrice }) => {
   const dispatch = useAppDispatch();
 
   const onInsreaseQuantity = () => {
@@ -52,7 +52,7 @@ const CartItem: FC<ICartProps> = ({ id, name, price, amount, dateToString, platf
           </button>
         </td>
 
-        <td>{dateToString}</td>
+        <td>{currentDate}</td>
         <td>
           <select className={style.select} name="platform" id="">
             <option value="all" defaultValue="Select platform" disabled>

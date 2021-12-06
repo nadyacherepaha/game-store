@@ -15,8 +15,7 @@ const Cart: FC<ICartProps> = () => {
   const { itemInCart, cartTotalAmount, cartTotalQuantity } = useAppSelector(getQuantity);
   const cart = useAppSelector(getQuantity);
   const dispatch = useAppDispatch();
-  const date = new Date();
-  const dateToString = date.toDateString();
+  const currentDate = new Date().toDateString();
 
   useEffect(() => {
     dispatch(getTotals());
@@ -51,7 +50,7 @@ const Cart: FC<ICartProps> = () => {
               </thead>
 
               {itemInCart.map(({ ...result }) => (
-                <CartItem key={result.id} dateToString={dateToString} totalItemPrice={totalItemPrice} {...result} />
+                <CartItem key={result.id} currentDate={currentDate} totalItemPrice={totalItemPrice} {...result} />
               ))}
             </table>
             <div className={cartStyle.totals}>
