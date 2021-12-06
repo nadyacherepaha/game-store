@@ -55,7 +55,7 @@ const Cart: FC<ICartProps> = () => {
               ))}
             </table>
             <div className={cartStyle.totals}>
-              <span>Total amount: {cartTotalAmount}$</span>
+              <span>Total amount: {cartTotalAmount.toFixed(2)}$</span>
               <span>Total number of products: {cartTotalQuantity}</span>
               <button className={style.btn} type="button" onClick={onClickBuyProducts}>
                 Buy

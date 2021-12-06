@@ -3,13 +3,13 @@ import { ICard } from "../../types/Card";
 
 interface ICart {
   itemInCart: ICard[];
-  cartTotalAmount: string;
+  cartTotalAmount: number;
   cartTotalQuantity: number;
 }
 
 const initialState: ICart = {
   itemInCart: [],
-  cartTotalAmount: "0",
+  cartTotalAmount: 0,
   cartTotalQuantity: 0,
 };
 
@@ -52,7 +52,7 @@ export const cartSlice = createSlice({
       );
 
       state.cartTotalQuantity = quantity;
-      state.cartTotalAmount = cost.toFixed(2);
+      state.cartTotalAmount = cost;
     },
   },
 });
