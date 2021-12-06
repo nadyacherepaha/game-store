@@ -35,55 +35,53 @@ const CartItem: FC<ICartProps> = ({ id, name, price, amount, currentDate, platfo
   };
 
   return (
-    <tbody className={style.body}>
-      <tr>
-        <td>{name}</td>
-        <td>{price}$</td>
-        <td>{totalItemPrice(price, amount)}$</td>
+    <div className={style.body}>
+      <p>{name}</p>
+      <p>{price}$</p>
+      <p>{totalItemPrice(price, amount)}$</p>
 
-        <td>
-          <button className={classNames(style.btnQuantity, mainStyle.btn)} type="button" onClick={onDecreaseQuantity}>
-            -
-          </button>
+      <p>
+        <button className={classNames(style.btnQuantity, mainStyle.btn)} type="button" onClick={onDecreaseQuantity}>
+          -
+        </button>
 
-          {amount}
+        {amount}
 
-          <button className={classNames(style.btnQuantity, mainStyle.btn)} type="button" onClick={onInsreaseQuantity}>
-            +
-          </button>
-        </td>
+        <button className={classNames(style.btnQuantity, mainStyle.btn)} type="button" onClick={onInsreaseQuantity}>
+          +
+        </button>
+      </p>
 
-        <td>{currentDate}</td>
-        <td>
-          <select className={style.select} name="platform">
-            <option value="all" defaultValue="Select platform" disabled>
-              Select platform
+      <p>{currentDate}</p>
+      <p>
+        <select className={style.select} name="platform">
+          <option value="all" defaultValue="Select platform" disabled>
+            Select platform
+          </option>
+          {platform.pc && (
+            <option className={style.option} value={pc}>
+              {pc}
             </option>
-            {platform.pc && (
-              <option className={style.option} value={pc}>
-                {pc}
-              </option>
-            )}
-            {platform.xbox && (
-              <option className={style.option} value={xbox}>
-                {xbox}
-              </option>
-            )}
-            {platform.playstation && (
-              <option className={style.option} value={playstation}>
-                {playstation}
-              </option>
-            )}
-          </select>
-        </td>
-        <td>
-          <button className={mainStyle.btn} type="button" onClick={onDeleteItem}>
-            Delete item
-            <FontAwesomeIcon className={style.icon} onClick={onDecreaseQuantity} icon={faTrashAlt} />
-          </button>
-        </td>
-      </tr>
-    </tbody>
+          )}
+          {platform.xbox && (
+            <option className={style.option} value={xbox}>
+              {xbox}
+            </option>
+          )}
+          {platform.playstation && (
+            <option className={style.option} value={playstation}>
+              {playstation}
+            </option>
+          )}
+        </select>
+      </p>
+      <p>
+        <button className={mainStyle.btn} type="button" onClick={onDeleteItem}>
+          Delete item
+          <FontAwesomeIcon className={style.icon} onClick={onDecreaseQuantity} icon={faTrashAlt} />
+        </button>
+      </p>
+    </div>
   );
 };
 

@@ -38,22 +38,20 @@ const Cart: FC<ICartProps> = () => {
             <div className={titleStyle.title}>
               <p>Cart page</p>
             </div>
-            <table className={cartStyle.table}>
-              <thead className={style.header}>
-                <tr>
-                  <th>Name</th>
-                  <th>Price</th>
-                  <th>Amount</th>
-                  <th>Qauntity</th>
-                  <th>Date</th>
-                  <th>Platform</th>
-                </tr>
-              </thead>
+            <div className={cartStyle.table}>
+              <div className={cartStyle.header}>
+                <h3>Name</h3>
+                <h3>Price</h3>
+                <h3>Amount</h3>
+                <h3>Qauntity</h3>
+                <h3>Date</h3>
+                <h3>Platform</h3>
+              </div>
 
               {itemInCart.map((result) => (
                 <CartItem key={result.id} currentDate={currentDate} totalItemPrice={totalItemPrice} {...result} />
               ))}
-            </table>
+            </div>
             <div className={cartStyle.totals}>
               <span>Total amount: {cartTotalAmount.toFixed(2)}$</span>
               <span>Total number of products: {cartTotalQuantity}</span>

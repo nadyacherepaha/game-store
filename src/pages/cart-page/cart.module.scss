@@ -36,9 +36,15 @@
 
     .header,
     .body {
-      padding: 15px auto;
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
       border-bottom: 1px solid #fff;
       text-align: center;
+
+      & > h3 {
+        font-size: 18px;
+        padding: 20px 0;
+      }
     }
 
     .select {
@@ -56,9 +62,9 @@
     }
   }
 
-  td,
   p {
     padding: 20px 0;
+    margin: 0;
   }
 
   .btnQuantity {
