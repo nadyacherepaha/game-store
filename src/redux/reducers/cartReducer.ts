@@ -15,7 +15,7 @@ const initialState: ICart = {
 
 const sliceCartName = "cart";
 
-export const cartSlice = createSlice({
+const cartSlice = createSlice({
   name: sliceCartName,
   initialState,
   reducers: {
@@ -57,4 +57,4 @@ export const cartSlice = createSlice({
   },
 });
 
-export default cartSlice.reducer;
+export default cartSlice;

@@ -7,7 +7,7 @@ import { ICard } from "../../types/Card";
 import { useAppSelector, useAppDispatch } from "../../hooks/redux";
 import getQuantity from "../../redux/selectors/cartSelectors";
 import CartItem from "./CartItem";
-import { cartSlice } from "../../redux/reducers/cartReducer";
+import cartSlice from "../../redux/reducers/cartReducer";
 
 export interface ICartProps extends ICard {}
 

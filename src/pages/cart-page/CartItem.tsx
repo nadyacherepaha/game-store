@@ -6,7 +6,7 @@ import { ICard } from "../../types/Card";
 import style from "./cart.module.scss";
 import mainStyle from "../../styles/main.module.css";
 import { useAppDispatch } from "../../hooks/redux";
-import { cartSlice } from "../../redux/reducers/cartReducer";
+import cartSlice from "../../redux/reducers/cartReducer";
 import { playstation, xbox, pc } from "../../constants/category";
 
 export interface ICartProps extends ICard {
