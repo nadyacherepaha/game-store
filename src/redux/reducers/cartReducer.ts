@@ -13,10 +13,10 @@ const initialState: ICart = {
   cartTotalQuantity: 0,
 };
 
-const sliceCart = "cart";
+const sliceCartName = "cart";
 
 export const cartSlice = createSlice({
-  name: sliceCart,
+  name: sliceCartName,
   initialState,
   reducers: {
     addToCart: (state: ICart, action: PayloadAction<ICard>) => {
