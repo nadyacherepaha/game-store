@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Card } from "../../types/Card";
+import { ICard } from "../../types/Card";
 
 interface ICart {
-  itemInCart: Card[];
+  itemInCart: ICard[];
   cartTotalAmount: string;
   cartTotalQuantity: number;
 }
@@ -19,7 +19,7 @@ export const cartSlice = createSlice({
   name: sliceCart,
   initialState,
   reducers: {
-    addToCart: (state: ICart, action: PayloadAction<Card>) => {
+    addToCart: (state: ICart, action: PayloadAction<ICard>) => {
       const cartItem = state.itemInCart.find((item) => item.id === action.payload.id);
       if (cartItem) {
         cartItem.amount++;
@@ -30,7 +30,7 @@ export const cartSlice = createSlice({
     removeFromCart: (state: ICart, action) => {
       state.itemInCart = state.itemInCart.filter((item) => item.id !== action.payload);
     },
-    decreaseQuantity: (state: ICart, action: PayloadAction<Card>) => {
+    decreaseQuantity: (state: ICart, action: PayloadAction<ICard>) => {
       const cartItem = state.itemInCart.find((item) => item.id === action.payload.id);
       cartItem && cartItem.amount--;
     },

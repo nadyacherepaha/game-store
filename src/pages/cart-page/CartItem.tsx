@@ -2,14 +2,14 @@ import React, { FC } from "react";
 import classNames from "classnames";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
-import { Card } from "../../types/Card";
+import { ICard } from "../../types/Card";
 import style from "./cart.module.scss";
 import mainStyle from "../../styles/main.module.css";
 import { useAppDispatch } from "../../hooks/redux";
 import { removeFromCart, decreaseQuantity, addToCart } from "../../redux/reducers/cartReducer";
 import { playstation, xbox, pc } from "../../constants/category";
 
-export interface ICartProps extends Card {
+export interface ICartProps extends ICard {
   dateToString: string;
   totalItemPrice: (price: number, amount: number) => string;
 }

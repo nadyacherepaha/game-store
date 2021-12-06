@@ -5,10 +5,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useDispatch } from "react-redux";
 import style from "./cardGame.module.scss";
 import btnStyle from "../../../styles/main.module.css";
-import { Card } from "../../../types/Card";
+import { ICard } from "../../../types/Card";
 import { addToCart } from "../../../redux/reducers/cartReducer";
 
-export interface ICardGameProps extends Card {
+export interface ICardGameProps extends ICard {
   rating: number;
 }
 

@@ -3,13 +3,13 @@ import classNames from "classnames";
 import style from "../../styles/main.module.css";
 import cartStyle from "./cart.module.scss";
 import titleStyle from "../../components/categories/categories.module.scss";
-import { Card } from "../../types/Card";
+import { ICard } from "../../types/Card";
 import { useAppSelector, useAppDispatch } from "../../hooks/redux";
 import getQuantity from "../../redux/selectors/cartSelectors";
 import CartItem from "./CartItem";
 import { clearCart, getTotals } from "../../redux/reducers/cartReducer";
 
-export interface ICartProps extends Card {}
+export interface ICartProps extends ICard {}
 
 const Cart: FC<ICartProps> = () => {
   const { itemInCart, cartTotalAmount, cartTotalQuantity } = useAppSelector(getQuantity);
