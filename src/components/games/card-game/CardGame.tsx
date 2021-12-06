@@ -2,14 +2,35 @@ import React, { FC } from "react";
 import { Rating } from "react-simple-star-rating";
 import { faPlaystation, faWindows, faXbox } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useDispatch } from "react-redux";
 import style from "./cardGame.module.scss";
 import btnStyle from "../../../styles/main.module.css";
-import { Card } from "../../../types/Card";
+import { ICard } from "../../../types/Card";
+import cartSlice from "../../../redux/reducers/cartReducer";
 
-export interface ICardGameProps extends Card {}
+export interface ICardGameProps extends ICard {
+  rating: number;
+}
 
-const CardGame: FC<ICardGameProps> = ({ alt, name, image, price, description, ageLimit, rating, platform }) => {
-  const onAlert = () => alert("Got product!");
+const CardGame: FC<ICardGameProps> = ({
+  id,
+  amount,
+  alt,
+  name,
+  image,
+  price,
+  description,
+  ageLimit,
+  rating,
+  platform,
+}) => {
+  const dispatch = useDispatch();
+  const { addToCart } = cartSlice.actions;
+
+  const handleClick = (e: Event) => {
+    e.stopPropagation();
+    dispatch(addToCart({ id, amount, name, platform, price }));
+  };
 
   return (
     <>
@@ -34,7 +55,7 @@ const CardGame: FC<ICardGameProps> = ({ alt, name, image, price, description, ag
         <div className={style.back}>
           <span className={style.desc}>{description}</span>
           <span className={style.age}>{ageLimit}+</span>
-          <button type="button" className={btnStyle.btn} onClick={onAlert}>
+          <button type="button" className={btnStyle.btn} onClick={(e) => handleClick(e)}>
             Add to cart
           </button>
         </div>

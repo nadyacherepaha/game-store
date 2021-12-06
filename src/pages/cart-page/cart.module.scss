@@ -1,0 +1,97 @@
+.bgCart {
+  background: url("https://xbox-store-checker.com/assets/upload/game/2021/10/optimize/9pgll77c201j-background.jpg")
+    no-repeat;
+  background-size: cover;
+  padding: 30px 0;
+}
+
+.cart {
+  color: #fff;
+
+  .totals {
+    display: flex;
+    justify-content: center;
+
+    span,
+    button {
+      margin: 20px;
+    }
+  }
+
+  .table {
+    width: 100%;
+
+    .icon {
+      margin-left: 10px;
+      font-size: 18px;
+      transform: rotate(0);
+      transition: 1s all ease;
+
+      &:hover,
+      &:active,
+      &:focus {
+        transform: rotate(360deg);
+      }
+    }
+
+    .header,
+    .body {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      border-bottom: 1px solid #fff;
+      text-align: center;
+
+      & > h3 {
+        font-size: 18px;
+        padding: 20px 0;
+      }
+    }
+
+    .select {
+      color: #fff;
+      flex: 1;
+      padding: 3px 5px;
+      font-size: 1em;
+      margin-left: 15px;
+      background-color: transparent;
+      border: 1px solid #ccc;
+
+      .option {
+        color: #000;
+      }
+    }
+  }
+
+  p {
+    padding: 20px 0;
+    margin: 0;
+  }
+
+  .btnQuantity {
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    margin: 0 5px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .content {
+    max-width: 1200px;
+    height: 100%;
+  }
+
+  .title {
+    padding: 40px 0;
+  }
+
+  .img {
+    vertical-align: middle;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 40px;
+  }
+}
