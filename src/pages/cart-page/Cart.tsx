@@ -23,7 +23,7 @@ const Cart: FC<ICartProps> = () => {
 
   const totalItemPrice = (price: number, amount: number) => Number(price * amount).toFixed(2);
 
-  const buyProducts = () => {
+  const onClickBuyProducts = () => {
     if (window.confirm("Are you sure you want to buy?")) {
       return dispatch(clearCart());
     }
@@ -49,14 +49,14 @@ const Cart: FC<ICartProps> = () => {
                 </tr>
               </thead>
 
-              {itemInCart.map(({ ...result }) => (
+              {itemInCart.map((result) => (
                 <CartItem key={result.id} currentDate={currentDate} totalItemPrice={totalItemPrice} {...result} />
               ))}
             </table>
             <div className={cartStyle.totals}>
               <span>Total amount: {cartTotalAmount}$</span>
               <span>Total number of products: {cartTotalQuantity}</span>
-              <button className={style.btn} type="button" onClick={buyProducts}>
+              <button className={style.btn} type="button" onClick={onClickBuyProducts}>
                 Buy
               </button>
             </div>
