@@ -34,6 +34,9 @@ const CardGame: FC<ICardGameProps> = ({
   const { signInAdminInLocalStorage } = adminSlice.actions;
   const { roleAdmin } = useAppSelector(getAdmin);
 
+  const defaultImage =
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/2048px-No_image_available.svg.png";
+
   const handleClick = (e: Event) => {
     e.stopPropagation();
     dispatch(addToCart({ id, amount, name, platform, price }));
@@ -55,7 +58,7 @@ const CardGame: FC<ICardGameProps> = ({
             {platform?.xbox && <FontAwesomeIcon icon={faXbox} size="1x" />}
           </div>
           <div className={style.image}>
-            <img src={image} alt={alt} />
+            <img src={image || defaultImage} alt={alt} />
           </div>
           <div className={style.info}>
             <p className={style.title}>{name}</p>
