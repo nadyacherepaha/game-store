@@ -171,4 +171,8 @@ export default webpackMockServer.add((app, helper) => {
 
     res.status(200).json({ message: "Password has been updated" });
   });
+  app.post("/product", (_req, res) => {
+    allGames.push(_req.body);
+    res.send(_req.body);
+  });
 });

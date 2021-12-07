@@ -13,4 +13,5 @@ export interface ICard {
     xbox: boolean;
   };
   amount: number;
+  genre?: string;
 }

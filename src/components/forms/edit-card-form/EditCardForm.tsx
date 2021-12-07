@@ -6,6 +6,7 @@ import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
 import Typography from "@mui/material/Typography";
 import classNames from "classnames";
+import axios from "axios";
 import style from "../form.module.scss";
 import formStyle from "./editCardForm.module.scss";
 import FormInput from "../../common/FormInput";
@@ -15,14 +16,35 @@ import AgesField from "./AgesField";
 import RatingField from "./RatingField";
 import PlatformField from "./PlatformField";
 import { ICard } from "../../../types/Card";
+import { BASE_URL } from "../../../utils";
 
 const EditCardForm: FC = () => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = (): void => setOpen(true);
   const handleClose = (): void => setOpen(false);
 
-  const onSubmit = (values: ICard) => {
-    console.log(values);
+  const getRandomNumber = (min: number, max: number) => Math.floor(Math.random() * (max - min + 1) + min);
+  const randomId: number = getRandomNumber(21, 100);
+
+  const onSubmit = async (values: ICard) => {
+    try {
+      await axios.post(`${BASE_URL}/product`, {
+        id: randomId,
+        name: values.name,
+        ageLimit: values.ageLimit,
+        rating: values.rating,
+        price: values.price,
+        genre: values.genre,
+        platform: values.platform,
+        image: values.image,
+        description: values.description,
+        amount: values.amount,
+        alt: values.name,
+      });
+      handleClose();
+    } catch (e) {
+      console.error(e.message);
+    }
   };
 
   const useStyles = makeStyles(() => ({
@@ -54,7 +76,14 @@ const EditCardForm: FC = () => {
           <Typography className={style.title}>Edit card</Typography>
           <Form
             onSubmit={onSubmit}
-            initialValues={{ amount: 1 }}
+            initialValues={{
+              amount: 1,
+              genre: "action",
+              price: 1,
+              rating: 1,
+              age: 3,
+              platform: "",
+            }}
             render={({ handleSubmit, submitting }) => (
               <form className={classNames(formStyle.editForm, style.form)} onSubmit={handleSubmit}>
                 <div>
@@ -69,7 +98,7 @@ const EditCardForm: FC = () => {
                   <Field label="Image" type="text" name="image" component={FormInput} placeholder="Image" />
                 </div>
                 <div>
-                  <Field label="Description" name="deescription" component={TextAreaInput} placeholder="Description" />
+                  <Field label="Description" name="description" component={TextAreaInput} placeholder="Description" />
                 </div>
                 <AgesField />
                 <PlatformField />
