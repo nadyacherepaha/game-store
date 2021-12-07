@@ -18,7 +18,11 @@ const RegistrationForm: FC = () => {
 
   const onSubmit = async (values: IAuthFormValues) => {
     try {
-      const response = await axios.post(`${BASE_URL}/registration`, values);
+      const response = await axios.post(`${BASE_URL}/registration`, {
+        login: values.login,
+        password: values.password,
+        isAdmin: false,
+      });
       alert(response.data.message);
       handleClose();
     } catch (e) {

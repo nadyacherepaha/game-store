@@ -38,6 +38,7 @@ export default webpackMockServer.add((app, helper) => {
     avatar: string;
     username: string;
     description: string;
+    isAdmin: boolean;
   }
 
   interface IPlatform {
@@ -110,6 +111,7 @@ export default webpackMockServer.add((app, helper) => {
     try {
       const { login, password } = _req.body;
       const user = allUsers.find((result) => result.login === login);
+      const admin = user?.isAdmin;
 
       if (!user) {
         return res.status(404).json({ message: "User not found" });
@@ -118,7 +120,7 @@ export default webpackMockServer.add((app, helper) => {
         return res.status(400).json({ message: "Invalid password" });
       }
 
-      return res.json({ login, password });
+      return res.json({ login, password, admin });
     } catch (e) {
       console.log(e);
       res.send({ message: "Server error" });
