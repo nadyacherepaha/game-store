@@ -14,6 +14,7 @@ import getUser from "../../redux/selectors/authSelectors";
 import getQuantity from "../../redux/selectors/cartSelectors";
 import { userSlice } from "../../redux/reducers/userReducer";
 import { currentUserExists } from "../../services/auth.service";
+import { deleteAdminFromLocalStorage } from "../../redux/actions/adminActions";
 
 const Navbar: FC = () => {
   const { user } = useAppSelector(getUser);
@@ -32,6 +33,7 @@ const Navbar: FC = () => {
   }, []);
 
   const onLogout = () => {
+    dispatch(deleteAdminFromLocalStorage());
     dispatch(deleteUserFromLocalStorage());
     history.push("/home");
   };
