@@ -75,7 +75,7 @@ const CardGame: FC<ICardGameProps> = ({
             <button type="button" className={btnStyle.btn} onClick={(e) => handleClick(e)}>
               Add to cart
             </button>
-            {roleAdmin ? <EditCardForm /> : null}
+            {roleAdmin && <EditCardForm id={id} display="editCard" buttonName="Edit" />}
           </div>
         </div>
       </div>
