@@ -30,6 +30,13 @@ export default webpackMockServer.add((app, helper) => {
     description: string;
     ageLimit: number;
     alt: string;
+    amount: number;
+  }
+
+  interface INewGame extends IGame {
+    playstation: boolean;
+    pc: boolean;
+    xbox: boolean;
   }
 
   interface IUser {
@@ -183,6 +190,28 @@ export default webpackMockServer.add((app, helper) => {
     allGames.push({ id, image, description, amount, price, name, rating, genre, ageLimit, alt, platform });
     res.status(200).json({ message: "Game was create" });
     res.send(_req.body);
+  });
+  app.put("/product", (_req, res) => {
+    const { id, image, description, amount, price, name, rating, genre, ageLimit, alt, pc, playstation, xbox } =
+      _req.body as INewGame;
+    const platform: IPlatform = { pc, playstation, xbox };
+    const existingGame = allGames.findIndex((result) => result.id === +id);
+
+    allGames[existingGame] = {
+      id: +id,
+      name,
+      ageLimit,
+      alt,
+      amount,
+      price,
+      rating,
+      platform,
+      description,
+      genre,
+      image,
+    };
+    res.status(200).json({ message: "Game was update" });
+    res.json({ id, image, description, amount, price, name, rating, genre, ageLimit, alt, platform });
   });
   app.delete("/product/:id", (_req, res) => {
     const { id } = _req.params;
