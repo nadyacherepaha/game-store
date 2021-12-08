@@ -18,15 +18,27 @@ import PlatformField from "./PlatformField";
 import { ICard } from "../../../types/Card";
 import { BASE_URL } from "../../../utils";
 
-const EditCardForm: FC = () => {
+interface IValueEditForm extends ICard {
+  pc: boolean;
+  playstation: boolean;
+  xbox: boolean;
+}
+
+interface IEditCardForm {
+  id: number;
+  buttonName: string;
+  display: string;
+}
+
+const EditCardForm: FC<IEditCardForm> = ({ id, buttonName, display }) => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = (): void => setOpen(true);
   const handleClose = (): void => setOpen(false);
 
   const getRandomNumber = (min: number, max: number) => Math.floor(Math.random() * (max - min + 1) + min);
-  const randomId: number = getRandomNumber(21, 100);
+  const randomId: number = getRandomNumber(100, 120);
 
-  const onSubmit = async (values: ICard) => {
+  const onSubmit = async (values: IValueEditForm) => {
     try {
       await axios.post(`${BASE_URL}/product`, {
         id: randomId,
@@ -35,27 +47,62 @@ const EditCardForm: FC = () => {
         rating: values.rating,
         price: values.price,
         genre: values.genre,
-        platform: values.platform,
+        pc: values.pc,
+        xbox: values.xbox,
+        playstation: values.playstation,
         image: values.image,
         description: values.description,
         amount: values.amount,
         alt: values.name,
       });
       handleClose();
-    } catch (e) {
-      console.error(e.message);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const onDeleteCard = async () => {
+    try {
+      await axios.delete(`${BASE_URL}/product/${id}`);
+      handleClose();
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const onUpdateCard = async (values: IValueEditForm) => {
+    try {
+      await axios.put(`${BASE_URL}/product`, {
+        id,
+        name: values.name,
+        ageLimit: values.ageLimit,
+        rating: values.rating,
+        price: values.price,
+        genre: values.genre,
+        pc: values.pc,
+        xbox: values.xbox,
+        playstation: values.playstation,
+        image: values.image,
+        description: values.description,
+        amount: values.amount,
+        alt: values.name,
+      });
+      handleClose();
+    } catch (error) {
+      console.error(error);
     }
   };
 
   const useStyles = makeStyles(() => ({
     root: {
       "&.MuiButtonBase-root": {
+        zIndex: 1,
         backgroundColor: "#9933cc",
         color: "#fff",
         fontFamily: "Arial, sans-serif",
         textTransform: "none",
         fontSize: "16px",
-        padding: "0",
+        padding: "0 10px",
         transition: "all 1s ease",
         "&:hover, &:active, &:focus": {
           backgroundColor: "#60257c",
@@ -69,22 +116,25 @@ const EditCardForm: FC = () => {
   return (
     <>
       <Button className={btnStyle.root} onClick={handleOpen}>
-        Edit
+        {buttonName}
       </Button>
       <Modal open={open} onClose={handleClose}>
         <Box className={style.box}>
           <Typography className={style.title}>Edit card</Typography>
           <Form
             onSubmit={onSubmit}
+            onClick={onUpdateCard}
             initialValues={{
               amount: 1,
               genre: "action",
               price: 1,
               rating: 1,
-              age: 3,
-              platform: "",
+              ageLimit: 3,
+              pc: false,
+              playstation: false,
+              xbox: false,
             }}
-            render={({ handleSubmit, submitting }) => (
+            render={({ handleSubmit, submitting, values }) => (
               <form className={classNames(formStyle.editForm, style.form)} onSubmit={handleSubmit}>
                 <div>
                   <Field label="Name" type="text" name="name" component={FormInput} placeholder="Name" />
@@ -103,10 +153,21 @@ const EditCardForm: FC = () => {
                 <AgesField />
                 <PlatformField />
                 <div className={style.buttons}>
-                  <button type="submit" disabled={submitting}>
-                    Submit
-                  </button>
-                  <button type="submit">Delete card</button>
+                  {display === "editCard" && (
+                    <>
+                      <button type="button" onClick={() => onUpdateCard(values)}>
+                        Update
+                      </button>
+                      <button type="button" onClick={onDeleteCard}>
+                        Delete
+                      </button>
+                    </>
+                  )}
+                  {display === "createCard" && (
+                    <button type="submit" disabled={submitting}>
+                      Submit
+                    </button>
+                  )}
                 </div>
               </form>
             )}
