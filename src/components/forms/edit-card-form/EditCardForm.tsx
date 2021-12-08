@@ -62,11 +62,13 @@ const EditCardForm: FC<IEditCardForm> = ({ id, buttonName, display }) => {
   };
 
   const onDeleteCard = async () => {
-    try {
-      await axios.delete(`${BASE_URL}/product/${id}`);
-      handleClose();
-    } catch (error) {
-      console.error(error);
+    if (window.confirm("Are you sure you want to delete the product?")) {
+      try {
+        await axios.delete(`${BASE_URL}/product/${id}`);
+        handleClose();
+      } catch (error) {
+        console.error(error);
+      }
     }
   };
 
