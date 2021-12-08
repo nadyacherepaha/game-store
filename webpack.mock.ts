@@ -172,7 +172,16 @@ export default webpackMockServer.add((app, helper) => {
     res.status(200).json({ message: "Password has been updated" });
   });
   app.post("/product", (_req, res) => {
-    allGames.push(_req.body);
+    const { id, image, description, amount, price, name, rating, genre, ageLimit, alt, pc, playstation, xbox } =
+      _req.body as INewGame;
+    const platform: IPlatform = { pc, playstation, xbox };
+    const existingGame = allGames.filter((result) => result.id === id);
+
+    if (!existingGame) {
+      res.status(400).json({ message: `Game with login ${id} already exist` });
+    }
+    allGames.push({ id, image, description, amount, price, name, rating, genre, ageLimit, alt, platform });
+    res.status(200).json({ message: "Game was create" });
     res.send(_req.body);
   });
   app.delete("/product/:id", (_req, res) => {
