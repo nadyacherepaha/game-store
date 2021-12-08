@@ -175,4 +175,11 @@ export default webpackMockServer.add((app, helper) => {
     allGames.push(_req.body);
     res.send(_req.body);
   });
+  app.delete("/product/:id", (_req, res) => {
+    const { id } = _req.params;
+
+    const existingGame = allGames.findIndex((result) => result.id === +id);
+    allGames.splice(existingGame, 1);
+    res.status(200).json({ message: "Game was deleted" });
+  });
 });
