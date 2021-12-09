@@ -9,9 +9,8 @@ import { ICard } from "../../../types/Card";
 import cartSlice from "../../../redux/reducers/cartReducer";
 import { useAppSelector } from "../../../hooks/redux";
 import getAdmin from "../../../redux/selectors/adminSelectors";
-import EditCardForm from "../../forms/edit-card-form/EditCardForm";
-import { adminRoleExist } from "../../../services/auth.service";
 import EditCardForm, { displayButtonEditCard } from "../../forms/edit-card-form/EditCardForm";
+import { getAdminRole } from "../../../services/auth.service";
 import adminSlice from "../../../redux/reducers/adminReducer";
 
 export interface ICardGameProps extends ICard {
@@ -44,7 +43,7 @@ const CardGame: FC<ICardGameProps> = ({
   };
 
   useEffect(() => {
-    if (adminRoleExist()) {
+    if (getAdminRole()) {
       dispatch(signInAdminInLocalStorage());
     }
   }, []);
