@@ -17,6 +17,6 @@ export const adminLogin = (isAdmin: string) => {
   localStorage.setItem(adminRoleKey, isAdmin);
 };
 
-export const adminRoleExist = () => localStorage.getItem(checkAdminRoleExistance);
+export const getAdminRole = () => localStorage.getItem(adminRoleKey);
 export const currentUserExists = (): boolean => !!localStorage.getItem(userKey);
 export const getCurrentUser = () => localStorage.getItem(userKey);
