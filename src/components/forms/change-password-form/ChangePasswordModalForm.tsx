@@ -8,7 +8,7 @@ import Typography from "@mui/material/Typography";
 import style from "../../profile/profileImage.module.scss";
 import mainStyle from "../../../styles/main.module.css";
 import styleForm from "../form.module.scss";
-import { BASE_URL } from "../../../utils";
+import { BASE_URL } from "../../../constants/baseUrl";
 import FormInput from "../../common/FormInput";
 import { IUserProfile } from "../../../types/UserProfile";
 import { validateRegistrationForm } from "../validateForms";

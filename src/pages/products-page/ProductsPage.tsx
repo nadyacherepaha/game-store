@@ -8,7 +8,7 @@ import categoryStyle from "../../components/categories/categories.module.scss";
 import FilterForm from "../../components/forms/filter-form/FilterForm";
 import SearchResult from "../../components/search/SearchResult";
 import { IFilterFormValues, initialSearchPanelFilterValues } from "../../types/FilterForm";
-import { BASE_URL } from "../../utils";
+import { BASE_URL } from "../../constants/baseUrl";
 import CardGame, { ICardGameProps } from "../../components/games/card-game/CardGame";
 import { playstation, xbox, pc } from "../../constants/category";
 import EditCardForm, { displayButtonCreateCard } from "../../components/forms/edit-card-form/EditCardForm";

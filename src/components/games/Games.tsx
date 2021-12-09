@@ -1,6 +1,6 @@
 import React, { FC, Fragment } from "react";
 import styles from "../categories/categories.module.scss";
-import { BASE_URL } from "../../utils";
+import { BASE_URL } from "../../constants/baseUrl";
 import style from "./card-game/cardGame.module.scss";
 import CardGame from "./card-game/CardGame";
 

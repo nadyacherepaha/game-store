@@ -8,7 +8,7 @@ import { Form, Field } from "react-final-form";
 import style from "../form.module.scss";
 import FormInput from "../../common/FormInput";
 import { validateLoginForm } from "../validateForms";
-import { BASE_URL } from "../../../utils";
+import { BASE_URL } from "../../../constants/baseUrl";
 import { IAuthFormValues } from "../../../types/User";
 import { writeUserToLocalStorage } from "../../../redux/actions/userActions";
 import { useAppDispatch } from "../../../hooks/redux";

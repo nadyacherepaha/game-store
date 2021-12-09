@@ -8,7 +8,7 @@ import Typography from "@mui/material/Typography";
 import style from "../form.module.scss";
 import FormInput from "../../common/FormInput";
 import { validateRegistrationForm } from "../validateForms";
-import { BASE_URL } from "../../../utils";
+import { BASE_URL } from "../../../constants/baseUrl";
 import { IAuthFormValues } from "../../../types/User";
 
 const RegistrationForm: FC = () => {

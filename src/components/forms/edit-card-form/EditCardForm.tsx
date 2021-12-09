@@ -15,7 +15,8 @@ import AgesField from "./AgesField";
 import RatingField from "./RatingField";
 import PlatformField from "./PlatformField";
 import { IBaseCard } from "../../../types/Card";
-import { BASE_URL, getRandomNumber } from "../../../utils";
+import { getRandomNumber } from "../../../utils";
+import { BASE_URL } from "../../../constants/baseUrl";
 
 interface IValueEditForm extends IBaseCard {
   pc: boolean;

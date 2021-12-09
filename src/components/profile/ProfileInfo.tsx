@@ -5,7 +5,7 @@ import classNames from "classnames";
 import style from "./profileImage.module.scss";
 import mainStyle from "../../styles/main.module.css";
 import styleForm from "../forms/form.module.scss";
-import { BASE_URL } from "../../utils";
+import { BASE_URL } from "../../constants/baseUrl";
 import FormInput from "../common/FormInput";
 import TextAreaInput from "../common/TextAreaInput";
 import { IUserProfile } from "../../types/UserProfile";

@@ -1,7 +1,7 @@
 import React, { FC, useState, useEffect } from "react";
 import classNames from "classnames";
 import style from "../../styles/main.module.css";
-import { BASE_URL } from "../../utils";
+import { BASE_URL } from "../../constants/baseUrl";
 import ProfileInfo from "../../components/profile/ProfileInfo";
 import { IUserProfile } from "../../types/UserProfile";
 import { getCurrentUser } from "../../services/auth.service";
