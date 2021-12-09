@@ -15,7 +15,7 @@ import AgesField from "./AgesField";
 import RatingField from "./RatingField";
 import PlatformField from "./PlatformField";
 import { ICard } from "../../../types/Card";
-import { BASE_URL } from "../../../utils";
+import { BASE_URL, getRandomNumber } from "../../../utils";
 
 interface IValueEditForm extends ICard {
   pc: boolean;
@@ -33,9 +33,7 @@ const EditCardForm: FC<IEditCardForm> = ({ id, buttonName, display }) => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = (): void => setOpen(true);
   const handleClose = (): void => setOpen(false);
-
-  const getRandomNumber = (min: number, max: number) => Math.floor(Math.random() * (max - min + 1) + min);
-  const randomId: number = getRandomNumber(100, 120);
+  const randomId: number = getRandomNumber(21, 120);
 
   const onSubmit = async (values: IValueEditForm) => {
     try {
