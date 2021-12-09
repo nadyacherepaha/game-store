@@ -11,7 +11,7 @@ import { IFilterFormValues, initialSearchPanelFilterValues } from "../../types/F
 import { BASE_URL } from "../../utils";
 import CardGame, { ICardGameProps } from "../../components/games/card-game/CardGame";
 import { playstation, xbox, pc } from "../../constants/category";
-import EditCardForm from "../../components/forms/edit-card-form/EditCardForm";
+import EditCardForm, { displayButtonCreateCard } from "../../components/forms/edit-card-form/EditCardForm";
 import { useAppSelector } from "../../hooks/redux";
 import getAdmin from "../../redux/selectors/adminSelectors";
 
@@ -57,7 +57,7 @@ const ProductsPage: FC = () => {
   return (
     <div className={mainStyle.wrapperProducts}>
       <SearchResult />
-      {roleAdmin && <EditCardForm display="createCard" id={1} buttonName="Create card" />}
+      {roleAdmin && <EditCardForm display={displayButtonCreateCard} buttonTitle="Create card" />}
       <div className={classNames(mainStyle.content, mainStyle.grid)}>
         <FilterForm getFilteredResult={getFilteredResult} />
         <div className={classNames(cardStyle.cards, categoryStyle.padding)}>

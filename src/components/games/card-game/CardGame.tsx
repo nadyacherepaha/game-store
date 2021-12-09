@@ -11,6 +11,7 @@ import { useAppSelector } from "../../../hooks/redux";
 import getAdmin from "../../../redux/selectors/adminSelectors";
 import EditCardForm from "../../forms/edit-card-form/EditCardForm";
 import { adminRoleExist } from "../../../services/auth.service";
+import EditCardForm, { displayButtonEditCard } from "../../forms/edit-card-form/EditCardForm";
 import adminSlice from "../../../redux/reducers/adminReducer";
 
 export interface ICardGameProps extends ICard {
@@ -75,7 +76,7 @@ const CardGame: FC<ICardGameProps> = ({
             <button type="button" className={btnStyle.btn} onClick={(e) => handleClick(e)}>
               Add to cart
             </button>
-            {roleAdmin && <EditCardForm id={id} display="editCard" buttonName="Edit" />}
+            {roleAdmin && <EditCardForm id={id} display={displayButtonEditCard} buttonTitle="Edit" />}
           </div>
         </div>
       </div>

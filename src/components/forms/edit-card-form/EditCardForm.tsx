@@ -28,6 +28,8 @@ interface IEditCardForm {
   buttonTitle: string;
   display: string;
 }
+export const displayButtonEditCard = "editCard";
+export const displayButtonCreateCard = "createCard";
 
 const EditCardForm: FC<IEditCardForm | undefined> = ({ id, buttonTitle, display }) => {
   const [open, setOpen] = React.useState<boolean>(false);
@@ -104,7 +106,7 @@ const EditCardForm: FC<IEditCardForm | undefined> = ({ id, buttonTitle, display 
                 <AgesField />
                 <PlatformField />
                 <div className={style.buttons}>
-                  {display === "editCard" && (
+                  {display === displayButtonEditCard && (
                     <>
                       <button type="button" onClick={() => onUpdateCard(values)}>
                         Update
@@ -114,7 +116,7 @@ const EditCardForm: FC<IEditCardForm | undefined> = ({ id, buttonTitle, display 
                       </button>
                     </>
                   )}
-                  {display === "createCard" && (
+                  {display === displayButtonCreateCard && (
                     <button type="submit" disabled={submitting}>
                       Submit
                     </button>
