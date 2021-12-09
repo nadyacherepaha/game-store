@@ -118,7 +118,6 @@ export default webpackMockServer.add((app, helper) => {
     try {
       const { login, password } = _req.body;
       const user = allUsers.find((result) => result.login === login);
-      const admin = user?.isAdmin;
 
       if (!user) {
         return res.status(404).json({ message: "User not found" });
@@ -189,7 +188,6 @@ export default webpackMockServer.add((app, helper) => {
       res.status(400).json({ message: `Game with login ${id} already exist` });
     }
     allGames.push({ id, image, description, amount, price, name, rating, genre, ageLimit, alt, platform });
-    res.status(200).json({ message: "Game was create" });
     res.send(_req.body);
   });
   app.put("/product", (_req, res) => {
