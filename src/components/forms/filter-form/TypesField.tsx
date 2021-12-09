@@ -1,15 +1,17 @@
 import React from "react";
 import { Field } from "react-final-form";
-import SelectInput from "../../common/SelectInput";
+import SelectInput, { ISelectedItem } from "../../common/SelectInput";
 import style from "../form.module.scss";
 import { Types } from "../../../constants/filterFormEnum";
 
+const items: ISelectedItem[] = [
+  { key: 1, value: Types.Ascending },
+  { key: 2, value: Types.Descending },
+];
+
 const TypesField: React.FC = () => (
   <div className={style.select}>
-    <Field title="Type" name="type" component={SelectInput}>
-      <option value={Types.Ascending}>Ascending</option>
-      <option value={Types.Descending}>Descending</option>
-    </Field>
+    <Field title="Type" name="type" items={items} component={SelectInput} />
   </div>
 );
 
