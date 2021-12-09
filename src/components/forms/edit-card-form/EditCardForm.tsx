@@ -40,21 +40,7 @@ const EditCardForm: FC<IEditCardForm> = ({ id, buttonName, display }) => {
 
   const onSubmit = async (values: IValueEditForm) => {
     try {
-      await axios.post(`${BASE_URL}/product`, {
-        id: randomId,
-        name: values.name,
-        ageLimit: values.ageLimit,
-        rating: values.rating,
-        price: values.price,
-        genre: values.genre,
-        pc: values.pc,
-        xbox: values.xbox,
-        playstation: values.playstation,
-        image: values.image,
-        description: values.description,
-        amount: values.amount,
-        alt: values.name,
-      });
+      await axios.post(`${BASE_URL}/product`, { ...values, id: randomId });
       handleClose();
     } catch (error) {
       console.error(error);
@@ -74,21 +60,7 @@ const EditCardForm: FC<IEditCardForm> = ({ id, buttonName, display }) => {
 
   const onUpdateCard = async (values: IValueEditForm) => {
     try {
-      await axios.put(`${BASE_URL}/product`, {
-        id,
-        name: values.name,
-        ageLimit: values.ageLimit,
-        rating: values.rating,
-        price: values.price,
-        genre: values.genre,
-        pc: values.pc,
-        xbox: values.xbox,
-        playstation: values.playstation,
-        image: values.image,
-        description: values.description,
-        amount: values.amount,
-        alt: values.name,
-      });
+      await axios.put(`${BASE_URL}/product`, { ...values, id });
       handleClose();
     } catch (error) {
       console.error(error);
