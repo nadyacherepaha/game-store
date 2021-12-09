@@ -24,13 +24,13 @@ interface IValueEditForm extends ICard {
 }
 
 interface IEditCardForm {
-  id: number;
-  buttonName: string;
+  id?: number;
+  buttonTitle: string;
   display: string;
 }
 
-const EditCardForm: FC<IEditCardForm> = ({ id, buttonName, display }) => {
-  const [open, setOpen] = React.useState(false);
+const EditCardForm: FC<IEditCardForm | undefined> = ({ id, buttonTitle, display }) => {
+  const [open, setOpen] = React.useState<boolean>(false);
   const handleOpen = (): void => setOpen(true);
   const handleClose = (): void => setOpen(false);
   const randomId: number = getRandomNumber(21, 120);
