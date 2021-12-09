@@ -126,6 +126,7 @@ export default webpackMockServer.add((app, helper) => {
       if (password !== user.password) {
         return res.status(400).json({ message: "Invalid password" });
       }
+      const admin = user?.isAdmin;
 
       return res.json({ login, password, admin });
     } catch (e) {
@@ -182,9 +183,9 @@ export default webpackMockServer.add((app, helper) => {
     const { id, image, description, amount, price, name, rating, genre, ageLimit, alt, pc, playstation, xbox } =
       _req.body as INewGame;
     const platform: IPlatform = { pc, playstation, xbox };
-    const existingGame = allGames.filter((result) => result.id === id);
+    const existingGame = allGames.find((result) => result.id === id);
 
-    if (!existingGame) {
+    if (existingGame) {
       res.status(400).json({ message: `Game with login ${id} already exist` });
     }
     allGames.push({ id, image, description, amount, price, name, rating, genre, ageLimit, alt, platform });
