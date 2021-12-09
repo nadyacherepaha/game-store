@@ -14,10 +14,10 @@ import GenresField from "./GenresField";
 import AgesField from "./AgesField";
 import RatingField from "./RatingField";
 import PlatformField from "./PlatformField";
-import { ICard } from "../../../types/Card";
+import { IBaseCard } from "../../../types/Card";
 import { BASE_URL, getRandomNumber } from "../../../utils";
 
-interface IValueEditForm extends ICard {
+interface IValueEditForm extends IBaseCard {
   pc: boolean;
   playstation: boolean;
   xbox: boolean;
@@ -39,7 +39,9 @@ const EditCardForm: FC<IEditCardForm | undefined> = ({ id, buttonTitle, display 
 
   const onSubmit = async (values: IValueEditForm) => {
     try {
-      await axios.post(`${BASE_URL}/product`, { ...values, id: randomId });
+      const { pc, xbox, playstation } = values;
+      const platformValues = { pc, xbox, playstation };
+      await axios.post(`${BASE_URL}/product`, { ...values, platform: platformValues, id: randomId });
       handleClose();
     } catch (error) {
       console.error(error);
@@ -59,7 +61,9 @@ const EditCardForm: FC<IEditCardForm | undefined> = ({ id, buttonTitle, display 
 
   const onUpdateCard = async (values: IValueEditForm) => {
     try {
-      await axios.put(`${BASE_URL}/product`, { ...values, id });
+      const { pc, xbox, playstation } = values;
+      const platformValues = { pc, xbox, playstation };
+      await axios.put(`${BASE_URL}/product`, { ...values, platform: platformValues, id });
       handleClose();
     } catch (error) {
       console.error(error);
