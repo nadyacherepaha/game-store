@@ -52,7 +52,7 @@ export default webpackMockServer.add((app, helper) => {
     platform: { xbox: boolean; playstation: boolean; pc: boolean };
   }
 
-  const allGames: IGame[] = JSON.parse(fs.readFileSync(nodePath.join(__dirname, "./data/games.json"), "utf-8"));
+  let allGames: IGame[] = JSON.parse(fs.readFileSync(nodePath.join(__dirname, "./data/games.json"), "utf-8"));
   const allUsers: IUser[] = JSON.parse(fs.readFileSync(nodePath.join(__dirname, "./data/users.json"), "utf-8"));
   const platforms = ["xbox", "pc", "playstation"];
 
@@ -213,8 +213,7 @@ export default webpackMockServer.add((app, helper) => {
   app.delete("/product/:id", (_req, res) => {
     const { id } = _req.params;
 
-    const existingGame = allGames.findIndex((result) => result.id === +id);
-    allGames.splice(existingGame, 1);
+    allGames = allGames.filter((result) => result.id !== +id);
     res.status(200).json({ message: "Game was deleted" });
   });
 });
