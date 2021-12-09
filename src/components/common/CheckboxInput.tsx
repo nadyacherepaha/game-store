@@ -2,12 +2,12 @@ import React from "react";
 import { FieldRenderProps } from "react-final-form";
 
 interface ICheckboxInput extends FieldRenderProps<boolean> {
-  label: string;
+  title: string;
 }
 
-const CheckboxInput: React.FC<ICheckboxInput> = ({ label, input: { value, ...input } }: ICheckboxInput) => (
+const CheckboxInput: React.FC<ICheckboxInput> = ({ title, input: { value, ...input } }: ICheckboxInput) => (
   <>
-    <label>{label}</label>
+    <span>{title}</span>
     <input {...input} type="checkbox" checked={value} />
   </>
 );

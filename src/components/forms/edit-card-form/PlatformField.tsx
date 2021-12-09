@@ -8,9 +8,9 @@ const PlatformField: FC = () => (
   <div className={style.platform}>
     <p>Platform</p>
     <div className={style.field}>
-      <Field label="PC" name={pc} component={CheckboxInput} type="checkbox" />
-      <Field label="PlayStation 5" name={playstation} component={CheckboxInput} type="checkbox" />
-      <Field label="XBox One" name={xbox} component={CheckboxInput} type="checkbox" />
+      <Field title="PC" name={pc} component={CheckboxInput} type="checkbox" />
+      <Field title="PlayStation 5" name={playstation} component={CheckboxInput} type="checkbox" />
+      <Field title="XBox One" name={xbox} component={CheckboxInput} type="checkbox" />
     </div>
   </div>
 );
