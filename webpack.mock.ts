@@ -196,9 +196,9 @@ export default webpackMockServer.add((app, helper) => {
     const { id, image, description, amount, price, name, rating, genre, ageLimit, alt, pc, playstation, xbox } =
       _req.body as INewGame;
     const platform: IPlatform = { pc, playstation, xbox };
-    const existingGame = allGames.findIndex((result) => result.id === +id);
+    const existingGameIndex = allGames.findIndex((result) => result.id === +id);
 
-    allGames[existingGame] = {
+    allGames[existingGameIndex] = {
       id: +id,
       name,
       ageLimit,
@@ -212,7 +212,7 @@ export default webpackMockServer.add((app, helper) => {
       image,
     };
     res.status(200).json({ message: "Game was update" });
-    res.json({ id, image, description, amount, price, name, rating, genre, ageLimit, alt, platform });
+    res.json(allGames[existingGameIndex]);
   });
   app.delete("/product/:id", (_req, res) => {
     const { id } = _req.params;
