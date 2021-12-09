@@ -179,9 +179,8 @@ export default webpackMockServer.add((app, helper) => {
     res.status(200).json({ message: "Password has been updated" });
   });
   app.post("/product", (_req, res) => {
-    const { id, image, description, amount, price, name, rating, genre, ageLimit, alt, pc, playstation, xbox } =
+    const { id, image, description, amount, price, name, rating, genre, ageLimit, alt, platform } =
       _req.body as INewGame;
-    const platform: IPlatform = { pc, playstation, xbox };
     const existingGame = allGames.find((result) => result.id === id);
 
     if (existingGame) {
@@ -191,9 +190,8 @@ export default webpackMockServer.add((app, helper) => {
     res.send(_req.body);
   });
   app.put("/product", (_req, res) => {
-    const { id, image, description, amount, price, name, rating, genre, ageLimit, alt, pc, playstation, xbox } =
+    const { id, image, description, amount, price, name, rating, genre, ageLimit, alt, platform } =
       _req.body as INewGame;
-    const platform: IPlatform = { pc, playstation, xbox };
     const existingGameIndex = allGames.findIndex((result) => result.id === +id);
 
     allGames[existingGameIndex] = {
