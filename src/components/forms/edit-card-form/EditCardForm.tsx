@@ -1,6 +1,5 @@
 import React, { FC } from "react";
 import { Form, Field } from "react-final-form";
-import { makeStyles } from "@mui/styles";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
@@ -67,30 +66,10 @@ const EditCardForm: FC<IEditCardForm> = ({ id, buttonName, display }) => {
     }
   };
 
-  const useStyles = makeStyles(() => ({
-    root: {
-      "&.MuiButtonBase-root": {
-        zIndex: 1,
-        backgroundColor: "#9933cc",
-        color: "#fff",
-        fontFamily: "Arial, sans-serif",
-        textTransform: "none",
-        fontSize: "16px",
-        padding: "0 10px",
-        transition: "all 1s ease",
-        "&:hover, &:active, &:focus": {
-          backgroundColor: "#60257c",
-        },
-      },
-    },
-  }));
-
-  const btnStyle = useStyles();
-
   return (
     <>
-      <Button className={btnStyle.root} onClick={handleOpen}>
-        {buttonName}
+      <Button classes={{ root: formStyle.btn }} onClick={handleOpen}>
+        {buttonTitle}
       </Button>
       <Modal open={open} onClose={handleClose}>
         <Box className={style.box}>
