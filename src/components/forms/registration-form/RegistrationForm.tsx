@@ -26,7 +26,7 @@ const RegistrationForm: FC = () => {
       alert(response.data.message);
       handleClose();
     } catch (e) {
-      console.error(e.message);
+      console.error(e);
     }
   };
 
@@ -40,6 +40,7 @@ const RegistrationForm: FC = () => {
           <Typography className={style.title}>Registration</Typography>
           <Form
             onSubmit={onSubmit}
+            subscription={{ submitting: true }}
             validate={validateRegistrationForm}
             render={({ handleSubmit, form, submitting, pristine }) => (
               <form className={style.form} onSubmit={handleSubmit}>

@@ -31,7 +31,7 @@ const LoginForm: FC = () => {
       }
       handleClose();
     } catch (e) {
-      console.error(e.message);
+      console.error(e);
     }
   };
 
@@ -45,6 +45,7 @@ const LoginForm: FC = () => {
           <Typography className={style.title}>Authorization</Typography>
           <Form
             onSubmit={onSubmit}
+            subscription={{ submitting: true }}
             validate={validateLoginForm}
             render={({ handleSubmit, submitting }) => (
               <form className={style.form} onSubmit={handleSubmit}>
