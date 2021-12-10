@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { Field } from "react-final-form";
 import style from "../form.module.scss";
 import { Ages } from "../../../constants/filterFormEnum";
@@ -32,4 +32,4 @@ const AgesField: React.FC = () => (
   </div>
 );
 
-export default AgesField;
+export default memo(AgesField);

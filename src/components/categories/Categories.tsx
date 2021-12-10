@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, memo } from "react";
 import style from "./categories.module.scss";
 import CategoryItem from "./category-item/CategoryItem";
 
@@ -13,4 +13,4 @@ const Categories: FC = () => (
   </div>
 );
 
-export default Categories;
+export default memo(Categories);

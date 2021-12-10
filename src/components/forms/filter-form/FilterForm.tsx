@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { Form } from "react-final-form";
 import classNames from "classnames";
 import style from "../form.module.scss";
@@ -23,4 +23,4 @@ const FilterForm: React.FC<IFilterFormProps> = ({ getFilteredResult }) => (
   />
 );
 
-export default FilterForm;
+export default memo(FilterForm);

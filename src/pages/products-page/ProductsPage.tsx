@@ -1,4 +1,4 @@
-import React, { FC, Fragment, useState, useEffect } from "react";
+import React, { FC, Fragment, useState, useEffect, memo, useMemo } from "react";
 import classNames from "classnames";
 import { CircularProgress } from "@mui/material";
 import { useParams } from "react-router";
@@ -78,4 +78,4 @@ const ProductsPage: FC = () => {
   );
 };
 
-export default ProductsPage;
+export default memo(ProductsPage);

@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect } from "react";
+import React, { FC, useState, useEffect, memo } from "react";
 import classNames from "classnames";
 import style from "../../styles/main.module.css";
 import { BASE_URL } from "../../constants/baseUrl";
@@ -37,4 +37,4 @@ const Profile: FC = () => {
   );
 };
 
-export default Profile;
+export default memo(Profile);

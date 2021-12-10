@@ -1,4 +1,4 @@
-import React, { FC, Fragment } from "react";
+import React, { FC, Fragment, memo } from "react";
 import debounce from "lodash.debounce";
 import { BASE_URL } from "../../constants/baseUrl";
 import SearchInput from "./SearchInput";
@@ -54,4 +54,4 @@ const SearchResult: FC = () => {
   );
 };
 
-export default SearchResult;
+export default memo(SearchResult);

@@ -44,6 +44,7 @@ const ChangePasswordModalForm: FC<IChangePassword> = () => {
           <Typography className={styleForm.title}>Change your password</Typography>
           <Form
             onSubmit={onSubmitChangePassword}
+            subscription={{ submitting: true }}
             validate={validateRegistrationForm}
             render={({ handleSubmit, submitting }) => (
               <form className={styleForm.form} onSubmit={handleSubmit}>

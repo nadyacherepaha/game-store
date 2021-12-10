@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, memo } from "react";
 import { Field } from "react-final-form";
 import SelectInput, { ISelectedItem } from "../../common/SelectInput";
 import { Ages } from "../../../constants/filterFormEnum";
@@ -18,4 +18,4 @@ const AgesField: FC = () => (
   </div>
 );
 
-export default AgesField;
+export default memo(AgesField);
