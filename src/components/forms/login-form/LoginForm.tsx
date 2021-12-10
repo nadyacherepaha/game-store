@@ -8,10 +8,11 @@ import { Form, Field } from "react-final-form";
 import style from "../form.module.scss";
 import FormInput from "../../common/FormInput";
 import { validateLoginForm } from "../validateForms";
-import { BASE_URL } from "../../../utils";
+import { BASE_URL } from "../../../constants/baseUrl";
 import { IAuthFormValues } from "../../../types/User";
 import { writeUserToLocalStorage } from "../../../redux/actions/userActions";
 import { useAppDispatch } from "../../../hooks/redux";
+import { writeAdminToLocalStorage } from "../../../redux/actions/adminActions";
 
 const LoginForm: FC = () => {
   const [open, setOpen] = React.useState(false);
@@ -22,9 +23,12 @@ const LoginForm: FC = () => {
 
   const onSubmit = async (values: IAuthFormValues) => {
     try {
-      await axios.post(`${BASE_URL}/login`, values);
+      const res = await axios.post(`${BASE_URL}/login`, values);
       alert(`Welcome, ${values.login}!`);
       dispatch(writeUserToLocalStorage(values.login));
+      if (res.data.admin) {
+        dispatch(writeAdminToLocalStorage(res.data.admin));
+      }
       handleClose();
     } catch (e) {
       console.error(e.message);

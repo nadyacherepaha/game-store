@@ -1,0 +1,45 @@
+.editForm {
+  .field {
+    justify-content: space-between;
+
+    span {
+      color: #fff;
+      margin: 0;
+    }
+
+    .select {
+      max-width: 341px;
+      height: 40px;
+
+      option {
+        color: #000;
+      }
+    }
+  }
+
+  .platform {
+    color: #fff;
+    justify-content: space-between;
+
+    .field {
+      display: grid;
+      grid-template-columns: repeat(2, 2fr);
+      column-gap: 30px;
+      align-items: center;
+    }
+  }
+}
+
+.btn {
+  z-index: 1;
+  background-color: #9933cc !important;
+  color: #fff !important;
+  text-transform: none !important;
+  font-size: 16px !important;
+  transition: all 1s ease !important;
+  &:hover,
+  &:active,
+  &:focus {
+    background-color: #60257c !important;
+  }
+}

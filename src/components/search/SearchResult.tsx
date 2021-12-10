@@ -1,6 +1,6 @@
 import React, { FC, Fragment } from "react";
 import debounce from "lodash.debounce";
-import { BASE_URL } from "../../utils";
+import { BASE_URL } from "../../constants/baseUrl";
 import SearchInput from "./SearchInput";
 import CardGame from "../games/card-game/CardGame";
 import style from "../games/card-game/cardGame.module.scss";

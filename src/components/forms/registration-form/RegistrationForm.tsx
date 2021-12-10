@@ -8,7 +8,7 @@ import Typography from "@mui/material/Typography";
 import style from "../form.module.scss";
 import FormInput from "../../common/FormInput";
 import { validateRegistrationForm } from "../validateForms";
-import { BASE_URL } from "../../../utils";
+import { BASE_URL } from "../../../constants/baseUrl";
 import { IAuthFormValues } from "../../../types/User";
 
 const RegistrationForm: FC = () => {
@@ -18,7 +18,11 @@ const RegistrationForm: FC = () => {
 
   const onSubmit = async (values: IAuthFormValues) => {
     try {
-      const response = await axios.post(`${BASE_URL}/registration`, values);
+      const response = await axios.post(`${BASE_URL}/registration`, {
+        login: values.login,
+        password: values.password,
+        isAdmin: false,
+      });
       alert(response.data.message);
       handleClose();
     } catch (e) {

@@ -30,6 +30,13 @@ export default webpackMockServer.add((app, helper) => {
     description: string;
     ageLimit: number;
     alt: string;
+    amount: number;
+  }
+
+  interface INewGame extends IGame {
+    playstation: boolean;
+    pc: boolean;
+    xbox: boolean;
   }
 
   interface IUser {
@@ -38,13 +45,14 @@ export default webpackMockServer.add((app, helper) => {
     avatar: string;
     username: string;
     description: string;
+    isAdmin: boolean;
   }
 
   interface IPlatform {
     platform: { xbox: boolean; playstation: boolean; pc: boolean };
   }
 
-  const allGames: IGame[] = JSON.parse(fs.readFileSync(nodePath.join(__dirname, "./data/games.json"), "utf-8"));
+  let allGames: IGame[] = JSON.parse(fs.readFileSync(nodePath.join(__dirname, "./data/games.json"), "utf-8"));
   const allUsers: IUser[] = JSON.parse(fs.readFileSync(nodePath.join(__dirname, "./data/users.json"), "utf-8"));
   const platforms = ["xbox", "pc", "playstation"];
 
@@ -117,8 +125,9 @@ export default webpackMockServer.add((app, helper) => {
       if (password !== user.password) {
         return res.status(400).json({ message: "Invalid password" });
       }
+      const admin = user?.isAdmin;
 
-      return res.json({ login, password });
+      return res.json({ login, password, admin });
     } catch (e) {
       console.log(e);
       res.send({ message: "Server error" });
@@ -168,5 +177,43 @@ export default webpackMockServer.add((app, helper) => {
     }
 
     res.status(200).json({ message: "Password has been updated" });
+  });
+  app.post("/product", (_req, res) => {
+    const { id, image, description, amount, price, name, rating, genre, ageLimit, alt, platform } =
+      _req.body as INewGame;
+    const existingGame = allGames.find((result) => result.id === id);
+
+    if (existingGame) {
+      res.status(400).json({ message: `Game with login ${id} already exist` });
+    }
+    allGames.push({ id, image, description, amount, price, name, rating, genre, ageLimit, alt, platform });
+    res.send(_req.body);
+  });
+  app.put("/product", (_req, res) => {
+    const { id, image, description, amount, price, name, rating, genre, ageLimit, alt, platform } =
+      _req.body as INewGame;
+    const existingGameIndex = allGames.findIndex((result) => result.id === +id);
+
+    allGames[existingGameIndex] = {
+      id: +id,
+      name,
+      ageLimit,
+      alt,
+      amount,
+      price,
+      rating,
+      platform,
+      description,
+      genre,
+      image,
+    };
+    res.status(200).json({ message: "Game was update" });
+    res.json(allGames[existingGameIndex]);
+  });
+  app.delete("/product/:id", (_req, res) => {
+    const { id } = _req.params;
+
+    allGames = allGames.filter((result) => result.id !== +id);
+    res.status(200).json({ message: "Game was deleted" });
   });
 });
