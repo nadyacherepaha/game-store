@@ -18,7 +18,7 @@ const fetchSearchResults = async (query: string) => {
 };
 
 const debouncedFetchData = debounce((query: string, cb: () => void) => {
-  const fetchData = async (query: string, cb: () => void) => {
+  const fetchData = async (query: string, cb: (res: string) => void) => {
     const res: string = await fetchSearchResults(query);
     cb(res);
   };
@@ -36,7 +36,7 @@ const SearchResult: FC = () => {
         value={query}
         onChangeText={(e) => {
           setQuery(e.target.value);
-          debouncedFetchData(e.target.value, (res) => {
+          debouncedFetchData(e.target.value, (res: []) => {
             setResults(res);
           });
         }}

@@ -37,7 +37,7 @@ const CardGame: FC<ICardGameProps> = ({
   const defaultImage =
     "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/2048px-No_image_available.svg.png";
 
-  const handleClick = (e: Event) => {
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.stopPropagation();
     dispatch(addToCart({ id, amount, name, platform, price }));
   };
