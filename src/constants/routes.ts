@@ -1,9 +1,11 @@
+import React from "react";
 import HomePage from "../pages/home-page/HomePage";
-import ProductsPage from "../pages/products-page/ProductsPage";
-import AboutPage from "../pages/about-page/AboutPage";
-import ErrorPage from "../pages/error-page/ErrorPage";
-import Profile from "../pages/profile-page/Profile";
-import Cart from "../pages/cart-page/Cart";
+
+const ProductsPage = React.lazy(() => import("../pages/products-page/ProductsPage"));
+const AboutPage = React.lazy(() => import("../pages/about-page/AboutPage"));
+const ErrorPage = React.lazy(() => import("../pages/error-page/ErrorPage"));
+const Profile = React.lazy(() => import("../pages/profile-page/Profile"));
+const Cart = React.lazy(() => import("../pages/cart-page/Cart"));
 
 const routes = [
   {
