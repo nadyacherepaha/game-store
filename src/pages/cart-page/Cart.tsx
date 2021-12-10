@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from "react";
+import React, { FC, useEffect, useMemo } from "react";
 import classNames from "classnames";
 import style from "../../styles/main.module.css";
 import cartStyle from "./cart.module.scss";
@@ -30,6 +30,14 @@ const Cart: FC<ICartProps> = () => {
     }
   };
 
+  const memoItemInCart = useMemo(
+    () =>
+      itemInCart.map((result) => (
+        <CartItem key={result.id} currentDate={currentDate} totalItemPrice={totalItemPrice} {...result} />
+      )),
+    [itemInCart]
+  );
+
   return (
     <div className={classNames(cartStyle.cart, cartStyle.bgCart)}>
       <div className={classNames(cartStyle.content, style.content, style.shadowContainer)}>
@@ -48,9 +56,7 @@ const Cart: FC<ICartProps> = () => {
                 <h3>Platform</h3>
               </div>
 
-              {itemInCart.map((result) => (
-                <CartItem key={result.id} currentDate={currentDate} totalItemPrice={totalItemPrice} {...result} />
-              ))}
+              {memoItemInCart}
             </div>
             <div className={cartStyle.totals}>
               <span>Total amount: {cartTotalAmount.toFixed(2)}$</span>

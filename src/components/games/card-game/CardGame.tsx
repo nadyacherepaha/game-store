@@ -71,12 +71,26 @@ const CardGame: FC<ICardGameProps> = ({
         <div className={style.back}>
           <span className={style.desc}>{description}</span>
           <span className={style.age}>{ageLimit}+</span>
-          <div className={btnStyle.buttons}>
+
+          {roleAdmin ? (
+            <>
+              <div className={btnStyle.buttons}>
+                <button type="button" className={btnStyle.btn} onClick={(e) => handleClick(e)}>
+                  Add to cart
+                </button>
+                <EditCardForm
+                  subscription={{ values: true }}
+                  id={id}
+                  display={displayButtonEditCard}
+                  buttonTitle="Edit"
+                />
+              </div>
+            </>
+          ) : (
             <button type="button" className={btnStyle.btn} onClick={(e) => handleClick(e)}>
               Add to cart
             </button>
-            {roleAdmin && <EditCardForm id={id} display={displayButtonEditCard} buttonTitle="Edit" />}
-          </div>
+          )}
         </div>
       </div>
     </>
