@@ -1,4 +1,4 @@
-import React, { FC, Fragment, useState, useEffect, memo, useMemo } from "react";
+import React, { FC, Fragment, useState, useEffect, memo } from "react";
 import classNames from "classnames";
 import { CircularProgress } from "@mui/material";
 import { useParams } from "react-router";
@@ -54,18 +54,12 @@ const ProductsPage: FC = () => {
     getFilteredResult(initialSearchPanelFilterValues);
   }, [platforms]);
 
-  const memoRoleAdmin = useMemo(
-    () =>
-      roleAdmin && (
-        <EditCardForm subscription={{ submitting: true }} display={displayButtonCreateCard} buttonTitle="Create card" />
-      ),
-    [category]
-  );
-
   return (
     <div className={mainStyle.wrapperProducts}>
       <SearchResult />
-      {memoRoleAdmin}
+      {roleAdmin && (
+        <EditCardForm subscription={{ submitting: true }} display={displayButtonCreateCard} buttonTitle="Create card" />
+      )}
       <div className={classNames(mainStyle.content, mainStyle.grid)}>
         <FilterForm getFilteredResult={getFilteredResult} />
         <div className={classNames(cardStyle.cards, categoryStyle.padding)}>

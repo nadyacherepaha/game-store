@@ -1,4 +1,4 @@
-import React, { FC, memo, useMemo } from "react";
+import React, { FC, memo } from "react";
 import { NavLink, useHistory } from "react-router-dom";
 import { Dropdown, NavItem } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -38,48 +38,6 @@ const Navbar: FC = () => {
     history.push("/home");
   };
 
-  const memoNavbar = useMemo(
-    () =>
-      navbar.map(({ route, title }) => (
-        <Dropdown.Item
-          key={title}
-          as={NavItem}
-          onClick={() => {
-            handleClick(route);
-          }}
-          className={style.dropdownItem}
-        >
-          {title}
-        </Dropdown.Item>
-      )),
-    [navbar]
-  );
-
-  const memoUser = useMemo(
-    () =>
-      user ? (
-        <>
-          <NavLink className={style.item} to="/profile">
-            <FontAwesomeIcon className={style.icon} icon={faUser} />
-            User
-          </NavLink>
-          <NavLink className={style.item} to="/cart">
-            <FontAwesomeIcon className={style.icon} icon={faShoppingCart} />
-            <span>{itemsQuantity || "Cart"}</span>
-          </NavLink>
-          <button className={style.item} type="button" onClick={onLogout}>
-            Logout
-          </button>
-        </>
-      ) : (
-        <>
-          <LoginForm />
-          <RegistrationForm />
-        </>
-      ),
-    [user, itemsQuantity, faShoppingCart, faUser]
-  );
-
   return (
     <nav>
       <ul className={style.list}>
@@ -91,14 +49,46 @@ const Navbar: FC = () => {
           <Dropdown.Toggle className={style.btn} variant="dark" id="dropdown-basic">
             Products
           </Dropdown.Toggle>
-          <Dropdown.Menu className={style.dropdownMenu}>{memoNavbar}</Dropdown.Menu>
+          <Dropdown.Menu className={style.dropdownMenu}>
+            {navbar.map(({ route, title }) => (
+              <Dropdown.Item
+                key={title}
+                as={NavItem}
+                onClick={() => {
+                  handleClick(route);
+                }}
+                className={style.dropdownItem}
+              >
+                {title}
+              </Dropdown.Item>
+            ))}
+          </Dropdown.Menu>
         </Dropdown>
 
         <NavLink className={style.item} to="/about">
           About
         </NavLink>
 
-        {memoUser}
+        {user ? (
+          <>
+            <NavLink className={style.item} to="/profile">
+              <FontAwesomeIcon className={style.icon} icon={faUser} />
+              User
+            </NavLink>
+            <NavLink className={style.item} to="/cart">
+              <FontAwesomeIcon className={style.icon} icon={faShoppingCart} />
+              <span>{itemsQuantity || "Cart"}</span>
+            </NavLink>
+            <button className={style.item} type="button" onClick={onLogout}>
+              Logout
+            </button>
+          </>
+        ) : (
+          <>
+            <LoginForm />
+            <RegistrationForm />
+          </>
+        )}
       </ul>
     </nav>
   );
