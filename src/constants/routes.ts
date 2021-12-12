@@ -1,11 +1,11 @@
 import React from "react";
 import HomePage from "../pages/home-page/HomePage";
+import Cart from "../pages/cart-page/Cart";
 
 const ProductsPage = React.lazy(() => import("../pages/products-page/ProductsPage"));
 const AboutPage = React.lazy(() => import("../pages/about-page/AboutPage"));
 const ErrorPage = React.lazy(() => import("../pages/error-page/ErrorPage"));
 const Profile = React.lazy(() => import("../pages/profile-page/Profile"));
-const Cart = React.lazy(() => import("../pages/cart-page/Cart"));
 
 const routes = [
   {
