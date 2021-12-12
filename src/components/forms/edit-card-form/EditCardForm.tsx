@@ -63,8 +63,6 @@ const EditCardForm: FC<IEditCardForm | undefined> = ({ id, buttonTitle, display,
   };
 
   const onUpdateCard = async (values: IValueEditForm) => {
-    console.log(values);
-
     try {
       const { pc, xbox, playstation } = values;
       const platformValues = { pc, xbox, playstation };

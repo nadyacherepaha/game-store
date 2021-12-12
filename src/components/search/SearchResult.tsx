@@ -1,4 +1,4 @@
-import React, { FC, Fragment, memo } from "react";
+import React, { FC, Fragment, memo, SetStateAction } from "react";
 import debounce from "lodash.debounce";
 import { BASE_URL } from "../../constants/baseUrl";
 import SearchInput from "./SearchInput";
@@ -17,9 +17,9 @@ const fetchSearchResults = async (query: string) => {
   return [];
 };
 
-const debouncedFetchData = debounce((query: string, cb: () => void) => {
-  const fetchData = async (query: string, cb: (res: string) => void) => {
-    const res: string = await fetchSearchResults(query);
+const debouncedFetchData = debounce((query: string, cb: (res: SetStateAction<[]>) => void) => {
+  const fetchData = async (query: string, cb: (res: SetStateAction<[]>) => void) => {
+    const res = await fetchSearchResults(query);
     cb(res);
   };
 
@@ -27,8 +27,8 @@ const debouncedFetchData = debounce((query: string, cb: () => void) => {
 }, 300);
 
 const SearchResult: FC = () => {
-  const [query, setQuery] = React.useState("");
-  const [results, setResults] = React.useState([]);
+  const [query, setQuery] = React.useState<string>("");
+  const [results, setResults] = React.useState<[]>([]);
 
   return (
     <>
@@ -36,7 +36,7 @@ const SearchResult: FC = () => {
         value={query}
         onChangeText={(e) => {
           setQuery(e.target.value);
-          debouncedFetchData(e.target.value, (res: []) => {
+          debouncedFetchData(e.target.value, (res: SetStateAction<[]>) => {
             setResults(res);
           });
         }}

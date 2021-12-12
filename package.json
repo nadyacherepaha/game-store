@@ -124,6 +124,7 @@
     "@mui/material": "^5.0.4",
     "@mui/styles": "^5.0.1",
     "@reduxjs/toolkit": "^1.6.2",
+    "@types/lodash.debounce": "^4.0.6",
     "axios": "^0.24.0",
     "bcryptjs": "^2.4.3",
     "bootstrap": "^5.1.3",
