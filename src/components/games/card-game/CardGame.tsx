@@ -75,7 +75,7 @@ const CardGame: FC<ICardGameProps> = ({
           {roleAdmin ? (
             <>
               <div className={btnStyle.buttons}>
-                <button type="button" className={btnStyle.btn} onClick={(e) => handleClick(e)}>
+                <button type="button" className={btnStyle.btn} onClick={handleClick}>
                   Add to cart
                 </button>
                 <EditCardForm
@@ -87,7 +87,7 @@ const CardGame: FC<ICardGameProps> = ({
               </div>
             </>
           ) : (
-            <button type="button" className={btnStyle.btn} onClick={(e) => handleClick(e)}>
+            <button type="button" className={btnStyle.btn} onClick={handleClick}>
               Add to cart
             </button>
           )}
@@ -96,4 +96,20 @@ const CardGame: FC<ICardGameProps> = ({
     </>
   );
 };
-export default memo(CardGame);
+
+function cardGamePropsAreEqual(prevCardGame: ICardGameProps, nextCardGame: ICardGameProps) {
+  return (
+    prevCardGame.id === nextCardGame.id &&
+    prevCardGame.name === nextCardGame.name &&
+    prevCardGame.amount === nextCardGame.amount &&
+    prevCardGame.image === nextCardGame.image &&
+    prevCardGame.price === nextCardGame.price &&
+    prevCardGame.description === nextCardGame.description &&
+    prevCardGame.alt === nextCardGame.alt &&
+    prevCardGame.ageLimit === nextCardGame.ageLimit &&
+    prevCardGame.platform === nextCardGame.platform &&
+    prevCardGame.rating === nextCardGame.rating
+  );
+}
+
+export default memo(CardGame, cardGamePropsAreEqual);
