@@ -97,19 +97,16 @@ const CardGame: FC<ICardGameProps> = ({
   );
 };
 
-function cardGamePropsAreEqual(prevCardGame: ICardGameProps, nextCardGame: ICardGameProps) {
-  return (
-    prevCardGame.id === nextCardGame.id &&
-    prevCardGame.name === nextCardGame.name &&
-    prevCardGame.amount === nextCardGame.amount &&
-    prevCardGame.image === nextCardGame.image &&
-    prevCardGame.price === nextCardGame.price &&
-    prevCardGame.description === nextCardGame.description &&
-    prevCardGame.alt === nextCardGame.alt &&
-    prevCardGame.ageLimit === nextCardGame.ageLimit &&
-    prevCardGame.platform === nextCardGame.platform &&
-    prevCardGame.rating === nextCardGame.rating
-  );
-}
+const cardGamePropsAreEqual = (prevCardGame: ICardGameProps, nextCardGame: ICardGameProps) =>
+  prevCardGame.id === nextCardGame.id &&
+  prevCardGame.name === nextCardGame.name &&
+  prevCardGame.amount === nextCardGame.amount &&
+  prevCardGame.image === nextCardGame.image &&
+  prevCardGame.price === nextCardGame.price &&
+  prevCardGame.description === nextCardGame.description &&
+  prevCardGame.alt === nextCardGame.alt &&
+  prevCardGame.ageLimit === nextCardGame.ageLimit &&
+  prevCardGame.platform === nextCardGame.platform &&
+  prevCardGame.rating === nextCardGame.rating;
 
 export default memo(CardGame, cardGamePropsAreEqual);
