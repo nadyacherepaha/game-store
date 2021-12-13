@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from "react";
+import React, { FC, memo, useEffect } from "react";
 import { Rating } from "react-simple-star-rating";
 import { faPlaystation, faWindows, faXbox } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -37,7 +37,7 @@ const CardGame: FC<ICardGameProps> = ({
   const defaultImage =
     "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/2048px-No_image_available.svg.png";
 
-  const handleClick = (e: Event) => {
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.stopPropagation();
     dispatch(addToCart({ id, amount, name, platform, price }));
   };
@@ -71,16 +71,42 @@ const CardGame: FC<ICardGameProps> = ({
         <div className={style.back}>
           <span className={style.desc}>{description}</span>
           <span className={style.age}>{ageLimit}+</span>
-          <div className={btnStyle.buttons}>
-            <button type="button" className={btnStyle.btn} onClick={(e) => handleClick(e)}>
+
+          {roleAdmin ? (
+            <>
+              <div className={btnStyle.buttons}>
+                <button type="button" className={btnStyle.btn} onClick={handleClick}>
+                  Add to cart
+                </button>
+                <EditCardForm
+                  subscription={{ values: true }}
+                  id={id}
+                  display={displayButtonEditCard}
+                  buttonTitle="Edit"
+                />
+              </div>
+            </>
+          ) : (
+            <button type="button" className={btnStyle.btn} onClick={handleClick}>
               Add to cart
             </button>
-            {roleAdmin && <EditCardForm id={id} display={displayButtonEditCard} buttonTitle="Edit" />}
-          </div>
+          )}
         </div>
       </div>
     </>
   );
 };
 
-export default CardGame;
+const areEqualCardGameProps = (prevCardGame: ICardGameProps, nextCardGame: ICardGameProps) =>
+  prevCardGame.id === nextCardGame.id &&
+  prevCardGame.name === nextCardGame.name &&
+  prevCardGame.amount === nextCardGame.amount &&
+  prevCardGame.image === nextCardGame.image &&
+  prevCardGame.price === nextCardGame.price &&
+  prevCardGame.description === nextCardGame.description &&
+  prevCardGame.alt === nextCardGame.alt &&
+  prevCardGame.ageLimit === nextCardGame.ageLimit &&
+  prevCardGame.platform === nextCardGame.platform &&
+  prevCardGame.rating === nextCardGame.rating;
+
+export default memo(CardGame, areEqualCardGameProps);

@@ -1,4 +1,4 @@
-import React, { FC, Fragment, useState, useEffect } from "react";
+import React, { FC, Fragment, useState, useEffect, memo } from "react";
 import classNames from "classnames";
 import { CircularProgress } from "@mui/material";
 import { useParams } from "react-router";
@@ -57,7 +57,9 @@ const ProductsPage: FC = () => {
   return (
     <div className={mainStyle.wrapperProducts}>
       <SearchResult />
-      {roleAdmin && <EditCardForm display={displayButtonCreateCard} buttonTitle="Create card" />}
+      {roleAdmin && (
+        <EditCardForm subscription={{ submitting: true }} display={displayButtonCreateCard} buttonTitle="Create card" />
+      )}
       <div className={classNames(mainStyle.content, mainStyle.grid)}>
         <FilterForm getFilteredResult={getFilteredResult} />
         <div className={classNames(cardStyle.cards, categoryStyle.padding)}>
@@ -78,4 +80,4 @@ const ProductsPage: FC = () => {
   );
 };
 
-export default ProductsPage;
+export default memo(ProductsPage);

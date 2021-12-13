@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, memo } from "react";
 import Navbar from "./Navbar";
 import style from "./header.module.scss";
 
@@ -13,4 +13,4 @@ const Header: FC = () => (
   </header>
 );
 
-export default Header;
+export default memo(Header);

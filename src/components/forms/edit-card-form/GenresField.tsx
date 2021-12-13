@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, memo } from "react";
 import { Field } from "react-final-form";
 import { Genres } from "../../../constants/filterFormEnum";
 import SelectInput, { ISelectedItem } from "../../common/SelectInput";
@@ -18,4 +18,4 @@ const GenresField: FC = () => (
   </div>
 );
 
-export default GenresField;
+export default memo(GenresField);

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { Field } from "react-final-form";
 import RadioInput from "../../common/RadioInput";
 import style from "../form.module.scss";
@@ -63,4 +63,4 @@ const GenresField: React.FC = () => (
   </div>
 );
 
-export default GenresField;
+export default memo(GenresField);

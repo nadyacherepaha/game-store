@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { FieldRenderProps } from "react-final-form";
 
 interface IFormInput extends FieldRenderProps<string> {
@@ -13,4 +13,4 @@ const FormInput: React.FC<IFormInput> = ({ label, input, meta, ...rest }: IFormI
   </>
 );
 
-export default FormInput;
+export default memo(FormInput);

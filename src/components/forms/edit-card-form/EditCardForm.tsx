@@ -6,6 +6,7 @@ import Modal from "@mui/material/Modal";
 import Typography from "@mui/material/Typography";
 import classNames from "classnames";
 import axios from "axios";
+import { FormSubscription } from "final-form";
 import style from "../form.module.scss";
 import formStyle from "./editCardForm.module.scss";
 import FormInput from "../../common/FormInput";
@@ -28,11 +29,12 @@ interface IEditCardForm {
   id?: number;
   buttonTitle: string;
   display: string;
+  subscription: FormSubscription | undefined;
 }
 export const displayButtonEditCard = "editCard";
 export const displayButtonCreateCard = "createCard";
 
-const EditCardForm: FC<IEditCardForm | undefined> = ({ id, buttonTitle, display }) => {
+const EditCardForm: FC<IEditCardForm | undefined> = ({ id, buttonTitle, display, subscription }) => {
   const [open, setOpen] = React.useState<boolean>(false);
   const handleOpen = (): void => setOpen(true);
   const handleClose = (): void => setOpen(false);
@@ -82,6 +84,7 @@ const EditCardForm: FC<IEditCardForm | undefined> = ({ id, buttonTitle, display 
           <Form
             onSubmit={onSubmit}
             onClick={onUpdateCard}
+            subscription={subscription}
             initialValues={{
               amount: 1,
               genre: "action",

@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { FC, memo, useState } from "react";
 import axios from "axios";
 import { Form, Field } from "react-final-form";
 import classNames from "classnames";
@@ -48,6 +48,7 @@ const ProfileInfo: FC<IUserProfile> = ({ username, description, avatar }) => {
         <ProfileImage avatar={avatar} />
         <Form
           onSubmit={onSubmitSaveProfile}
+          subscription={{ submitting: true }}
           render={({ handleSubmit, submitting }) => (
             <form className={classNames(style.form, styleForm.form)} onSubmit={handleSubmit}>
               <div>
@@ -80,4 +81,4 @@ const ProfileInfo: FC<IUserProfile> = ({ username, description, avatar }) => {
   );
 };
 
-export default ProfileInfo;
+export default memo(ProfileInfo);

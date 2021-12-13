@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, memo } from "react";
 import { NavLink, useHistory } from "react-router-dom";
 import { Dropdown, NavItem } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -94,4 +94,4 @@ const Navbar: FC = () => {
   );
 };
 
-export default Navbar;
+export default memo(Navbar);

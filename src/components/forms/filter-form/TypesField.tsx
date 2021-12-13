@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { Field } from "react-final-form";
 import SelectInput, { ISelectedItem } from "../../common/SelectInput";
 import style from "../form.module.scss";
@@ -15,4 +15,4 @@ const TypesField: React.FC = () => (
   </div>
 );
 
-export default TypesField;
+export default memo(TypesField);

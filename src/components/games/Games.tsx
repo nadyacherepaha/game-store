@@ -1,4 +1,4 @@
-import React, { FC, Fragment } from "react";
+import React, { FC, Fragment, memo } from "react";
 import styles from "../categories/categories.module.scss";
 import { BASE_URL } from "../../constants/baseUrl";
 import style from "./card-game/cardGame.module.scss";
@@ -39,4 +39,4 @@ const Games: FC = () => {
   );
 };
 
-export default Games;
+export default memo(Games);

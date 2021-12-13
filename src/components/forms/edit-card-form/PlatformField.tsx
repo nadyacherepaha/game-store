@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, memo } from "react";
 import { Field } from "react-final-form";
 import CheckboxInput from "../../common/CheckboxInput";
 import { pc, playstation, xbox } from "@/constants/category";
@@ -14,4 +14,4 @@ const PlatformField: FC = () => (
     </div>
   </div>
 );
-export default PlatformField;
+export default memo(PlatformField);
