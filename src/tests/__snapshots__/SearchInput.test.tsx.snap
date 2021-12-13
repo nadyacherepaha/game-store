@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SearchInput component should render input for searching 1`] = `
+<div
+  className="container"
+>
+  <input
+    className="searchInput"
+    onChange={[Function]}
+    placeholder="Search"
+    type="text"
+    value=""
+  />
+</div>
+`;

@@ -1,7 +1,7 @@
 import React, { FC, memo } from "react";
 import { Field } from "react-final-form";
 import CheckboxInput from "../../common/CheckboxInput";
-import { pc, playstation, xbox } from "@/constants/category";
+import { pc, playstation, xbox } from "../../../constants/category";
 import style from "./editCardForm.module.scss";
 
 const PlatformField: FC = () => (
