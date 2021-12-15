@@ -4,7 +4,7 @@
   "description": "React web application",
   "main": "main.tsx",
   "scripts": {
-    "test": "jest",
+    "test": "jest --runInBand --watch",
     "start": "npm run serve",
     "serve": "./node_modules/.bin/webpack serve --open --config webpack.devServer.js",
     "build-prod": "./node_modules/.bin/webpack --mode production --config webpack.prod.js",
@@ -21,6 +21,9 @@
     "moduleDirectories": [
       "node_modules",
       "src"
+    ],
+    "setupFiles": [
+      "<rootDir>/tests/e2e.test.tsx"
     ],
     "moduleNameMapper": {
       "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
