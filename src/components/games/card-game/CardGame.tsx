@@ -97,7 +97,7 @@ const CardGame: FC<ICardGameProps> = ({
   );
 };
 
-const cardGamePropsAreEqual = (prevCardGame: ICardGameProps, nextCardGame: ICardGameProps) =>
+const areEqualCardGameProps = (prevCardGame: ICardGameProps, nextCardGame: ICardGameProps) =>
   prevCardGame.id === nextCardGame.id &&
   prevCardGame.name === nextCardGame.name &&
   prevCardGame.amount === nextCardGame.amount &&
@@ -109,4 +109,4 @@ const cardGamePropsAreEqual = (prevCardGame: ICardGameProps, nextCardGame: ICard
   prevCardGame.platform === nextCardGame.platform &&
   prevCardGame.rating === nextCardGame.rating;
 
-export default memo(CardGame, cardGamePropsAreEqual);
+export default memo(CardGame, areEqualCardGameProps);
