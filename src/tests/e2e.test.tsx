@@ -1,5 +1,7 @@
 import puppeteer from "puppeteer";
 
+process.env.BASE_URL = "http://localhost:8080";
+
 describe("HomePage.tsx tests", () => {
   let browser;
   let page;
@@ -9,7 +11,7 @@ describe("HomePage.tsx tests", () => {
   beforeAll(async () => {
     browser = await puppeteer.launch();
     page = await browser.newPage();
-    await page.goto("http://localhost:8080");
+    await page.goto(process.env.BASE_URL);
   });
 
   it("should load the search bar", async () => {
