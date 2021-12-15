@@ -1,6 +1,6 @@
 import puppeteer from "puppeteer";
 
-describe("HomePage.tsx", () => {
+describe("HomePage.tsx tests", () => {
   let browser;
   let page;
   const componentsCategories = "components-categories-categories";
@@ -12,11 +12,11 @@ describe("HomePage.tsx", () => {
     await page.goto("http://localhost:8080");
   });
 
-  it("loaded the search bar", async () => {
+  it("should load the search bar", async () => {
     await page.waitForSelector(".components-search-searchInput__searchInput");
   });
 
-  it("displayed categories", async () => {
+  it("should display categories", async () => {
     await page.waitForSelector(`.${componentsCategories}__wrapper`);
     const title = await page.$eval(`.${componentsCategories}__title`, (e) => e.innerHTML);
     const button = await page.$eval(`.${componentsCategories}__items`, (e) => !!e);
@@ -29,7 +29,7 @@ describe("HomePage.tsx", () => {
     expect(linkItems.length).toBe(linkItemsQuantity);
   });
 
-  it("displayed top games", async () => {
+  it("should display top games", async () => {
     await page.waitForSelector(`.${componentsCategories}__wrapper`);
     const topGames = await page.$eval(`.${componentsGames}__cards`, (e) => !!e);
     const cardGame = await page.$$(`.${componentsGames}__card`);
