@@ -23,12 +23,12 @@ describe("HomePage.tsx tests", () => {
     const title = await page.$eval(`.${componentsCategoriesClassName}__title`, (e) => e.innerHTML);
     const button = await page.$eval(`.${componentsCategoriesClassName}__items`, (e) => !!e);
     const linkItems = await page.$$(".components-categories-category-item-categoryItem__item");
-    const linkItemsQuantity = 3;
+    const expectedLinkItemsQuantity = 3;
     const categoriesTitle = "Categories";
 
     expect(title).toContain(categoriesTitle);
     expect(button).toBeTruthy();
-    expect(linkItems.length).toBe(linkItemsQuantity);
+    expect(linkItems.length).toBe(expectedLinkItemsQuantity);
   });
 
   it("should display top games", async () => {
@@ -36,10 +36,10 @@ describe("HomePage.tsx tests", () => {
     const topGames = await page.$eval(`.${componentsGamesClassName}__cards`, (e) => !!e);
     const cardGame = await page.$$(`.${componentsGamesClassName}__card`);
     const buttonAddToCart = await page.$eval(".styles-main__btn", (e) => !!e);
-    const cardGameQuantity = 3;
+    const expectedCardGameQuantity = 3;
 
     expect(topGames).toBeTruthy();
-    expect(cardGame.length).toBe(cardGameQuantity);
+    expect(cardGame.length).toBe(expectedCardGameQuantity);
     expect(buttonAddToCart).toBeTruthy();
   });
 
