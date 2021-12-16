@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProfileInfo component should render the default avatar 1`] = `
+<div>
+  <img
+    alt=""
+    className="image"
+    src="https://winnote.ru/wp-content/uploads/2016/01/1454222417_del_recent_avatar1.png"
+  />
+  <div
+    className="react-file-reader"
+  >
+    <input
+      accept="image/*"
+      className="react-file-reader-input"
+      disabled={false}
+      id="3ff02448-708d-43e0-b007-77d7e0e724a1"
+      multiple={false}
+      onChange={[Function]}
+      style={
+        Object {
+          "opacity": "0",
+          "position": "fixed",
+          "width": "0px",
+        }
+      }
+      type="file"
+    />
+    <div
+      className="react-file-reader-button"
+      onClick={[Function]}
+    >
+      <button
+        className="btn"
+        type="button"
+      >
+        Change profile image
+      </button>
+    </div>
+  </div>
+</div>
+`;

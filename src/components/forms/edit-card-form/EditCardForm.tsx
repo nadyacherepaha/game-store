@@ -29,7 +29,7 @@ interface IEditCardForm {
   id?: number;
   buttonTitle: string;
   display: string;
-  subscription: FormSubscription | undefined;
+  subscription?: FormSubscription;
 }
 export const displayButtonEditCard = "editCard";
 export const displayButtonCreateCard = "createCard";
