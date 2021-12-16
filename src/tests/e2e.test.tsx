@@ -5,8 +5,8 @@ process.env.BASE_URL = "http://localhost:8080";
 describe("HomePage.tsx tests", () => {
   let browser;
   let page;
-  const componentsCategories = "components-categories-categories";
-  const componentsGames = "components-games-card-game-cardGame";
+  const componentsCategoriesClassName = "components-categories-categories";
+  const componentsGamesClassName = "components-games-card-game-cardGame";
 
   beforeAll(async () => {
     browser = await puppeteer.launch();
@@ -19,9 +19,9 @@ describe("HomePage.tsx tests", () => {
   });
 
   it("should display categories", async () => {
-    await page.waitForSelector(`.${componentsCategories}__wrapper`);
-    const title = await page.$eval(`.${componentsCategories}__title`, (e) => e.innerHTML);
-    const button = await page.$eval(`.${componentsCategories}__items`, (e) => !!e);
+    await page.waitForSelector(`.${componentsCategoriesClassName}__wrapper`);
+    const title = await page.$eval(`.${componentsCategoriesClassName}__title`, (e) => e.innerHTML);
+    const button = await page.$eval(`.${componentsCategoriesClassName}__items`, (e) => !!e);
     const linkItems = await page.$$(".components-categories-category-item-categoryItem__item");
     const linkItemsQuantity = 3;
     const categoriesTitle = "Categories";
@@ -32,9 +32,9 @@ describe("HomePage.tsx tests", () => {
   });
 
   it("should display top games", async () => {
-    await page.waitForSelector(`.${componentsCategories}__wrapper`);
-    const topGames = await page.$eval(`.${componentsGames}__cards`, (e) => !!e);
-    const cardGame = await page.$$(`.${componentsGames}__card`);
+    await page.waitForSelector(`.${componentsCategoriesClassName}__wrapper`);
+    const topGames = await page.$eval(`.${componentsGamesClassName}__cards`, (e) => !!e);
+    const cardGame = await page.$$(`.${componentsGamesClassName}__card`);
     const buttonAddToCart = await page.$eval(".styles-main__btn", (e) => !!e);
     const cardGameQuantity = 3;
 
