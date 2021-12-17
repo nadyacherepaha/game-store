@@ -36,8 +36,8 @@ const ProductsPage: FC = () => {
     try {
       const response = await fetch(
         `${BASE_URL}/games?categories=${getCategories()}&criteria=${values.criteria}&type=${values.type}&genre=${
-          values.genres
-        }&age=${values.age}`
+          values.genres || ""
+        }&age=${values.age || ""}`
       );
       const result = await response.json();
 
