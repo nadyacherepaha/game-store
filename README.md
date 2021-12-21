@@ -1,6 +1,6 @@
-# ITechArt intership
+# Game Store
 
-React web application developed as part of an internship at iTechArt
+React web application
 
 ## How to run project
 
